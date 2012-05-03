@@ -1,0 +1,8 @@
+development:
+  app_id: '330473917009564'
+  secret: '840ef2b22dede7c618cee68f492aae76'
+  call_back: 'http://localhost:3000'
+production:
+  app_id: '147173108741003'
+  secret: '091852f387cce673230286a81c1cff59'
+  call_back: 'http://projectype.heroku.com'
