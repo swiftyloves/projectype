@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  ctime: 2012-05-05
+  msg: MyText
+  user_id: 1
+  subtask_id: 1
+
+two:
+  ctime: 2012-05-05
+  msg: MyText
+  user_id: 1
+  subtask_id: 1

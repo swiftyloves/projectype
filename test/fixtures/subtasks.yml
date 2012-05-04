@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  name: MyString
+  sday: 2012-05-05
+  dday: 2012-05-05
+  description: MyString
+  task_id: 1
+
+two:
+  name: MyString
+  sday: 2012-05-05
+  dday: 2012-05-05
+  description: MyString
+  task_id: 1
