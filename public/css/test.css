@@ -1,0 +1,66 @@
+#self {
+  position: fixed;
+  right: 0%;
+}
+
+#selfInfo {
+  height: 100px;
+  width: 100px;
+  background: red;
+  top: 0%;
+}
+
+#teamInfo {
+  height: 414px;
+  width: 100px;
+  background: yellow;
+  top: 100px;
+}
+
+#taskInfo {
+  background: green;
+  height: 514px;
+  width: 1024px;
+}
+
+.hidden {
+  display: none;
+}
+
+#self span {
+  font-size: 0.857em;
+  line-height: 1.25em;
+  position: relative;
+  left: 0%;
+}
+
+.active {
+  background: white;
+}
+
+#taskContent ul {
+  display: inline-block;
+  margin-left: 100px;
+  font-size: 32px;
+  background: yellow;
+}
+
+#taskContent li {
+  font-size: 24px;
+}
+
+.canvas {
+  font-family: tahoma;
+}
+.block {
+  position: absolute;
+  border: 1px solid #7DAB76;
+  background-color: #BAFFB0;
+  padding: 3px;
+}
+.connector {
+  background-color: #FF9900;
+}
+.source-label, .middle-label, .destination-label {
+  padding: 5px;
+}

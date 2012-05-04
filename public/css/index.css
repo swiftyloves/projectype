@@ -1,0 +1,262 @@
+html {
+  background: url("img/texture.jpg") repeat;
+  overflow: auto;
+}
+
+.outer {
+  background: rgba(235, 216, 142, 0.5);
+}
+
+.indexPanel {
+  width: 1080px;
+}
+
+.decorate {
+  position: absolute;
+  z-index: 1;
+}
+
+.bar div {
+  display: inline-block;
+  float: right;
+}
+
+.toggleButton {
+  z-index: 2;
+}
+
+.toggleButton a {
+  text-decoration: none;
+  background: rgba(109, 91, 5, 0.1);
+  font-size: 23.5px;
+  font-weight: bold;
+  color: rgba(137, 96, 8, 1);
+  background-size: 100%;
+}
+
+.toggleButton:hover {
+  cursor: pointer;
+}
+
+.toggling a {
+  background: rgba(255, 255, 255, 0.4);
+  color: rgba(221, 206, 113, 1);
+  box-shadow: 0px 1px 4px 0px rgba(128, 128, 128, 1) inset;
+  text-shadow: 0px 2px 2px rgba(32, 32, 32, 1);
+}
+
+#main {
+  background: url("img/background.jpg") no-repeat;
+  background-position: -50px 0px;
+  height: 780px;
+  margin: auto auto auto auto;
+  position: relative;
+}
+
+#modeBar {
+  height: 95px;
+}
+
+#middleBar {
+  height: 600px;
+}
+
+#helpBar {
+}
+
+#mask {
+  height: 645px;
+  width: 890px;
+  top: 75px;
+  left: 100px;
+  border-radius: 70px;
+  background: rgba(255, 255, 255, 0.3);
+}
+
+#topMask {
+  height: 80px;
+  box-shadow: 0px 1px 2px 1px rgba(150, 150, 150, 1);
+}
+
+#bottomMask {
+  top: 700px;
+}
+
+#content {
+  top: 95px;
+  width: 890px;
+  height: 605px;
+  left: 100px;
+  /*background: red;*/
+}
+
+.pointUser {
+  left: 768px;
+  visibility: visible;
+}
+
+.pointTask {
+  left: 896px;
+  visibility: visible;
+}
+
+.hide {
+  visibility: hidden;
+}
+
+#triangle {
+  background: url("img/triangle.png") no-repeat;
+  background-size: 60%;
+  width: 34px;
+  height: 38px;
+  top: 66px;
+}
+
+#projectName span {
+  margin-right: 40px;
+  font-size: 35px;
+  font-weight: bold;
+  color: rgba(127, 84, 0, 1);
+  text-shadow: -1px 0px black, 0px -1px black;
+}
+
+#helpButton, #contactButton {
+  position: relative;
+  top: 20px;
+  width: 50px;
+}
+
+#helpButton a, #contactButton a {
+  padding: 15px 15px 15px 15px;
+}
+
+#logButton, #taskButton, #userButton {
+  position: relative;
+  top: 30px;
+}
+
+#projectName {
+  position: relative;
+  top: 23px;
+}
+
+#logButton, #taskButton, #userButton {
+  margin-left: 20px;
+}
+
+#taskButton a, #userButton a {
+  padding-top: 10px;
+  padding-bottom: 10px;
+  padding-left: 30px;
+  padding-right: 30px;
+}
+
+.unlogin a {
+  padding-top: 10px;
+  padding-bottom: 10px;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+.unlogin #headImg {
+  display: none;
+}
+
+.unlogin #logFunctionTag {
+  display: none;
+}
+
+.login #unlogFunctionTag {
+  display: none;
+}
+
+.login a {
+  display: none;
+}
+
+.login #headImg {
+  background: red;
+  margin-right: 52px;
+  width: 48px;
+  height: 48px;
+  top: -12px;
+  position: relative;
+}
+
+.login #functionTag {
+  width: 134px;
+  height: 105px;
+  top: 47px;
+  left: -85px;
+}
+
+#logButton {
+}
+
+#taskButton {
+}
+
+#userButton {
+}
+
+#helpButton a {
+  background: url("img/questionMark.png") center no-repeat;
+}
+
+#contactButton a {
+  background: url("img/mail.png") center no-repeat;
+}
+
+#functionTag {
+  background: rgba(254, 254, 225, 1);
+  width: 130px;
+  height: 72px;
+  position: absolute;
+  top: 45px;
+  left: -31px;
+  box-shadow: 0px 2px 2px 0.5px rgba(124, 113, 96, 0.7);
+  border-radius: 7px;
+}
+
+#functionTag span {
+  margin-left: 23px;
+  font-size: 35px;
+  font-weight: bold;
+  color: rgba(127, 84, 0, 1);
+  text-shadow: -1px 0px black, 0px -1px black;
+}
+
+#logFunctionTag {
+  margin-top: 17px;
+}
+
+#fbButton, #gButton {
+  height: 45px;
+  width: 45px;
+  margin-top: 13px;
+  margin-left: 9px;
+}
+
+#fbButton {
+  background: rgba(0, 255, 255, 0.5);
+  margin-right: 15px;
+  margin-left: 8px;
+}
+
+#gButton {
+  background: rgba(255, 0, 255, 0.5);
+  margin-left: 9px;
+}
+
+@-webkit-keyframes showEffect { /* Safari and Chrome */
+  from { opacity:0 }
+  to { opacity:1 }
+}
+
+/* action part css */
+
+.showTag {
+  visibility: visible;
+  -webkit-animation:showEffect 1s; /* Safari and Chrome */
+}
+
