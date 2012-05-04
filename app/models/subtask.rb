@@ -6,7 +6,7 @@ class Subtask < ActiveRecord::Base
   has_many :comments, :dependent => :destroy
 
   has_many :subtaskorders, :dependent => :destroy
-  has_many :afters, :through => :subtaskorders
+  has_many :afters, :class_name => "Subtask", :through => :subtaskorders, :foreign_key => "after_id"
   has_many :inv_subtaskorders, :class_name => "Subtaskorder", :foreign_key => "after_id", :dependent => :destroy
   has_many :befores, :through => :inv_subtaskorders, :source => :subtask
 end
