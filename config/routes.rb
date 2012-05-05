@@ -1,4 +1,5 @@
 Projectype::Application.routes.draw do
+  get '/home/' => 'home#index'
 
   get '/' => 'page#index'
   get '/sel' => 'page#selectable'
