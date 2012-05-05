@@ -1,0 +1,30 @@
+  <button id="test">test</button>
+  <button id="test2">test2</button>
+  <div id="target">
+  </div>
+  <script>
+    $("#test").click(function(event) {
+      $.ajax({
+        url: "ajaxTest",
+        error: function(err) {
+          alert('Err');
+          console.log(err);
+        },
+        success: function(response) {
+          $("#target").empty().append(response);
+        },
+      });
+    });
+    $("#test2").click(function(event) {
+      $.ajax({
+        url: "ajaxTest2",
+        error: function(err) {
+          alert('Err');
+          console.log(err);
+        },
+        success: function(response) {
+          $("#target").empty().append(response);
+        },
+      });
+    });
+  </script>

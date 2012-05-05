@@ -1,5 +1,8 @@
 Projectype::Application.routes.draw do
   get '/home/' => 'home#index'
+  get '/test/ajax' => 'home#ajax'
+  get '/test/ajaxTest' => 'home#ajaxTest'
+  get '/test/ajaxTest2' => 'home#ajaxTest2'
 
   get '/' => 'page#index'
   get '/sel' => 'page#selectable'
