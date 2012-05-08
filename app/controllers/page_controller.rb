@@ -6,11 +6,10 @@ class PageController < ApplicationController
 	end
 	def getEvent
 		puts 'get lalala'
-		# if params[:req] == 'getEvent'
 		response = {}
-		response[:taskname] = Task.all
 		# only task of 'this' user ??
-		# end
+		response[:taskname] = Task.all
+		
 		# puts response
 		render json: response
 	end
