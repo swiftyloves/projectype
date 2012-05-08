@@ -37,6 +37,11 @@
   function commonLoginAction() {
     $(".unlogin").removeClass("unlogin").addClass("login");
   };
+
+  function commonLogoutAction() {
+    $(".login").removeClass("login").addClass("unlogin");
+  };
+
 </script>
 <%= javascript_include_tag "home/index" %>
 <%= stylesheet_link_tag "home/index" %>
@@ -55,6 +60,7 @@
         <div id="logFunctionTag">
           <span id="homeButton">Home</span>
           <span id="inviteButton">Invite</span>
+          <span id="logoutButton">Logout</span>
         </div>
         <div id="unlogFunctionTag">
           <div id="fbButton"></div>

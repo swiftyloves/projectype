@@ -1,7 +1,7 @@
 class HomeController < ApplicationController
   include RestGraph::RailsUtil
   before_filter :login_facebook, :only => [:fblogin]
-  before_filter :load_facebook, :only => [:index, :ask]
+  before_filter :load_facebook, :only => [:fblogout, :index, :ask]
 
   def index
     @appid = RestGraph.default_app_id
@@ -33,6 +33,11 @@ class HomeController < ApplicationController
   end
 
   def login
+  end
+
+  def fblogout
+    reset_session
+    render json: {}
   end
 
   private

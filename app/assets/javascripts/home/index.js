@@ -71,11 +71,24 @@ $(function() {
   });
   $("#gButton").click(function(event) {
     console.log($(this));
+  
   });
   $("#homeButton").click(function(event) {
     console.log($(this));
   });
   $("#inviteButton").click(function(event) {
     console.log($(this));
+  });
+  $("#logoutButton").click(function(event) {
+    console.log($(this));
+    FB.getLoginStatus(function(response) {
+      if (response.status === 'connected') {
+        FB.logout(function() {
+          $.get("/home/fblogout");
+          commonLogoutAction();
+          resetToggle();
+        });
+      }
+    });
   });
 });
