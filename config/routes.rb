@@ -3,6 +3,8 @@ Projectype::Application.routes.draw do
   get '/test/ajax' => 'home#ajax'
   get '/test/ajaxTest' => 'home#ajaxTest'
   get '/test/ajaxTest2' => 'home#ajaxTest2'
+  match '/home/ask/:req', :to => 'home#ask'
+  get '/home/fblogin' => 'home#fblogin'
 
   get '/' => 'page#index'
   get '/sel' => 'page#selectable'

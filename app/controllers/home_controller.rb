@@ -1,5 +1,10 @@
 class HomeController < ApplicationController
+  include RestGraph::RailsUtil
+  before_filter :login_facebook, :only => [:fblogin]
+  before_filter :load_facebook, :only => [:index, :ask]
+
   def index
+    @appid = RestGraph.default_app_id
   end
   def ajax
   end
@@ -9,4 +14,32 @@ class HomeController < ApplicationController
   def ajaxTest2
     render :layout => false
   end
+
+  def fblogin
+    render json: {:token => rest_graph.access_token}
+  end
+
+  def ask
+    response = {}
+    if params[:req] == 'appid'
+      response[:addid] = RestGraph.default_app_id
+    end
+    render json: response
+  end
+
+  def login
+  end
+
+  private
+  def load_facebook
+    rest_graph_setup(:write_session => true)
+  end
+
+  def login_facebook
+    rest_graph_setup(:auto_authorize         => true,
+                     :auto_authorize_scope   => 'user_photos',
+                     :ensure_authorized      => true,
+                     :write_session          => true)
+  end
+
 end

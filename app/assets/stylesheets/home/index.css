@@ -175,7 +175,8 @@ html {
 }
 
 .login #headImg {
-  background: red;
+  /*background: red;*/
+  background-size: 100%;
   margin-right: 52px;
   width: 48px;
   height: 48px;

@@ -9,9 +9,7 @@ $(function() {
       $("#bottomMask").css("height", window.innerHeight - 700);
     }
     $(".outer").css("width", Math.max(window.outerWidth, $("#main").width(), 1080));
-
-
-  }
+  };
 
   function resetToggle() {
     $(".pointUser").removeClass("pointUser");
@@ -22,7 +20,7 @@ $(function() {
     $("#functionTag").addClass("hide");
 
     $(".toggling").removeClass("toggling");
-  }
+  };
 
   resetMainHeight();
   window.onresize = function(event) {
@@ -61,6 +59,15 @@ $(function() {
   });
   $("#fbButton").click(function(event) {
     console.log($(this));
+    FB.login(function(res) {
+      if (res.authResponse) {
+        console.log('success');
+        handleFblogin();
+        resetToggle();
+      } else {
+        console.log('User cancelled login or did not fully authorize.');
+      }
+    }, { scope: 'user_photos' });
   });
   $("#gButton").click(function(event) {
     console.log($(this));
@@ -71,7 +78,4 @@ $(function() {
   $("#inviteButton").click(function(event) {
     console.log($(this));
   });
-
-
-
 });
