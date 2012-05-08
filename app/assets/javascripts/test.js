@@ -76,8 +76,8 @@ $(document).ready(function() {
 				end: new Date(y, m, 29),
 				url: 'http://google.com/'
 			}
-		]//,
-		// color: 'yellow',
+		],
+		color: 'red'
 		// textcolor: 'red'
 	});
 	
@@ -90,18 +90,8 @@ $.ajax({
           console.log(err);
         },
         success: function(response) {
-        	console.log(response)
-        	// $('#calendar').events.append('la');
-
-			calendar.fullCalendar('renderEvent',
-				{
-					title: title,
-					start: start,
-					end: end,
-					allDay: allDay
-				},
-				true // make the event "stick"
-			);
+        	console.log(response);
+        	// console.log(response.taskname[0]);
         }
 });
 
