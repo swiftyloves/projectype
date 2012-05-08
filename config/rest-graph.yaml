@@ -5,4 +5,4 @@ development:
 production:
   app_id: '147173108741003'
   secret: '091852f387cce673230286a81c1cff59'
-  call_back: 'http://projectype.heroku.com'
+  call_back: 'http://projectype.herokuapp.com'
