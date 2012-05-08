@@ -23,6 +23,11 @@ class HomeController < ApplicationController
     response = {}
     if params[:req] == 'appid'
       response[:addid] = RestGraph.default_app_id
+    elsif params[:req] == 'testuser'
+      # remeber to delete this
+      response[:user] = User.find(1)
+      response[:projects] = User.find(1).projects
+      response[:tasks] = User.find(1).projects[0]
     end
     render json: response
   end

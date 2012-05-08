@@ -8,6 +8,7 @@ Projectype::Application.routes.draw do
 
   get '/' => 'page#index'
   get '/sel' => 'page#selectable'
+  get '/getEvent' => 'page#getEvent'
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
