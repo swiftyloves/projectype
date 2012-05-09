@@ -11,6 +11,11 @@
     FB.getLoginStatus(function(response) {
       if (response.status === 'connected') {
         handleFblogin();
+      } else {
+        <% if @gp_client.authorization.access_token %>
+          $("#headImg").css("background", "url(<%= @img %>)");
+          commonLoginAction();
+        <% end %>
       }
     });
   };
@@ -40,8 +45,8 @@
 
   function commonLogoutAction() {
     $(".login").removeClass("login").addClass("unlogin");
+    $.get("/home/logout")
   };
-
 </script>
 <%= javascript_include_tag "home/index" %>
 <%= stylesheet_link_tag "home/index" %>

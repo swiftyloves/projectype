@@ -71,7 +71,7 @@ $(function() {
   });
   $("#gButton").click(function(event) {
     console.log($(this));
-  
+    window.location = "/home/gplogin"; 
   });
   $("#homeButton").click(function(event) {
     console.log($(this));
@@ -84,10 +84,12 @@ $(function() {
     FB.getLoginStatus(function(response) {
       if (response.status === 'connected') {
         FB.logout(function() {
-          $.get("/home/fblogout");
           commonLogoutAction();
           resetToggle();
         });
+      } else {
+        commonLogoutAction();
+        resetToggle();
       }
     });
   });

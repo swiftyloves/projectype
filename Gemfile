@@ -17,6 +17,8 @@ gem 'rest-graph'
 gem 'rest-client'
 gem 'json'
 gem 'thin'
+gem 'google-api-client'
+
 
 # Gems used only for assets and not required
 # in production environments by default.
