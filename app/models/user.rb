@@ -1,5 +1,5 @@
 class User < ActiveRecord::Base
-  attr_accessible :account, :sameuser
+  attr_accessible :account, :sameuser, :img
   has_many :participates, :dependent => :destroy
   has_many :projects, :through => :participates
 

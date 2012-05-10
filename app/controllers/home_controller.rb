@@ -26,7 +26,14 @@ class HomeController < ApplicationController
       @gp_plus.people.get,
       'userId' => 'me'
     )
-    session[:current_user] = 'g@' + JSON.parse(re.body)['id']
+    profile = JSON.parse(re.body)
+    acc = 'g@' + profile['id']  
+    session[:current_user] = acc
+    if User.where(:account => acc).size == 0
+      a = User.new(:account => acc, :img => profile['image']['url'])
+      a.save
+    end
+    # profile['image']['url']
     redirect_to '/home/'
   end
 
@@ -40,7 +47,14 @@ class HomeController < ApplicationController
   end
 
   def fblogin
-    session[:current_user] = 'f@' + rest_graph.get('/me')['id']
+    id = rest_graph.get('/me')['id']
+    acc = 'f@' + id
+    session[:current_user] = acc
+    if User.where(:account => acc).size == 0
+      a = User.new(:account => acc, :img => 'https://graph.facebook.com/' + id + '/picture')
+      a.save
+    end
+    # https://graph.facebook.com/id/picture
     render json: {:token => rest_graph.access_token}
   end
 
