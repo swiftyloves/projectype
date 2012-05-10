@@ -6,14 +6,6 @@ class HomeController < ApplicationController
   before_filter :load_gp, :only => [:gpcallback, :ask, :index]
   before_filter :login_gp, :only => [:gplogin]
 
-  @gp_setup = {
-    :client_id => '887815355764.apps.googleusercontent.com',
-    :client_secret => 'O_fNeR10ee68mKCLtA9Q_i1z',
-    :scope => 'https://www.googleapis.com/auth/plus.me',
-#   :redirect_uri => 'http://localhost:3000/gpback',
-    :afterlogin => '/home'
-  }
-
   def index
     @appid = RestGraph.default_app_id
     if @gp_client.authorization.access_token
@@ -30,6 +22,12 @@ class HomeController < ApplicationController
 
   def gpcallback
     self.google_plus_callback
+    re = @gp_client.execute(
+      @gp_plus.people.get,
+      'userId' => 'me'
+    )
+    session[:current_user] = 'g@' + JSON.parse(re.body)['id']
+    redirect_to '/home/'
   end
 
   def ajax
@@ -42,6 +40,7 @@ class HomeController < ApplicationController
   end
 
   def fblogin
+    session[:current_user] = 'f@' + rest_graph.get('/me')['id']
     render json: {:token => rest_graph.access_token}
   end
 
@@ -61,6 +60,7 @@ class HomeController < ApplicationController
       if rest_graph.access_token
         response[:fb] = {:state => true, :token => rest_graph.access_token}
       end
+      response[:current_user] = session[:current_user]
     end
     render json: response
   end
@@ -88,7 +88,6 @@ class HomeController < ApplicationController
       :client_secret => 'O_fNeR10ee68mKCLtA9Q_i1z',
       :scope => 'https://www.googleapis.com/auth/plus.me',
 #     :redirect_uri => 'http://localhost:3000/gpback',
-      :afterlogin => '/home'
     }
     @gp_setup[:redirect_uri] = 'http://' + request.host_with_port + '/home/gpcallback'
     self.google_plus_load
@@ -98,8 +97,6 @@ class HomeController < ApplicationController
       :client_id => '887815355764.apps.googleusercontent.com',
       :client_secret => 'O_fNeR10ee68mKCLtA9Q_i1z',
       :scope => 'https://www.googleapis.com/auth/plus.me',
-#     :redirect_uri => 'http://localhost:3000/gpback',
-      :afterlogin => '/home'
     }
     @gp_setup[:redirect_uri] = 'http://' + request.host_with_port + '/home/gpcallback'
     self.google_plus_login

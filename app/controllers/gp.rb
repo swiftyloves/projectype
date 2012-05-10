@@ -36,7 +36,6 @@ module GP
     token_pair.update_token!(@gp_client.authorization)
     # Persist the token here
     session[:token] = token_pair
-    redirect_to @gp_setup[:afterlogin]
   end
   def google_plus_load
     self.google_plus_init
