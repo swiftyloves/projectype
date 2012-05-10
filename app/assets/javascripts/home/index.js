@@ -88,8 +88,8 @@ $(function() {
           resetToggle();
         });
       } else {
-        resetToggle();
         commonLogoutAction();
+        window.setTimeout(resetToggle, 10);
       }
     });
   });
