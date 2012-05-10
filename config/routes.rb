@@ -4,6 +4,7 @@ Projectype::Application.routes.draw do
   get '/test/ajaxTest' => 'home#ajaxTest'
   get '/test/ajaxTest2' => 'home#ajaxTest2'
   match '/home/ask/:req', :to => 'home#ask'
+  match '/home/ask/:req/:acc', :to => 'home#ask'
   get '/home/fblogin' => 'home#fblogin'
   get '/home/logout' => 'home#logout'
   get '/home/gplogin' => 'home#gplogin'

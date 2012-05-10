@@ -75,6 +75,9 @@ class HomeController < ApplicationController
         response[:fb] = {:state => true, :token => rest_graph.access_token}
       end
       response[:current_user] = session[:current_user]
+    elsif params[:req] == 'user'
+      response[:user] = User.where(:account => params[:acc])
+    end
     end
     render json: response
   end
