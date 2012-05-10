@@ -78,7 +78,6 @@ class HomeController < ApplicationController
     elsif params[:req] == 'user'
       response[:user] = User.where(:account => params[:acc])
     end
-    end
     render json: response
   end
 
