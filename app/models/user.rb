@@ -6,5 +6,7 @@ class User < ActiveRecord::Base
   has_many :assigns, :dependent => :destroy
   has_many :subtasks, :through => :assigns
 
+  has_many :comments, :dependent => :destroy
+
   has_one :suser, :class_name => "User", :foreign_key => "sameuser"
 end
