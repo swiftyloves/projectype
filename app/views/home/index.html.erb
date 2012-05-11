@@ -8,16 +8,10 @@
       cookie     : true, // enable cookies to allow the server to access the session
       xfbml      : true  // parse XFBML
     });
-    FB.getLoginStatus(function(response) {
-      if (response.status === 'connected') {
-        handleFblogin();
-      } else {
-        <% if @gp_client.authorization.access_token %>
-          $("#headImg").css("background", "url(<%= @img %>)");
-          commonLoginAction();
-        <% end %>
-      }
-    });
+    <% if @gp_client.authorization.access_token || rest_graph.access_token %>
+      $("#headImg").css("background", "url(<%= @img %>)");
+      commonLoginAction();
+    <% end %>
   };
   (function(d){
     var js, id = 'facebook-jssdk', ref = d.getElementsByTagName('script')[0];

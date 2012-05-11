@@ -10,10 +10,13 @@ class HomeController < ApplicationController
     @appid = RestGraph.default_app_id
     if @gp_client.authorization.access_token
       re = @gp_client.execute(
-      @gp_plus.people.get,
-      'userId' => 'me'
-    )
-    @img = JSON.parse(re.body)['image']['url']
+        @gp_plus.people.get,
+        'userId' => 'me'
+      )
+      @img = JSON.parse(re.body)['image']['url']
+    elsif rest_graph.access_token
+      id = rest_graph.get('/me')['id']
+      @img = 'https://graph.facebook.com/' + id + '/picture'
     end
   end
 
