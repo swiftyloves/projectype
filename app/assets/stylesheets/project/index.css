@@ -50,6 +50,8 @@
   height: 175px;
   width: 175px;
   background-size: 100%;
+  background-repeat: no-repeat;
+  background-position: center;
 }
 
 #pName {

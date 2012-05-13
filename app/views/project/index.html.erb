@@ -10,7 +10,7 @@
   <script>
     $(function() {
       $("#pName").append("<%= session[:current_name] %>");
-      $("#pHeadImg").css("background", "url(<%= img %>)");
+      $("#pHeadImg").css("background-image", "url(<%= img %>)");
     });
   </script>
 <% end %>
