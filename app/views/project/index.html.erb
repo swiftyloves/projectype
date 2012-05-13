@@ -4,7 +4,13 @@
   <script>
     $(function() {
       $("#pName").append("<%= session[:current_name] %>");
-      $("#pHeadImg").css("background", "url(<%= User.find_by_account(session[:current_user])['img'] %>)");
+      $("#pHeadImg").css("background", "url(<%= User.find_by_account(session[:current_user])['img'] %>
+      <% if session[:current_user][0] == 'f' %>
+        ?type=large
+      <% else %>
+        ?sz=300
+      <% end %>
+    )");
     });
   </script>
 <% end %>
