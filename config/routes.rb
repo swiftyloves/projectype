@@ -23,6 +23,8 @@ Projectype::Application.routes.draw do
   get '/sel' => 'page#selectable'
   get '/task' => 'page#taskmode'
   get '/getEvent' => 'page#getEvent'
+  get '/unlogin' => 'page#unlogin'
+
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

@@ -1,10 +1,11 @@
 class PageController < ApplicationController
-	before_filter :load_facebook, :only => [:selectable]
+	# before_filter :load_facebook, :only => [:selectable]
+	include RestGraph::RailsUtil
+	def unlogin
 
-	def index
+		render 'index_unlogin', :layout => false
 	end
-	def selectable				
-		@s = session[:current_user]
+	def selectable		
 		@pic = "#{User.find_by_account(session[:current_user])['img']}"
 		render 'selectable', :layout => false
 	end
@@ -17,6 +18,7 @@ class PageController < ApplicationController
 		# puts response
 		render json: response
 	end
+
     def taskmode
 		render 'taskmode', :layout => false
 	end
