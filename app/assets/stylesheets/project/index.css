@@ -1,3 +1,8 @@
+#projectPage {
+  margin-top: 100px;
+  margin-left: 200px;
+}
+
 #projectPage > div {
   display: inline-block;
   vertical-align: top;
@@ -5,6 +10,7 @@
 
 #projectPage h4 {
   color: rgba(105, 49, 0, 1);
+  font-size: 50px;
 }
 
 #projectData > span {
@@ -12,11 +18,8 @@
 }
 
 #personalData {
-  margin-top: 10px;
-}
-
-#projectData {
-  margin-left: 40px;
+  margin-top: 50px;
+  margin-right: 60px;
 }
 
 #projectData > input, #projectData > span, #projectData > p {
@@ -25,17 +28,20 @@
 
 #projectData > input, #projectData > span {
   height: 30px;
+  font-size: 25px;
 }
 
 #projectData > input {
   border: none;
   outline: none;
-  background: rgba(0, 255, 0, 0.5);
+  background: rgba(255, 255, 255, 1);
+  width: 285px;
+  border-radius: 5px;
 }
 
 #projectData > hr {
-  width: 150px;
-  height: 2px;
+  width: 290px;
+  height: 4px;
   background: rgba(243, 216, 209, 1);
   border: none;
 }
@@ -43,10 +49,10 @@
 #pHeadImg {
   height: 175px;
   width: 175px;
-  background: rgba(255, 0, 0, 0.5);
+  background-size: 100%;
 }
 
-#pname {
+#pName {
   display: block;
   text-align: center;
   margin-top: 5px;
@@ -57,7 +63,7 @@
   padding-top: 2px;
   height: 20px;
   width: 40px;
-  margin-left: 110px;
+  margin-left: 250px;
   color: rgba(208, 176, 138, 1);
   text-align: center;
 }
@@ -71,7 +77,6 @@
 }
 
 #addButton:active {
-
   background: rgba(255, 173, 214, 1);
   color: rgba(98, 54, 7, 1);
   border-radius: 5px;
