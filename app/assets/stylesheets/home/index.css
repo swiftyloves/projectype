@@ -222,6 +222,7 @@ html {
   left: -31px;
   box-shadow: 0px 2px 2px 0.5px rgba(124, 113, 96, 0.7);
   border-radius: 7px;
+  z-index: 20;
 }
 
 #functionTag span {

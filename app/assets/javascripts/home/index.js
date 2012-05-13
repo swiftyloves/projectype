@@ -30,13 +30,15 @@ $(function() {
       }
       $("#headImg").css("background", "url(" + response + ")"); 
     });
-    $.get("/home/fblogin");
-    commonLoginAction();
+    $.get("/home/fblogin", function(data) {
+      commonLoginAction();
+    });
   };
 
   function commonLogoutAction() {
     $(".login").removeClass("login").addClass("unlogin");
     $.get("/home/logout")
+    $("#content").empty();
   };
 
   resetMainHeight();

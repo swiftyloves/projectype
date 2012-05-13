@@ -3,8 +3,8 @@
 <% if session[:current_user] %>
   <script>
     $(function() {
-      $("#pName").append(session[:current_name]);
-      $("#pHeadImg").css("background", "url(<%= User.where(:account => session[:current_user]).first.img %>)");
+      $("#pName").append("<%= session[:current_name] %>");
+      $("#pHeadImg").css("background", "url(<%= User.find_by_account(session[:current_user])['img'] %>)");
     });
   </script>
 <% end %>
