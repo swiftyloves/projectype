@@ -10,7 +10,7 @@ $(document).ready(function() {
 		header: {
 			left: 'title',
 			center: 'prev,next',
-			// right: 'month,agendaWeek,agendaDay'
+			// right:cd  'month,agendaWeek,agendaDay'
 			right:''
 		},
 		// selectable: true,
