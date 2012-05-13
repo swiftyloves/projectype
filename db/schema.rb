@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120504173930) do
+ActiveRecord::Schema.define(:version => 20120510041139) do
 
   create_table "assigns", :force => true do |t|
     t.integer  "user_id"
@@ -71,6 +71,7 @@ ActiveRecord::Schema.define(:version => 20120504173930) do
     t.integer  "sameuser"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+    t.string   "img"
   end
 
 end

@@ -8,11 +8,10 @@
       cookie     : true, // enable cookies to allow the server to access the session
       xfbml      : true  // parse XFBML
     });
-    FB.getLoginStatus(function(response) {
-      if (response.status === 'connected') {
-        handleFblogin();
-      }
-    });
+    <% if @gp_client.authorization.access_token || rest_graph.access_token %>
+      $("#headImg").css("background", "url(<%= @img %>)");
+      commonLoginAction();
+    <% end %>
   };
   (function(d){
     var js, id = 'facebook-jssdk', ref = d.getElementsByTagName('script')[0];
@@ -37,6 +36,11 @@
   function commonLoginAction() {
     $(".unlogin").removeClass("unlogin").addClass("login");
   };
+
+  function commonLogoutAction() {
+    $(".login").removeClass("login").addClass("unlogin");
+    $.get("/home/logout")
+  };
 </script>
 <%= javascript_include_tag "home/index" %>
 <%= stylesheet_link_tag "home/index" %>
@@ -55,6 +59,7 @@
         <div id="logFunctionTag">
           <span id="homeButton">Home</span>
           <span id="inviteButton">Invite</span>
+          <span id="logoutButton">Logout</span>
         </div>
         <div id="unlogFunctionTag">
           <div id="fbButton"></div>

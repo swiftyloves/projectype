@@ -1,14 +1,30 @@
 Projectype::Application.routes.draw do
+
+  # home
   get '/home/' => 'home#index'
+  match '/home/ask/:req', :to => 'home#ask'
+  match '/home/ask/:req/:acc', :to => 'home#ask'
+  get '/home/fblogin' => 'home#fblogin'
+  get '/home/logout' => 'home#logout'
+  get '/home/gplogin' => 'home#gplogin'
+  get '/home/gpcallback' => 'home#gpcallback'
+
+  # test
   get '/test/ajax' => 'home#ajax'
   get '/test/ajaxTest' => 'home#ajaxTest'
   get '/test/ajaxTest2' => 'home#ajaxTest2'
-  match '/home/ask/:req', :to => 'home#ask'
-  get '/home/fblogin' => 'home#fblogin'
 
+  #project
+  get '/project/' => 'project#index'
+  get '/project/test' => 'project#test'
+  
+  # page
   get '/' => 'page#index'
   get '/sel' => 'page#selectable'
   get '/task' => 'page#taskmode'
+  get '/getEvent' => 'page#getEvent'
+
+>>>>>>> c5ca99ed15fd642592cfbb64be2126406bf88c00
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
