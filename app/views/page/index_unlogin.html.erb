@@ -13,11 +13,19 @@
 
 </head>
 <body>
-<%= image_tag "indexIcon.png" %>
-<div>
-<%= image_tag "questionMark.png" %> how to ? </br>
-<%= image_tag "fbicon.png" %><%= image_tag "g+icon.png" %> </br>
-Start First!<%= image_tag "arrow.png" %>
+<div class='half'>
+	<%= image_tag("indexIcon.png", :height => '70%', :width => '70%') %>	</div>
+
+<div class='right'>
+<div class='first'>
+	<%= image_tag("questionMark.png", :height => '40', :width => '40') %>	
+	<span>how to ? </span></div>
+<div class='second'><span>log in</span>
+	<%= image_tag("fbicon.png", :height => '40', :width => '40') %>
+	<%= image_tag("g+icon.png", :height => '40', :width => '40') %>
+</div>
+<div class='third'><span class='s'>Start First!</span><%= image_tag "arrow.png" %></div>
+
 </div>
 
 </body>
