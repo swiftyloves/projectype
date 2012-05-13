@@ -31,6 +31,7 @@ class HomeController < ApplicationController
     profile = JSON.parse(re.body)
     acc = 'g@' + profile['id']  
     session[:current_user] = acc
+    session[:current_name] = profile['displayName']
     if User.where(:account => acc).size == 0
       a = User.new(:account => acc, :img => profile['image']['url'])
       a.save
@@ -49,10 +50,11 @@ class HomeController < ApplicationController
   end
 
   def fblogin
-    id = rest_graph.get('/me')['id']
+    me = rest_graph.get('/me')
+    id = me['id']
     acc = 'f@' + id
     session[:current_user] = acc
-  # User.get_by_account
+    session[:current_name] = me['name']
     if User.where(:account => acc).size == 0
       puts "lalala"
       a = User.new(:account => acc, :img => "https://graph.facebook.com/#{id}/picture")

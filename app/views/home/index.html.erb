@@ -21,33 +21,48 @@
     ref.parentNode.insertBefore(js, ref);
   }(document));
 
-  function handleFblogin() {
-    FB.api("/me/picture", function(response) {
-      if (!response || response.error) {
-          console.log('picture err', response);
-          return;
-      }
-      $("#headImg").css("background", "url(" + response + ")"); 
-    });
-    $.get("/home/fblogin");
-    commonLoginAction();
-  };
-
   function commonLoginAction() {
     $(".unlogin").removeClass("unlogin").addClass("login");
+    doBlockingStart();
+    $.ajax({
+      url: "project",
+      error: function(err) {
+        cosole.log(err);
+        doBlockingEnd();
+      },
+      success: function(response) {
+        //console.log($(response));
+        var obj = $(response);
+        var list = [];
+        $("#content").empty();
+        obj.each(function () {
+          if ($(this).attr("src")) {
+            var script = document.createElement('script');
+            script.type = 'text/javascript';
+            script.src = $(this).attr("src");
+            document.getElementById("content").appendChild(script);
+          }
+        });
+        $("#content").append(response);
+        doBlockingEnd();      
+      },
+    });
   };
 
-  function commonLogoutAction() {
-    $(".login").removeClass("login").addClass("unlogin");
-    $.get("/home/logout")
-  };
+  function doBlockingStart() {
+    console.log("start blocking");
+  };  
+  function doBlockingEnd() {
+    console.log("end blocking");
+  };  
+
 </script>
 <%= javascript_include_tag "home/index" %>
 <%= stylesheet_link_tag "home/index" %>
 <div id="topMask" class="decorate outer"></div>
 <div id="bottomMask" class="decorate outer"></div>
 <div id="main" class="indexPanel">
-  <div id="content" class="decorate"></div>
+  <div id="content" class="content"></div>
   <div id="mask" class="decorate"></div>
   <div id="triangle" class="decorate hide"></div>
   <div id="modeBar" class="indexPanel bar">

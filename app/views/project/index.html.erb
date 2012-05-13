@@ -1,10 +1,19 @@
 <%= javascript_include_tag "project/index.js" %>
 <%= stylesheet_link_tag "project/index.css" %>
+<% if session[:current_user] %>
+  <script>
+    $(function() {
+      $("#pName").append(session[:current_name]);
+      $("#pHeadImg").css("background", "url(<%= User.where(:account => session[:current_user]).first.img %>)");
+    });
+  </script>
+<% end %>
+
 <div id="projectPage">
   <div id="personalData">
     <div id="pHeadImg">
     </div>
-    <h4 id="pName">test</h4>
+    <h4 id="pName"></h4>
   </div>
   <div id="projectData">
     <h4>Projects</h5>

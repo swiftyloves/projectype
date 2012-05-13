@@ -22,6 +22,23 @@ $(function() {
     $(".toggling").removeClass("toggling");
   };
 
+  function handleFblogin() {
+    FB.api("/me/picture", function(response) {
+      if (!response || response.error) {
+          console.log('picture err', response);
+          return;
+      }
+      $("#headImg").css("background", "url(" + response + ")"); 
+    });
+    $.get("/home/fblogin");
+    commonLoginAction();
+  };
+
+  function commonLogoutAction() {
+    $(".login").removeClass("login").addClass("unlogin");
+    $.get("/home/logout")
+  };
+
   resetMainHeight();
   window.onresize = function(event) {
     resetMainHeight();

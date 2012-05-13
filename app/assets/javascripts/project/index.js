@@ -3,7 +3,7 @@ $(function() {
     if ($("#projectData input").size()) {
       return;
     }
-    var obj = $("<input type='text' class='editing'></input>");
+    var obj = $("<input type='text' maxlength='22'></input>");
     $(this).before(obj);
     obj.hide().slideDown('normal', function() {
       $(this).trigger('focus');
