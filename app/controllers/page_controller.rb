@@ -19,7 +19,4 @@ class PageController < ApplicationController
 		render json: response
 	end
 
-    def taskmode
-		render 'taskmode', :layout => false
-	end
 end

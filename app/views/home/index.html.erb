@@ -25,17 +25,18 @@
     $(".unlogin").removeClass("unlogin").addClass("login");
     doBlockingStart();
     $.ajax({
-      url: "project",
+      url: "/project",
       error: function(err) {
-        cosole.log(err);
+        console.log(err);
         doBlockingEnd();
       },
       success: function(response) {
-        //console.log($(response));
+        console.log(response);
         var obj = $(response);
         var list = [];
         $("#content").empty();
         obj.each(function () {
+          console.log($(this).is("script"));
           if ($(this).attr("src")) {
             var script = document.createElement('script');
             script.type = 'text/javascript';

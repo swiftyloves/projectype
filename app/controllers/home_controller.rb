@@ -6,6 +6,9 @@ class HomeController < ApplicationController
   before_filter :load_gp, :only => [:gpcallback, :ask, :index]
   before_filter :login_gp, :only => [:gplogin]
 
+  # gp img + ?sz=100 (100 is size)
+  # fb img + ?type=large
+
   def index
     @appid = RestGraph.default_app_id
     if @gp_client.authorization.access_token
@@ -34,7 +37,8 @@ class HomeController < ApplicationController
     session[:current_user] = acc
     session[:current_name] = profile['displayName']
     if User.where(:account => acc).size == 0
-      a = User.new(:account => acc, :img => profile['image']['url'])
+      img = profile['image']['url'].match("(.*)(\\?)")[1];
+      a = User.new(:account => acc, :img => img)
       a.save
     end
     # profile['image']['url']

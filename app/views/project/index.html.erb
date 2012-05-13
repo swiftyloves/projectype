@@ -1,10 +1,16 @@
 <%= javascript_include_tag "project/index.js" %>
 <%= stylesheet_link_tag "project/index.css" %>
 <% if session[:current_user] %>
+  <% img = User.find_by_account(session[:current_user])['img'] %>
+  <% if session[:current_user][0] == 'f' %>
+  <% img += "?type=large" %>
+  <% else %>
+  <% img += "?sz=300" %>
+  <% end %>
   <script>
     $(function() {
-      $("#pName").append(session[:current_name]);
-      $("#pHeadImg").css("background", "url(<%= User.where(:account => session[:current_user]).first.img %>)");
+      $("#pName").append("<%= session[:current_name] %>");
+      $("#pHeadImg").css("background-image", "url(<%= img %>)");
     });
   </script>
 <% end %>
