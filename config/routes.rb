@@ -1,5 +1,7 @@
 Projectype::Application.routes.draw do
 
+  get "task/taskmode"
+
   # home
   get '/home/' => 'home#index'
   match '/home/ask/:req', :to => 'home#ask'
@@ -23,6 +25,10 @@ Projectype::Application.routes.draw do
   get '/sel' => 'page#selectable'
   get '/task' => 'page#taskmode'
   get '/getEvent' => 'page#getEvent'
+
+  #task
+  post '/task' => 'task#taskmode'
+  get '/task/test' => 'task#test'
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
