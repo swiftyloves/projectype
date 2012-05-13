@@ -21,6 +21,7 @@ Projectype::Application.routes.draw do
   # page
   get '/' => 'page#index'
   get '/sel' => 'page#selectable'
+  get '/task' => 'page#taskmode'
   get '/getEvent' => 'page#getEvent'
 
   # The priority is based upon order of creation:
