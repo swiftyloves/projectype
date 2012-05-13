@@ -2,7 +2,6 @@ class PageController < ApplicationController
 	# before_filter :load_facebook, :only => [:selectable]
 	include RestGraph::RailsUtil
 	def unlogin
-
 		render 'index_unlogin', :layout => false
 	end
 	def selectable		
