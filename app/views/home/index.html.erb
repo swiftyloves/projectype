@@ -21,6 +21,24 @@
     ref.parentNode.insertBefore(js, ref);
   }(document));
 
+  function handleResponse(response) {
+    //console.log(response);
+    var obj = $(response);
+    var list = [];
+    $("#content").empty();
+    obj.each(function () {
+      console.log($(this).is("script"));
+      if ($(this).attr("src")) {
+        var script = document.createElement('script');
+        script.type = 'text/javascript';
+        script.src = $(this).attr("src");
+        document.getElementById("content").appendChild(script);
+      }
+    });
+    $("#content").append(response);
+  };
+
+
   function commonLoginAction() {
     $(".unlogin").removeClass("unlogin").addClass("login");
     doBlockingStart();
@@ -31,20 +49,7 @@
         doBlockingEnd();
       },
       success: function(response) {
-        console.log(response);
-        var obj = $(response);
-        var list = [];
-        $("#content").empty();
-        obj.each(function () {
-          console.log($(this).is("script"));
-          if ($(this).attr("src")) {
-            var script = document.createElement('script');
-            script.type = 'text/javascript';
-            script.src = $(this).attr("src");
-            document.getElementById("content").appendChild(script);
-          }
-        });
-        $("#content").append(response);
+        handleResponse(response);
         doBlockingEnd();      
       },
     });
@@ -56,6 +61,23 @@
   function doBlockingEnd() {
     console.log("end blocking");
   };  
+
+  function requestTask(name) {
+    
+    $.ajax({
+      type: 'POST',
+      url: '/task',
+      //data: {"name": name},
+      error: function(response) {
+        console.log("err");
+      },
+      success: function(response) {
+        handleResponse(response);
+        $("#taskButton").trigger("click");
+      }
+    });
+    
+  }
 
 </script>
 <%= javascript_include_tag "home/index" %>
