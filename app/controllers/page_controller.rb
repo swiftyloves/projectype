@@ -4,4 +4,7 @@ class PageController < ApplicationController
 	def selectable
 		render 'selectable', :layout => false
 	end
+    def taskmode
+		render 'taskmode', :layout => false
+	end
 end

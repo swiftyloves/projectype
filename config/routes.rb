@@ -8,6 +8,7 @@ Projectype::Application.routes.draw do
 
   get '/' => 'page#index'
   get '/sel' => 'page#selectable'
+  get '/task' => 'page#taskmode'
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
