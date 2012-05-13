@@ -24,7 +24,6 @@ Projectype::Application.routes.draw do
   get '/task' => 'page#taskmode'
   get '/getEvent' => 'page#getEvent'
 
->>>>>>> c5ca99ed15fd642592cfbb64be2126406bf88c00
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
