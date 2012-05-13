@@ -1,3 +1,48 @@
 // Place all the styles related to the page controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.half{
+	display:inline-block;
+	width:400px;
+	vertical-align:middle;
+	img{
+		float:right;
+	}
+}
+.right{
+	display:inline-block;
+	width:400px;
+	vertical-align:middle;
+	.first img{
+		padding-right:10px;
+	}
+	.second{
+		margin-bottom:40px;		
+		height:40px;
+		padding-left:143px;
+		padding-top:9px;
+		img{
+			padding-left:3px;
+		}
+	}
+	.third{
+		text-align:middle;
+		margin-top:51px;
+		padding-left:50px;
+	}
+}
+
+span{
+	font-size:30px;
+	color: rgba(127, 84, 0, 1);
+	text-shadow: -1px 0px black, 0px -1px black;
+}
+.s{
+	font-size:37px;	  
+	font-weight: bold;
+}
+
+.second{
+	
+}

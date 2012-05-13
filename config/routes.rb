@@ -24,6 +24,8 @@ Projectype::Application.routes.draw do
   get '/' => 'page#index'
   get '/sel' => 'page#selectable'
   get '/getEvent' => 'page#getEvent'
+  get '/unlogin' => 'page#unlogin'
+
 
   #task
   post '/task' => 'task#taskmode'
