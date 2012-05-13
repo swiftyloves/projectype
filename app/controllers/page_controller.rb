@@ -1,8 +1,12 @@
 class PageController < ApplicationController
+	before_filter :load_facebook, :only => [:selectable]
+
 	def index
 	end
-	def selectable		
-		render 'selectable', :layout => false		
+	def selectable				
+		@s = session[:current_user]
+		@pic = "#{User.find_by_account(session[:current_user])['img']}"
+		render 'selectable', :layout => false
 	end
 	def getEvent
 		puts 'get lalala'

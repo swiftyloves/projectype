@@ -1,5 +1,4 @@
-class HomeController < ApplicationController
-  include RestGraph::RailsUtil
+class HomeController < ApplicationController  
   include GP
   before_filter :login_facebook, :only => [:fblogin]
   before_filter :load_facebook, :only => [:ask, :fblogout, :index, :ask]
@@ -57,8 +56,14 @@ class HomeController < ApplicationController
     session[:current_user] = acc
     session[:current_name] = me['name']
     if User.where(:account => acc).size == 0
-      a = User.new(:account => acc, :img => 'https://graph.facebook.com/' + id + '/picture')
-      a.save
+      puts "lalala"
+      a = User.new(:account => acc, :img => "https://graph.facebook.com/#{id}/picture")
+      puts "lalala2"
+      if a.save
+        puts "save successful"
+      else
+        puts "save failed"
+      end
     end
     # https://graph.facebook.com/id/picture
     render json: {:token => rest_graph.access_token}
@@ -92,36 +97,6 @@ class HomeController < ApplicationController
     render json: {}
   end
 
-  private
-  def load_facebook
-    rest_graph_setup(:write_session => true)
-  end
 
-  def login_facebook
-    rest_graph_setup(:auto_authorize         => true,
-                     :auto_authorize_scope   => 'user_photos',
-                     :ensure_authorized      => true,
-                     :write_session          => true)
-  end
-
-  def load_gp
-    @gp_setup = {
-      :client_id => '887815355764.apps.googleusercontent.com',
-      :client_secret => 'O_fNeR10ee68mKCLtA9Q_i1z',
-      :scope => 'https://www.googleapis.com/auth/plus.me',
-#     :redirect_uri => 'http://localhost:3000/gpback',
-    }
-    @gp_setup[:redirect_uri] = 'http://' + request.host_with_port + '/home/gpcallback'
-    self.google_plus_load
-  end
-  def login_gp
-    @gp_setup = {
-      :client_id => '887815355764.apps.googleusercontent.com',
-      :client_secret => 'O_fNeR10ee68mKCLtA9Q_i1z',
-      :scope => 'https://www.googleapis.com/auth/plus.me',
-    }
-    @gp_setup[:redirect_uri] = 'http://' + request.host_with_port + '/home/gpcallback'
-    self.google_plus_login
-  end
 
 end
