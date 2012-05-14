@@ -39,8 +39,8 @@ module GP
   end
   def google_plus_load
     self.google_plus_init
-    @gp_plus = @gp_client.discovered_api('plus', 'v1')
-    if session[:token]
+    if session[:token]  
+      @gp_plus = @gp_client.discovered_api('plus', 'v1')
       # Load the access token here if it's available
       @gp_client.authorization.update_token!(session[:token].to_hash)
     end
