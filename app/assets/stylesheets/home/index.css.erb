@@ -1,5 +1,5 @@
 html {
-  background: <% asset_path "home/texture.jpg" %> repeat;
+  background: url(<% asset_path "home/texture.jpg" %>) repeat;
   overflow: auto;
 }
 
@@ -92,6 +92,7 @@ html {
   width: 890px;
   height: 605px;
   left: 100px;
+  overflow: auto;
   /*background: red;*/
 }
 
@@ -110,11 +111,32 @@ html {
 }
 
 #triangle {
-  background: <%= asset_path "home/triangle.png" %> no-repeat;
+  background: url(<%= asset_path "home/triangle.png" %>) no-repeat;
   background-size: 60%;
   width: 34px;
   height: 38px;
   top: 66px;
+}
+
+
+.editingName span {
+  display: none;
+}
+
+.editingName input {
+  display: inline;
+}
+
+.noeditingName span {
+  display: inline;
+}
+
+.noeditingName input {
+  display: none;
+}
+
+#projectName {
+  z-index: 2;
 }
 
 #projectName span {
@@ -123,6 +145,16 @@ html {
   font-weight: bold;
   color: rgba(127, 84, 0, 1);
   text-shadow: -1px 0px black, 0px -1px black;
+}
+
+#projectName input {
+  outline: none;
+  border: none;
+  font-size: 35px;
+  font-weight: bold;
+  color: rgba(127, 84, 0, 1);
+  text-shadow: -1px 0px black, 0px -1px black;
+  background: rgba(0, 0, 0, 0);
 }
 
 #helpButton, #contactButton {
@@ -206,11 +238,11 @@ html {
 }
 
 #helpButton a {
-  background: <%= asset_path "questionMark.png" %> center no-repeat;
+  background: url(<%= asset_path "questionMark.png" %>) center no-repeat;
 }
 
 #contactButton a {
-  background: <%= asset_path "mail.png" %> center no-repeat;
+  background: url(<%= asset_path "mail.png" %>) center no-repeat;
 }
 
 #functionTag {
@@ -253,6 +285,16 @@ html {
 #gButton {
   background: rgba(255, 0, 255, 0.5);
   margin-left: 9px;
+}
+
+#helpContent {
+  background: url(<%= asset_path "uiflow.png" %>) center no-repeat;
+  background-size: 100%;
+}
+
+.helpDialog .ui-widget-header {
+  background: rgba(255, 255, 255, 0);
+  border: none;
 }
 
 @-webkit-keyframes showEffect { /* Safari and Chrome */

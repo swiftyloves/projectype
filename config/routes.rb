@@ -25,7 +25,8 @@ Projectype::Application.routes.draw do
   get '/sel' => 'page#selectable'
   get '/getEvent' => 'page#getEvent'
   get '/unlogin' => 'page#unlogin'
-
+  # TODO: may change method POST
+  get '/user' => 'page#user'
 
   #task
   post '/task' => 'task#taskmode'

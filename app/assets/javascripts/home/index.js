@@ -1,4 +1,7 @@
 $(function() {
+
+  // functions
+
   var currentState = 0;
   function resetMainHeight() {
     if (window.innerHeight <= 780) {
@@ -41,10 +44,24 @@ $(function() {
     $("#content").empty();
   };
 
+  // init
+
   resetMainHeight();
   window.onresize = function(event) {
     resetMainHeight();
   };
+  $("#helpContent").dialog({
+    autoOpen: false,
+    show: 'fold',
+    hide: 'fold',
+    modal: true,
+    resizable: false,
+    dialogClass: 'helpDialog',
+    width: 500,
+    height: 500,
+  });
+  
+  // buttons
 
   $("#userButton").click(function(event) {
     if (currentState != $(this)) {
@@ -52,16 +69,44 @@ $(function() {
       resetToggle();
       $(this).addClass("toggling");
       $("#triangle").addClass("pointUser").removeClass("hide");
+      $.ajax({
+        //type: 'POST',
+        url: '/user',
+        //data: {"name": name},
+        error: function(response) {
+          console.log("err");
+        },
+        success: function(response) {
+          handleResponse(response);
+        }
+      });
     }
   });
-  $("#taskButton").click(function(event) {
+
+  $("#taskButton").click(function(event, name) {
     if (currentState != $(this)) {
       currentState = $(this);
       resetToggle();
       $(this).addClass("toggling");
       $("#triangle").addClass("pointTask").removeClass("hide");
+      if (name) {
+        console.log("recieve:" + name);
+        $.ajax({
+          type: 'POST',
+          url: '/task',
+          //data: {"name": name},
+          error: function(response) {
+            console.log("err");
+          },
+          success: function(response) {
+            handleResponse(response);
+            $("#projectName span").empty().append(name);
+          }
+        });
+      }
     }
   });
+
   $("#logButton").click(function(event) {
     if (currentState != $(this)) {
       currentState = $(this);
@@ -70,12 +115,16 @@ $(function() {
       $("#functionTag").addClass("showTag").removeClass("hide");
     }
   });
+
   $("#contactButton").click(function(event) {
     console.log($(this));
   });
+
   $("#helpButton").click(function(event) {
     console.log($(this));
+    $("#helpContent").dialog("open");
   });
+
   $("#fbButton").click(function(event) {
     console.log($(this));
     FB.login(function(res) {
@@ -88,16 +137,20 @@ $(function() {
       }
     }, { scope: 'user_photos' });
   });
+
   $("#gButton").click(function(event) {
     console.log($(this));
     window.location = "/home/gplogin"; 
   });
+
   $("#homeButton").click(function(event) {
     console.log($(this));
   });
+
   $("#inviteButton").click(function(event) {
     console.log($(this));
   });
+
   $("#logoutButton").click(function(event) {
     console.log($(this));
     FB.getLoginStatus(function(response) {
@@ -111,5 +164,22 @@ $(function() {
         window.setTimeout(resetToggle, 10);
       }
     });
+  });
+
+  $("#projectName").click(function() {
+    if ($("#projectName span").contents().length != 0 &&
+        $(this).hasClass("noeditingName")) {
+      $(this).removeClass("noeditingName");
+      $(this).addClass("editingName");
+      var ctx = $("#projectName span").html();
+      $("#projectName input").attr("value", ctx).trigger("focus");
+    }
+  });
+
+  $("#projectName input").blur(function() {
+    $("#projectName").removeClass("editingName");
+    $("#projectName").addClass("noeditingName");
+    var ctx = $("#projectName input").attr("value");
+    $("#projectName span").empty().append(ctx);
   });
 });
