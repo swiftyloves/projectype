@@ -41,6 +41,7 @@ $(function() {
 
   function commonLogoutAction() {
     $(".login").removeClass("login").addClass("unlogin");
+    $(".loginTag").removeClass("loginTag").addClass("unloginTag");
     $.get("/home/logout")
     $("#content").empty();
     $("#projectName span").empty();
