@@ -66,14 +66,19 @@
 		    console.log($(this));
 			event.preventDefault();
 			
-			/*var input = $(this).parents("#placeholder").children("ul").children("li").children("input");
-			input.parent("li").removeClass("editing").prepend('<span>New Task</span>');
-			input.remove();*/				
+			var input2 = $(this).parents("#placeholder").children("ul").children("li").children("input");
+			input2.parent("li").removeClass("editing").prepend('<span>'+input2.attr('value')+'</span>');
+			input2.remove();	
+
+            var input3 = $(this).parents("#placeholder").find("div").children("li").children("input");
+			//input.parent("li").removeClass("altering").prepend('<span>New Subtask</span>');
+			input3.parent("li").removeClass("altering").prepend('<span>'+input3.attr('value')+'</span>');
+			input3.remove();			
 				
 			if(event.button==2){
 			   console.log($(this));
 			   parentli = $(this).parent("li");
-			   input = $('<input type="text" maxlength=11 value="New Task">'); 	
+			   input = $('<input type="text" maxlength=11 value="' + $(this).html()+'">'); 	
 			   input.prependTo(parentli).addClass('editing'); 	
                $(this).remove();   
 			   parentli.children("input").trigger('focus').keydown(function (event) {
@@ -91,16 +96,22 @@
 		$("#placeholder").on("mousedown", "ul div li span", function(event){
 		    console.log($(this));			
 			event.preventDefault();
-			if($(this).parents("#placeholder").find("div").children("li").children("input")){
-			    console.log($(this).parents("#placeholder").find("div").children("li"));
-				var input = $(this).parents("#placeholder").find("div").children("li").children("input");
-				input.parent("li").removeClass("altering").prepend('<span>New Subtask</span>');
-				input.remove();				
-			}	
+			//if($(this).parents("#placeholder").find("div").children("li").children("input")){
+			//    console.log($(this).parents("#placeholder").find("div").children("li"));
+				var input3 = $(this).parents("#placeholder").find("div").children("li").children("input");
+				//input.parent("li").removeClass("altering").prepend('<span>New Subtask</span>');
+				input3.parent("li").removeClass("altering").prepend('<span>'+input3.attr('value')+'</span>');
+				input3.remove();				
+			//}	
+			
+			var input2 = $(this).parents("#placeholder").children("ul").children("li").children("input");
+			input2.parent("li").removeClass("editing").prepend('<span>'+input2.attr('value')+'</span>');
+			input2.remove();								
+			
 			if(event.button==2){
 			   console.log($(this));
 			   parentli = $(this).parent("li");
-			   input = $('<input type="text" maxlength=20 value="New Subtask">'); 	
+			   input = $('<input type="text" maxlength=20 value="' + $(this).html()+'">'); 	
 			   parentli.addClass('altering'); 
 			   input.appendTo(parentli);	
                $(this).remove();   
