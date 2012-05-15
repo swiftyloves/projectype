@@ -61,12 +61,17 @@ $(function() {
     width: 500,
     height: 500,
   });
+
+  //$("#content").jScrollPane();
   
+  // fix ajax clear session  
   $.ajaxSetup({
     beforeSend: function(xhr) {
       xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content'));
     }
-  }); 
+  });
+
+ 
   // buttons
 
   $("#userButton").click(function(event) {
