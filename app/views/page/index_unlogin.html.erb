@@ -4,25 +4,24 @@
 <meta charset="UTF-8">
 <link rel="stylesheet" type="text/css" href="http://yui.yahooapis.com/3.4.1/build/cssreset/cssreset-min.css"/>
 
-<!-- font type -->
-<link href='http://fonts.googleapis.com/css?family=Nunito' rel='stylesheet' type='text/css'>
-<link href='http://fonts.googleapis.com/css?family=Karla:700' rel='stylesheet' type='text/css'>
-
 <!-- css -->
 <%= stylesheet_link_tag 'page' %>
+<%= javascript_include_tag 'index_unlogin' %>
 
 </head>
 <body>
 <div class='half'>
-	<%= image_tag("indexIcon.png", :height => '70%', :width => '70%') %>	</div>
+	<%= image_tag("indexIcon.png", :height => '70%', :width => '70%') %>
+</div>
 
 <div class='right'>
 <div class='first'>
-	<%= image_tag("questionMark.png", :height => '40', :width => '40') %>	
-	<span>how to ? </span></div>
+	<a href = ""><%= image_tag("questionMark.png", :height => '40', :width => '40', :class => "helpButton") %>
+	<span>how to ? </span> </a>
+</div>
 <div class='second'><span>log in</span>
-	<%= image_tag("fbicon.png", :height => '40', :width => '40') %>
-	<%= image_tag("g+icon.png", :height => '40', :width => '40') %>
+	<a href = ""> <%= image_tag("fbicon.png", :height => '40', :width => '40', :class => "fbicon") %> </a>
+	<a href = ""> <%= image_tag("g+icon.png", :height => '40', :width => '40', :class => "g+icon") %> </a>
 </div>
 <div class='third'><span class='s'>Start First!</span><%= image_tag "arrow.png" %></div>
 

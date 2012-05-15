@@ -2,6 +2,7 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+
 .half{
 	display:inline-block;
 	width:400px;
@@ -13,12 +14,12 @@
 .right{
 	display:inline-block;
 	width:400px;
-	vertical-align:middle;
+	vertical-align:middle;	
 	.first img{
 		padding-right:10px;
 	}
 	.second{
-		margin-bottom:40px;		
+		margin-bottom:40px;
 		height:40px;
 		padding-left:143px;
 		padding-top:9px;
@@ -35,11 +36,13 @@
 
 span{
 	font-size:30px;
+	font-family: 'Comfortaa', sans-serif;
 	color: rgba(127, 84, 0, 1);
 	text-shadow: -1px 0px black, 0px -1px black;
 }
 .s{
-	font-size:37px;	  
+	font-size:37px;
+	font-family: 'Comfortaa', sans-serif;
 	font-weight: bold;
 }
 

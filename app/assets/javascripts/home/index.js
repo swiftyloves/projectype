@@ -1,5 +1,6 @@
 $(function() {
-
+  //unlogin
+  
   // functions
 
   var currentState = 0;
