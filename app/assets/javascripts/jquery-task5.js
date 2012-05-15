@@ -20,7 +20,9 @@
 		var first = 1;
 		var second = 1;
 		$("#addButton").click(function() {	
+		    console.log($(this));
 		    if($(this).parent("ul").parent("div").children("ul").children("li").hasClass('editing')){
+			    console.log($(this));
 			    tmp.removeClass('editing').prepend('<span>New Task</span>');//val()拿字	
 				tmp.children("input").remove();   
 			}	
@@ -63,12 +65,23 @@
 		$("#placeholder").on("mousedown", "ul>li>span", function(event){
 		    console.log($(this));
 			event.preventDefault();
+			
+			/*var input = $(this).parents("#placeholder").children("ul").children("li").children("input");
+			input.parent("li").removeClass("editing").prepend('<span>New Task</span>');
+			input.remove();*/				
+				
 			if(event.button==2){
+			   console.log($(this));
 			   parentli = $(this).parent("li");
 			   input = $('<input type="text" maxlength=11 value="New Task">'); 	
 			   input.prependTo(parentli).addClass('editing'); 	
                $(this).remove();   
-			   parentli.children("input").trigger('focus').blur(function() {  //?
+			   parentli.children("input").trigger('focus').keydown(function (event) {
+                 if (event.which == 13) {
+                 event.preventDefault();
+                 parentli.children("input").trigger('blur');
+                 }
+               }).blur(function() {  //?
 			     //console.log(tmp);               
 			     parentli.removeClass('editing').prepend('<span>' + parentli.children("input").attr('value') + "</span>");//val()拿字	
 			     parentli.children("input").remove();				
@@ -78,13 +91,25 @@
 		$("#placeholder").on("mousedown", "ul div li span", function(event){
 		    console.log($(this));			
 			event.preventDefault();
+			if($(this).parents("#placeholder").find("div").children("li").children("input")){
+			    console.log($(this).parents("#placeholder").find("div").children("li"));
+				var input = $(this).parents("#placeholder").find("div").children("li").children("input");
+				input.parent("li").removeClass("altering").prepend('<span>New Subtask</span>');
+				input.remove();				
+			}	
 			if(event.button==2){
+			   console.log($(this));
 			   parentli = $(this).parent("li");
-			   input = $('<input type="text" maxlength=20 value="New Task">'); 	
+			   input = $('<input type="text" maxlength=20 value="New Subtask">'); 	
 			   parentli.addClass('altering'); 
 			   input.appendTo(parentli);	
                $(this).remove();   
-			   parentli.children("input").trigger('focus').blur(function() {  //?
+			   parentli.children("input").trigger('focus').keydown(function (event) {                 
+				 if (event.which == 13) {
+                 event.preventDefault();
+                 parentli.children("input").trigger('blur');
+                 }
+               }).blur(function() {  //?
 			     //console.log(tmp);               
 			     parentli.removeClass('altering').prepend('<span>' + parentli.children("input").attr('value') + "</span>");//val()拿字	
 			     parentli.children("input").remove();				
@@ -93,6 +118,7 @@
             event.stopPropagation();			
 		});
 		$("#placeholder").on("click", "ul button", function(){ 
+		    console.log($(this));
 		    if($(this).parent("ul").parent("div").children("ul").children("li").hasClass('editing')){
 			    tmp.removeClass('editing').prepend('<span>New Task</span>');//val()拿字	
 				tmp.children("input").remove();   
@@ -167,11 +193,11 @@
 			    console.log($(this).parents("#placeholder").find("div").children("li"));
 			    subtask.removeClass('altering').prepend('<span>New Subtask</span>');//val()拿字	
 				subtask.children("input").remove();   
-			}	
+			}
 		    console.log($(this));
 			subtask = $('<li><input type="text" maxlength=20 value="New Subtask"></li>')						
 			subtask.addClass('altering').appendTo($(this).parent("div"));//append to subtaskul .children("ul")
-			subtask.children("input").keydown(function (event) {
+			subtask.children("input").trigger('focus').keydown(function (event) {
                if (event.which == 13) {
                   event.preventDefault();
                   subtask.children("input").trigger('blur');
@@ -185,8 +211,9 @@
 			event.stopPropagation();
 		});	
 		$("#placeholder").on("click","ul div button", function(event){
-		    console.log($(this));
+		    /*console.log($(this));
 			console.log($(this).parents("#placeholder").find("div").children("li"));
+			console.log($(this).parents("#placeholder").find("div").children("li").hasClass('altering'));*/
 		    if($(this).parents("#placeholder").find("div").children("li").hasClass('altering')){
 			    console.log($(this).parents("#placeholder").find("div").children("li"));
 			    subtask.removeClass('altering').prepend('<span>New Subtask</span>');//val()拿字	
@@ -194,7 +221,7 @@
 			}	
 			subtask = $('<li><input type="text" maxlength=20 value="New Subtask"></li>')						
 			subtask.addClass('altering').appendTo($(this).parent("div"));//append to subtaskul .children("ul")
-			subtask.children("input").keydown(function (event) {
+			subtask.children("input").trigger('focus').keydown(function (event) {
                if (event.which == 13) {
                  event.preventDefault();
                  subtask.children("input").trigger('blur');
