@@ -1,16 +1,20 @@
 ﻿$(function() {		
 		$("#line1").sortable({
 			connectWith: ".connectedlist", tolerance: 'pointer'			
-		}).disableSelection();
-		//$( "#line1" ).sortable();
-		/*$( "#line1" ).disableSelection();*/
-	
+		}).disableSelection();		
+		var bigbutton; 
+	    /*$(".connectedlist" ).bind( "sortstop", function(event, ui) {           
+            $("ul").children("button").remove();
+			console.log($("ul"));
+			bigbutton = $('<button>Add Task</button>'); 
+            bigbutton.appendTo("ul");            
+		});*/
         var subtaskul;	
 		var first = 1;
 		var tmp;// = $('<li><input type="text" value="New Task"> </li>'); 
 		var input;
 		var button;	
-		var bigbutton;
+		
 		var div; 
 		var ul;
 		var first = 1;
@@ -28,7 +32,7 @@
 		    tmp.addClass('editing').appendTo('#line1'); //display inline
             //div.appendTo('#line1');			
 			//console.log(tmp);
-            tmp.children("input").keydown(function (event) {
+            tmp.children("input").trigger('focus').keydown(function (event) {
                if (event.which == 13) {
                  event.preventDefault();
                  tmp.children("input").trigger('blur');
@@ -52,37 +56,39 @@
 			  //$("#line1").sortable("destroy");
               $("#line1, ul").sortable({
 			     connectWith: ".connectedlist", tolerance: 'pointer'			
-		      }).disableSelection();			  
-              //$(ul).sortable();	
+		      }).disableSelection();              
             }			
 	    });	
+		document.oncontextmenu=new Function("return false"); 
 		$("#placeholder").on("mousedown", "ul>li>span", function(event){
 		    console.log($(this));
+			event.preventDefault();
 			if(event.button==2){
 			   parentli = $(this).parent("li");
 			   input = $('<input type="text" maxlength=11 value="New Task">'); 	
-			   input.appendTo(parentli).addClass('editing'); 	
+			   input.prependTo(parentli).addClass('editing'); 	
                $(this).remove();   
-			   parentli.children("input").blur(function() {  //?
+			   parentli.children("input").trigger('focus').blur(function() {  //?
 			     //console.log(tmp);               
 			     parentli.removeClass('editing').prepend('<span>' + parentli.children("input").attr('value') + "</span>");//val()拿字	
 			     parentli.children("input").remove();				
                });             	 
             }            					
-		});
+		});		
 		$("#placeholder").on("mousedown", "ul div li span", function(event){
-		    console.log($(this));
+		    console.log($(this));			
+			event.preventDefault();
 			if(event.button==2){
 			   parentli = $(this).parent("li");
 			   input = $('<input type="text" maxlength=20 value="New Task">'); 	
 			   parentli.addClass('altering'); 
 			   input.appendTo(parentli);	
                $(this).remove();   
-			   parentli.children("input").blur(function() {  //?
+			   parentli.children("input").trigger('focus').blur(function() {  //?
 			     //console.log(tmp);               
 			     parentli.removeClass('altering').prepend('<span>' + parentli.children("input").attr('value') + "</span>");//val()拿字	
 			     parentli.children("input").remove();				
-               });             	 
+               });            	 
             }	
             event.stopPropagation();			
 		});
@@ -99,7 +105,7 @@
 		    tmp.addClass('editing').appendTo($(this).parent("ul")); //display inline
             //div.appendTo('#line1');			
 			//console.log(tmp);
-            tmp.children("input").keydown(function (event) {
+            tmp.children("input").trigger('focus').keydown(function (event) {
                if (event.which == 13) {
                  event.preventDefault();
                  tmp.children("input").trigger('blur');
@@ -123,7 +129,13 @@
               bigbutton.appendTo(ul);
               $("#line1, ul").sortable({
 			     connectWith: ".connectedlist", tolerance: 'pointer'			
-		      }).disableSelection();	 			  
+		      }).disableSelection();	 
+              $(".connectedlist" ).bind( "sortstop", function(event, ui) {           
+                 $("ul").children("button").remove();
+			     console.log($("ul"));
+			     bigbutton = $('<button>Add Task</button>'); 
+                 bigbutton.appendTo("ul");            
+		      });			  
             }                		
 	    });	
         var subtask ;			
