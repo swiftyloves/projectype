@@ -24,7 +24,7 @@ $(function() {
       $(this).before(obj2).remove();
       obj2.click(function (event, ui) {
         console.log($(this));
-        requestTask($(this).contents()[0]);
+        requestTask($(this).html());
       });
     });
   });

@@ -84,7 +84,7 @@ $(document).ready(function() {
 });
 
 $.ajax({
-        url: "getEvent",
+        url: "/getEvent",
         error: function(err) {
           alert('Err');
           console.log(err);

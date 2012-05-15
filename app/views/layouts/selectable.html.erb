@@ -1,0 +1,26 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet" type="text/css" href="http://yui.yahooapis.com/3.4.1/build/cssreset/cssreset-min.css"/>
+<style>
+body{
+	background-image:url(<%= asset_path 'background.jpg' %>);
+}
+</style>
+<!-- css -->
+<!-- <link rel='stylesheet' type='text/css' href='stylesheets/fullcalendar.css' />
+<link rel='stylesheet' type='text/css' href='stylesheets/fullcalendar.print.css' media='print' /> -->
+
+<!-- js -->
+<%= javascript_include_tag 'jquery-1.7.1.min' %>
+<%= javascript_include_tag 'jquery-ui-1.8.17.custom.min' %>
+<!-- <script type='text/javascript' src='js/jquery-1.7.1.min.js'></script>
+<script type='text/javascript' src='js/jquery-ui-1.8.17.custom.min.js'></script>
+<script type='text/javascript' src='js/fullcalendar.js'></script>
+<script type='text/javascript' src='js/test.js'></script> -->
+</head>
+<body>
+<%= yield %>
+</body>
+</html>

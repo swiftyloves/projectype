@@ -11,6 +11,7 @@ class HomeController < ApplicationController
 
   def index
     @appid = RestGraph.default_app_id
+    # TODO: depend on session
     if @gp_client.authorization.access_token
       re = @gp_client.execute(
         @gp_plus.people.get,
@@ -131,6 +132,4 @@ class HomeController < ApplicationController
     @gp_setup[:redirect_uri] = 'http://' + request.host_with_port + '/home/gpcallback'
     self.google_plus_login
   end
-
-
 end
