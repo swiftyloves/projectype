@@ -2,8 +2,8 @@
   /*width: 70%;
   height: 100%;*/
   overflow:hidden;
-  padding-left:15%;
-  padding-right:15%;
+  /*padding-left:15%;
+  padding-right:15%;*/
   /*position: relative;*/
   background-color: transparent;
 }
@@ -108,7 +108,8 @@
 }
 
 .main > li span{
-  color: #E4D879;
+  color: #E4D845;
+  text-shadow:1px 1px #968C5A;
   border: transparent;
   background: transparent;
   width:200px;
@@ -152,6 +153,7 @@
 
 .main li div li span{
   font-weight:normal;
+  text-shadow:none;
   color: #B19643;
   border: transparent;
   background: #ECCD88;
@@ -176,23 +178,29 @@
   vertical-align:top;
 }
 .main div > li.altering input{
-  color: yellow;
+  color: #B89835;
   border: transparent;
   background: #ECCD88;
   font-size:15px;
-  width:190px;
+  width:185px;
   height:28px;
   padding:2px;
   text-align:right;
 }
 
 .main div li span:hover{
-  color: #A18536;  
+  background: #F9F3E2;  
   font-size:15px;
   width:200px;
   height:28px;
   padding:2px;
   line-height:30px;
+  /*color: #A18536;  
+  font-size:15px;
+  width:200px;
+  height:28px;
+  padding:2px;
+  line-height:30px;*/
 }
 
 .main div li span:active{

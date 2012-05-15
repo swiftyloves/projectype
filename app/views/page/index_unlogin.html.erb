@@ -1,0 +1,31 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet" type="text/css" href="http://yui.yahooapis.com/3.4.1/build/cssreset/cssreset-min.css"/>
+
+<!-- css -->
+<%= stylesheet_link_tag 'page' %>
+<%= javascript_include_tag 'index_unlogin' %>
+
+</head>
+<body>
+<div class='half'>
+	<%= image_tag("indexIcon.png", :height => '350px') %>
+</div>
+
+<div class='right'>
+<div class='first'>
+	<%= image_tag("questionMark.png", :height => '40', :width => '40', :class => "helpButton") %>
+	<span>how to ? </span>
+</div>
+<div class='second'><span>log in</span>
+	<%= image_tag("fbicon.png", :height => '40', :width => '40', :class => "fbicon") %>
+	<%= image_tag("g+icon.png", :height => '40', :width => '40', :class => "g+icon") %>
+</div>
+<div class='third'><span class='s'>Start First!</span><%= image_tag "arrow.png" %></div>
+
+</div>
+
+</body>
+</html>

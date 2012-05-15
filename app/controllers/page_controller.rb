@@ -21,10 +21,10 @@ class PageController < ApplicationController
 
         # call for ajax
         def user
-	  render :layout => false, :action => :selectable
+	  		render :layout => false, :action => :selectable
         end
         def welcome
-          render :layout => false, :action => :unlogin
+        	render :layout => false, :action => :unlogin
         end
 private
         def common_sel

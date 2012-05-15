@@ -15,8 +15,18 @@
 	display:inline-block;
 	width:400px;
 	vertical-align:middle;	
-	.first img{
+	.first{
+		img{
 		padding-right:10px;
+		}
+		span:hover{
+			color:rgb(200,0,0);
+			text-shadow: -1px 0px white, 0px -1px white;
+		}
+	}
+	.first:hover{
+		cursor:pointer;
+		color:red;
 	}
 	.second{
 		margin-bottom:40px;
@@ -32,9 +42,9 @@
 		margin-top:51px;
 		padding-left:50px;
 	}
-        img:hover {
-          cursor: pointer;
-        }
+    img:hover {
+      cursor: pointer;
+    }
 }
 
 span{
@@ -46,9 +56,12 @@ span{
 .s{
 	font-size:37px;
 	font-family: 'Comfortaa', sans-serif;
-	font-weight: bold;
+	// font-weight: bold;
 }
 
-.second{
-	
+.s:hover{
+	cursor:pointer;
+	color:rgb(240,30,0);
+	text-shadow: 1px 0px white, 0px -1px black;
+	font-weight: bold;	
 }
