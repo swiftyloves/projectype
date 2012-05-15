@@ -27,6 +27,7 @@ Projectype::Application.routes.draw do
   get '/unlogin' => 'page#unlogin'
   # TODO: may change method POST
   get '/user' => 'page#user'
+  get '/welcome' => 'page#welcome'
 
   #task
   post '/task' => 'task#taskmode'

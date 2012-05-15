@@ -4,7 +4,7 @@ class PageController < ApplicationController
 	include RestGraph::RailsUtil
 	
 	def unlogin
-		render 'index_unlogin', :layout => false
+		render :layout => 'selectable'
 	end
 	def selectable
 		render :layout => 'selectable'
@@ -18,16 +18,20 @@ class PageController < ApplicationController
 		# puts response
 		render json: response
 	end
-    def user
-		render :layout => false, :action => :selectable
-    end
 
+        # call for ajax
+        def user
+	  render :layout => false, :action => :selectable
+        end
+        def welcome
+          render :layout => false, :action => :unlogin
+        end
 private
         def common_sel
             if session[:current_user]	
-				@pic = "#{User.find_by_account(session[:current_user])['img']}"
+		@pic = "#{User.find_by_account(session[:current_user])['img']}"
                 if session[:current_user][0] == 'g'
-                        @pic += "?sz=50"
+                    @pic += "?sz=50"
                 end
             end
         end

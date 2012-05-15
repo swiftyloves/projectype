@@ -1,0 +1,21 @@
+<!-- css -->
+<%= stylesheet_link_tag 'page' %>
+<%= javascript_include_tag 'index_unlogin' %>
+<div id="welcome">
+  <div class='half'>
+	<%= image_tag("indexIcon.png", :height => '70%', :width => '70%') %>
+  </div>
+
+  <div class='right'>
+    <div class='first'>
+	<a href = ""><%= image_tag("questionMark.png", :height => '40', :width => '40', :class => "helpButton") %>
+	<span>how to ? </span> </a>
+    </div>
+    <div class='second'><span>log in</span>
+        <%= image_tag("fbicon.png", :height => '40', :width => '40', :class => "fbicon") %> 
+	<%= image_tag("g+icon.png", :height => '40', :width => '40', :class => "gicon") %>
+    </div>
+    <div class='third'><span class='s'>Start First!</span><%= image_tag "arrow.png" %></div>
+
+  </div>
+</div>

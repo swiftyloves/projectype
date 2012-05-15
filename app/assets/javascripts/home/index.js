@@ -44,6 +44,16 @@ $(function() {
     $.get("/home/logout")
     $("#content").empty();
     $("#projectName span").empty();
+    $.ajax({
+      //type: 'POST',
+      url: '/welcome',
+      error: function(response) {
+        console.log("err");
+      },
+      success: function(response) {
+        handleResponse(response);
+      }
+    });
   };
 
   // init
