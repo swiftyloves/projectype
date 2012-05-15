@@ -2,6 +2,10 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+a{
+	text-decoration: none;
+}
+
 .half{
 	display:inline-block;
 	width:400px;
@@ -13,7 +17,7 @@
 .right{
 	display:inline-block;
 	width:400px;
-	vertical-align:middle;
+	vertical-align:middle;	
 	.first img{
 		padding-right:10px;
 	}
