@@ -132,6 +132,4 @@ class HomeController < ApplicationController
     @gp_setup[:redirect_uri] = 'http://' + request.host_with_port + '/home/gpcallback'
     self.google_plus_login
   end
-
-
 end

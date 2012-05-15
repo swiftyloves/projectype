@@ -61,6 +61,11 @@ $(function() {
     height: 500,
   });
   
+  $.ajaxSetup({
+    beforeSend: function(xhr) {
+      xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content'));
+    }
+  }); 
   // buttons
 
   $("#userButton").click(function(event) {
@@ -89,6 +94,9 @@ $(function() {
       resetToggle();
       $(this).addClass("toggling");
       $("#triangle").addClass("pointTask").removeClass("hide");
+      if (!name && $("#projectName span").html().length != 0) {
+        name = $("#projectName span").html();
+      }
       if (name) {
         console.log("recieve:" + name);
         $.ajax({
