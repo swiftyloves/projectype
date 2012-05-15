@@ -41,6 +41,7 @@
 
   function commonLoginAction() {
     $(".unlogin").removeClass("unlogin").addClass("login");
+    $(".unloginTag").removeClass("unloginTag").addClass("loginTag");
     doBlockingStart();
     $.ajax({
       url: "/project",
@@ -72,6 +73,18 @@
 <div id="topMask" class="decorate outer"></div>
 <div id="bottomMask" class="decorate outer"></div>
 <div id="main" class="indexPanel">
+  <div id="functionTag" class="hide unloginTag">
+    <div id="tagTriangle"></div>
+    <div id="logFunctionTag">
+      <span id="homeButton">Home</span>
+      <span id="inviteButton">Invite</span>
+      <span id="logoutButton">Logout</span>
+    </div>
+    <div id="unlogFunctionTag">
+      <div id="fbButton"></div>
+      <div id="gButton"></div>
+    </div>
+  </div>
   <div id="content">
   <%= render :file => "page/unlogin" %>
   </div>
@@ -81,18 +94,6 @@
     <div id="logButton" class="toggleButton unlogin">
       <a>Login</a>
       <div id="headImg"></div>
-      <div id="functionTag" class="hide">
-        <div id="tagTriangle"></div>
-        <div id="logFunctionTag">
-          <span id="homeButton">Home</span>
-          <span id="inviteButton">Invite</span>
-          <span id="logoutButton">Logout</span>
-        </div>
-        <div id="unlogFunctionTag">
-          <div id="fbButton"></div>
-          <div id="gButton"></div>
-        </div>
-      </div>
     </div>
     <div id="taskButton"  class="toggleButton">
       <a>Task</a>
@@ -102,7 +103,7 @@
     </div>
     <div id="projectName" class="noeditingName">
       <span></span>
-      <input type="text" maxlength=22></input>
+      <input type="text" maxlength=22 align="right"></input>
     </div>
   </div>
   <div id="middleBar" class="indexPanel"></div>

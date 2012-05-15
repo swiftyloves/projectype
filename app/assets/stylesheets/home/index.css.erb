@@ -1,6 +1,7 @@
 html {
   background: url(<% asset_path "home/texture.jpg" %>) repeat;
   overflow: auto;
+  font-family: "Comfortaa", sans-serif;
 }
 
 .outer {
@@ -143,7 +144,6 @@ html {
 #projectName span {
   margin-right: 40px;
   font-size: 35px;
-  font-weight: bold;
   color: rgba(127, 84, 0, 1);
   text-shadow: -1px 0px black, 0px -1px black;
 }
@@ -200,11 +200,11 @@ html {
   display: none;
 }
 
-.unlogin #logFunctionTag {
+.unloginTag #logFunctionTag {
   display: none;
 }
 
-.login #unlogFunctionTag {
+.loginTag #unlogFunctionTag {
   display: none;
 }
 
@@ -222,11 +222,18 @@ html {
   position: relative;
 }
 
-.login #functionTag {
-  width: 165px;
-  height: 137px;
-  top: 47px;
-  left: -85px;
+.loginTag {
+  width: 138px;
+  height: 122px;
+  top: 74px;
+  left: 887px;
+}
+
+.unloginTag {
+  width: 130px;
+  height: 72px;
+  top: 74px;
+  left: 942px;
 }
 
 #logButton {
@@ -248,26 +255,25 @@ html {
 
 #functionTag {
   background: rgba(254, 254, 225, 1);
-  width: 130px;
-  height: 72px;
   position: absolute;
-  top: 45px;
-  left: -31px;
   box-shadow: 0px 2px 2px 0.5px rgba(124, 113, 96, 0.7);
   border-radius: 7px;
   z-index: 20;
 }
 
 #functionTag span {
-  margin-left: 23px;
-  font-size: 35px;
-  font-weight: bold;
+  margin-left: 19px;
+  font-size: 30px;
   color: rgba(127, 84, 0, 1);
   text-shadow: -1px 0px black, 0px -1px black;
 }
 
+#functionTag div div {
+  display: inline-block;
+}
+
 #logFunctionTag {
-  margin-top: 17px;
+  margin-top: 15px;
 }
 
 #fbButton, #gButton {
