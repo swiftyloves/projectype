@@ -42,6 +42,7 @@ $(function() {
     $(".login").removeClass("login").addClass("unlogin");
     $.get("/home/logout")
     $("#content").empty();
+    $("#projectName span").empty();
   };
 
   // init
