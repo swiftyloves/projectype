@@ -9,12 +9,6 @@ class HomeController < ApplicationController
   # gp img + ?sz=100 (100 is size)
   # fb img + ?type=large
 
-  def mail
-    @url = params[:url] + ".com"
-    InviteMailer.invite_mail(@url).deliver
-    render json: @url
-  end
-
   def index
     @appid = RestGraph.default_app_id
     if session[:current_user]
