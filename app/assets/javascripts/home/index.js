@@ -151,8 +151,8 @@ $(function() {
                 css: { 
                   background: "rgba(0, 0, 0, 0)",
                   border: "none",
-                  top: "-50px",
-                  left: "250px",
+                  //top: "-50px",
+                  //left: "250px",
                   cursor: "help",
                 },
                });
