@@ -1,8 +1,24 @@
 class PageController < ApplicationController
 	# before_filter :load_facebook, :only => [:selectable]
     before_filter :common_sel, :only => [:selectable, :user]
-	include RestGraph::RailsUtil
+
 	
+    def sendmail
+    	mail = params[:mail]
+    	user = session[:current_name]
+    	unless user
+    		user = ""
+    	end
+    	#puts mail
+    	require 'gmail_sender'
+    	g = GmailSender.new("ProjecType@gmail.com","project123?")
+		g.send(:to => mail,
+		       :subject => "#{user} Invite you to use ProjecType!!",
+		       :content => "<img src='http://upload.wikimedia.org/wikipedia/en/0/0d/Simpsons_FamilyPicture.png'/>",
+		       :content_type => 'text/html')
+		render json: "succ"
+    end
+
 	def unlogin
 		render :layout => 'selectable'
 	end

@@ -1,4 +1,5 @@
 
+
 <%= stylesheet_link_tag 'invite' %>
 <script>
 $(function() {
@@ -13,8 +14,24 @@ $(function() {
 		draggable: false
 	});	
 	$('.invite').click(function(){
-		console.log('lalala')
 		$(".inviteCard").dialog("close");
+		console.log('lalala')
+		var url = $(".inviteCard input").val()
+		console.log(url)
+		$.ajax({
+          type: 'POST',
+          url: '/sendmail',
+          data: {"mail": url},
+          error: function(response) {
+            console.log(response);
+            //doBlockingEnd();
+          },
+          success: function(response) {
+            //handleResponse(response);
+            //$("#projectName span").empty().append(name);
+            //doBlockingEnd();
+          }
+        });
 
 	});
 });

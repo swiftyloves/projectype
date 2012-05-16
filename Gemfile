@@ -18,7 +18,7 @@ gem 'rest-client'
 gem 'json'
 gem 'thin'
 gem 'google-api-client'
-
+gem 'gmail_sender'
 
 # Gems used only for assets and not required
 # in production environments by default.

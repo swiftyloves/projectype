@@ -182,6 +182,7 @@ $(function() {
 
   $("#homeButton").click(function(event) {
     console.log($(this));
+    
   });
 
   $("#inviteButton").click(function(event) {

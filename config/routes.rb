@@ -29,6 +29,8 @@ Projectype::Application.routes.draw do
   # TODO: may change method POST
   get '/user' => 'page#user'
   get '/welcome' => 'page#welcome'
+  post '/sendmail' => 'page#sendmail'
+
 
   #task
   post '/task' => 'task#taskmode'

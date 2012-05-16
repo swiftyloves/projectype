@@ -60,6 +60,7 @@ GEM
       multipart-post (~> 1.1)
       rack (~> 1.1)
     fssm (0.2.9)
+    gmail_sender (1.1.1)
     google-api-client (0.4.3)
       addressable (>= 2.2.3)
       autoparse (>= 0.3.1)
@@ -154,6 +155,7 @@ PLATFORMS
 DEPENDENCIES
   coffee-rails (~> 3.2.1)
   compass-rails
+  gmail_sender
   google-api-client
   jquery-rails
   json
