@@ -8,7 +8,7 @@
       cookie     : true, // enable cookies to allow the server to access the session
       xfbml      : true  // parse XFBML
     });
-    <% if @gp_client.authorization.access_token || rest_graph.access_token %>
+    <% if @img %>
       $("#headImg").css("background", "url(<%= @img %>)");
       commonLoginAction();
     <% end %>
