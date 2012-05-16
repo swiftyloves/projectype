@@ -1,7 +1,6 @@
 #placeholder {
   /*width: 70%;
-  height: 100%;*/
-  overflow:hidden;
+  height: 100%;*/  
   /*padding-left:15%;
   padding-right:15%;*/
   /*position: relative;*/
@@ -41,12 +40,15 @@
   /*display:inline;*/
   color: #A08E37;
   text-shadow:0px 1px #CFC474;  
-  background: #ECCD88;
+  /*background: #ECCD88;*/
+  background:rgba(236, 205, 136, 0.7);
   padding-top:5px;
   /*min-height:50px;*/
   width:200px;
   margin-bottom:50px;
-  border-radius: 10px;
+  /*border-radius: 10px;*/
+  border-top-left-radius: 10px;
+border-top-right-radius: 10px;
   /*padding:15px;
   padding: 10px;
   line-height: 70px; */   
@@ -59,14 +61,14 @@
 .main div{
   padding-top:15px;
   width:200px;  
-  background:#ECCD88; /*#FEFFFE;*/  
+  background:rgba(236, 205, 136, 0); /*#FEFFFE;*/  
 }
 
 .main div.showing{
   padding-top:15px;
   width:200px;
   
-  background:#ECCD88; /*#FEFFFE;*/  
+  background:rgba(236, 205, 136, 0); /*#FEFFFE;*/  
 }
 
 /*.main li a{
@@ -92,7 +94,7 @@
 }*/
 
 .main > li.showing input{
-  background: #ECCD88;
+  background:rgba(236, 205, 136, 0.7);
   border: transparent; 
   width:190px;  
   font-size:30px;
@@ -147,7 +149,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#e6ce8a', end
 .main > li span.showing{
   color: #A08E37;
   border: transparent;
-  background:#ECCD88;
+  background:rgba(236, 205, 136, 0);
   width:200px;
   font-size:30px;
   text-align:center;
@@ -160,7 +162,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#e6ce8a', end
   padding:8px;
   color: #FDF9C1;
   border: transparent;
-  background: #ECCD88;
+  background:rgba(236, 205, 136, 0.7);
   font-size:10px;
   width:200px;  
   float: right;
@@ -175,7 +177,7 @@ border-bottom-right-radius: 10px;
   text-shadow:none;
   color: #B19643;
   border: transparent;
-  background: #ECCD88;
+  background:rgba(236, 205, 136, 0);
   font-size:15px;
   width:200px;
   height:28px;
@@ -187,7 +189,7 @@ border-bottom-right-radius: 10px;
 .main div li{
   color: #B89F3B;
   border: transparent;
-  background: #ECCD88;
+  background:rgba(236, 205, 136, 0);
   font-size:10px;
   width:185px;
   height:30px;
@@ -199,7 +201,7 @@ border-bottom-right-radius: 10px;
 .main div > li.altering input{
   color: #B89835;
   border: transparent;
-  background: #ECCD88;
+  background:rgba(236, 205, 136, 0);
   font-size:15px;
   width:173px;
   height:28px;
@@ -243,6 +245,19 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', end
 
 }
 
+.main div div{
+float:left;
+height:20px;
+color: black;
+border: white;
+background:white;
+/*font-size:15px;
+width:173px;
+height:28px;*/
+padding:4px;
+text-align:left;
+}
+
 /*#addButton{*/
 .main > button{    
   width: 60px;
@@ -254,100 +269,3 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', end
   padding-top:12px;
   padding-bottom:40px; 
 }
-
-/* ======================================== */
-/* functional styles required by Javascript */
-/* ======================================== */
-
-/*ul.main li input {
-  display: none;
-  width: 100%;
-  height: 70px;
-  border: 0;
-  padding: 0;
-  color: black;
-  background: transparent;
-  line-height: 2.5em;
-  font-size: 1em;
-  line-height: 2.5em;
-}
-ul.main li input:focus {  
-  outline: 0;
-}
-ul.main li.editing {
-  background-color: yellow;  
-}
-
-ul.main li li.editing {
-  background-color: yellow;  
-}
-
-ul.main li li {
-  background-color: #E1C179; 
-  color = black;  
-}
-
-ul.main ul.hidden {
-  display: none;
-}
-
-#placeholder div ul li.hidden{
-  color : transparent;
-  background:transparent;
-  display: none;
-}
-
-#placeholder div ul.hidden{
-  color : transparent;
-  background:transparent;
-  display: none;
-}
-
-#placeholder div button.hidden{
-  color : transparent;
-  background:transparent;
-  display: none;
-}
-
-.main li.editing input {
-  display: block;
-  color: #542600;
-}
-
-.main li ul li.editing input{
-  display: block;
-  color: #542600;
-}
-
-.main li ul li{
-  background-color: #E1C179;   
-  color: black;
-}
-
-.main a.editing input{
-  color: yellow;
-  background-color: #E1C179; 
-}
-
-.main a{
-  color: black;
-  background-color: #E1C179; 
-}
-
-.main a input{
-  color: black;
-  background-color: #E1C179; 
-}
-
-.main a value{
-  color: black;
-  background-color: #E1C179; 
-}
-
-.main li.editing .text {
-  display: none;
-}
-
-#placeholder li {
-	background: rgba(255, 0, 0, 0.3);
-}*/
