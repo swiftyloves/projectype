@@ -9,6 +9,11 @@ class PageController < ApplicationController
 	def selectable
 		render :layout => 'selectable'
 	end
+	def invite
+		# @members = "#{Project.find_by_id(session[:]).users}"
+		# @pic = "#{User.find_by_account(session[:current_user])['img']}"
+		render :layout => 'home'
+	end
 	def getEvent
 		puts 'get lalala'
 		response = {}
@@ -19,17 +24,17 @@ class PageController < ApplicationController
 		render json: response
 	end
 
-        # call for ajax
-        def user
-	  		render :layout => false, :action => :selectable
-        end
-        def welcome
-        	render :layout => false, :action => :unlogin
-        end
+    # call for ajax
+    def user
+  		render :layout => false, :action => :selectable
+    end
+    def welcome
+    	render :layout => false, :action => :unlogin
+    end        
 private
         def common_sel
             if session[:current_user]	
-		@pic = "#{User.find_by_account(session[:current_user])['img']}"
+				@pic = "#{User.find_by_account(session[:current_user])['img']}"
                 if session[:current_user][0] == 'g'
                     @pic += "?sz=50"
                 end

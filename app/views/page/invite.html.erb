@@ -1,0 +1,33 @@
+
+<%= stylesheet_link_tag 'invite' %>
+<script>
+$(function() {
+	$(".inviteCard").dialog({
+		autoOpen: false,
+		modal: true,
+		width: 535,
+		dialogClass: "inviteCard",
+		title: "Invite Member",
+		resizable: false,		
+		show: { effect: 'drop', direction: "up" },
+		draggable: false
+	});	
+	$('.invite').click(function(){
+		console.log('lalala')
+		$(".inviteCard").dialog("close");
+
+	});
+});
+
+
+</script>
+
+<div class = "inviteCard">
+<span class="mempic"></span>
+<span class="text">current member</span></br>
+<div class="members"><%= @pic%></div>
+<span class="mempic"></span>
+<span class="text">add new member</span></br>
+<input type="text" name="invite_email" value="type email address"/>
+<input type="submit" value="Invite" class="invite" />
+</div>

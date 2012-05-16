@@ -186,6 +186,7 @@ $(function() {
 
   $("#inviteButton").click(function(event) {
     console.log($(this));
+    $(".inviteCard").dialog("open");
   });
 
   $("#logoutButton").click(function(event) {
