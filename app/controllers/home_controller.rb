@@ -11,16 +11,11 @@ class HomeController < ApplicationController
 
   def index
     @appid = RestGraph.default_app_id
-    # TODO: depend on session
-    if @gp_client.authorization.access_token
-      re = @gp_client.execute(
-        @gp_plus.people.get,
-        'userId' => 'me'
-      )
-      @img = JSON.parse(re.body)['image']['url']
-    elsif rest_graph.access_token
-      id = rest_graph.get('/me')['id']
-      @img = 'https://graph.facebook.com/' + id + '/picture'
+    if session[:current_user]
+      @img = User.find_by_account(session[:current_user])['img']
+      if session[:current_user][0] == 'g'
+        @img += "?sz=50"
+      end   
     end
   end
 

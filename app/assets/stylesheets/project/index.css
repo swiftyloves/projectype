@@ -15,6 +15,7 @@
 
 #projectData > span {
   color: rgba(98, 54, 7, 1);
+  cursor: pointer;
 }
 
 #personalData {

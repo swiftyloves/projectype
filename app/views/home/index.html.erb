@@ -58,9 +58,15 @@
 
   function doBlockingStart() {
     console.log("start blocking");
+    $.blockUI({ message:"Loading!!" });
   };  
   function doBlockingEnd() {
     console.log("end blocking");
+
+    //for (var i = 0; i < 10000000; ++i);
+
+    //$.unblockUI({fadeOut: 1000});
+    $.unblockUI();
   };  
 
   function requestTask(name) {
@@ -103,7 +109,7 @@
     </div>
     <div id="projectName" class="noeditingName">
       <span></span>
-      <input type="text" maxlength=22 align="right"></input>
+      <input type="text" maxlength=22></input>
     </div>
   </div>
   <div id="middleBar" class="indexPanel"></div>
@@ -116,5 +122,5 @@
     </div>
   </div>
 </div>
-<div id="helpContent"></div>
+<div id="helpContent" style="display:none;"></div>
 
