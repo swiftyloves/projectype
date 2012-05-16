@@ -11,6 +11,8 @@ Projectype::Application.routes.draw do
   get '/home/gplogin' => 'home#gplogin'
   get '/home/gpcallback' => 'home#gpcallback'
 
+  get '/test/send/:url' => 'home#mail'
+
   # test
   get '/test/ajax' => 'home#ajax'
   get '/test/ajaxTest' => 'home#ajaxTest'
