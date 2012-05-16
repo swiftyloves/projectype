@@ -88,7 +88,9 @@
                  }
                }).blur(function() {  //?
 			     //console.log(tmp);               
-			     parentli.removeClass('editing').prepend('<span>' + parentli.children("input").attr('value') + "</span>");//val()拿字	
+			     parentli.removeClass('editing').prepend('<span>' + parentli.children("input").attr('value') + "</span>");//val()拿字
+                 if(parentli.hasClass("presenting"))
+                    parentli.children('span').addClass("showing"); 				 
 			     parentli.children("input").remove();				
                });             	 
             }            					
@@ -245,6 +247,20 @@
 			console.log(event);
 			event.stopPropagation();
 		});	
+        /*$("#placeholder").on("hover","li li span", function(event){
+		    //alert("show image");
+            if($(this).parent("li").children("div").size()==0){
+            $(this).parent("li").append('<div style="background: url('+imgfortask+') center no-repeat; background-size: 15%;"></div>');
+            }
+            $(this).mouseleave(function() {
+                $(this).parent("li").children("div").hide();
+            });
+			event.stopPropagation();
+		});	
+        $("#placeholder").on("click","li li span", function(event){
+		    alert("show small card");
+			event.stopPropagation();
+		});*/	
 		
 });
 

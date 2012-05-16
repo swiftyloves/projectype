@@ -151,8 +151,8 @@ $(function() {
                 css: { 
                   background: "rgba(0, 0, 0, 0)",
                   border: "none",
-                  //top: "-50px",
-                  //left: "250px",
+                  top: "auto",
+                  left: "auto",
                   cursor: "help",
                 },
                });
@@ -182,7 +182,9 @@ $(function() {
 
   $("#homeButton").click(function(event) {
     console.log($(this));
-    
+    resetToggle();
+    $("#projectName span").empty();
+    commonLoginAction();
   });
 
   $("#inviteButton").click(function(event) {
@@ -220,5 +222,13 @@ $(function() {
     $("#projectName").addClass("noeditingName");
     var ctx = $("#projectName input").attr("value");
     $("#projectName span").empty().append(ctx);
+    // ajax
   });
+
+  $("#projectName input").keydown(function(event) {
+    if (event.which == 13) {
+      $(this).trigger("blur");
+    }
+  });
+
 });
