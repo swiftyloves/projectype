@@ -14,7 +14,8 @@ class PageController < ApplicationController
     	g = GmailSender.new("ProjecType@gmail.com","project123?")
 		g.send(:to => mail,
 		       :subject => "#{user} Invite you to use ProjecType!!",
-		       :content => "<img src='http://upload.wikimedia.org/wikipedia/en/0/0d/Simpsons_FamilyPicture.png'/>",
+		       :content => '''<p>Welcome to use Projectype to manage your project!!</p>
+                                      <a href="http://projectype.heroku.com/home">http://projectype.heroku.com/home</a>''',
 		       :content_type => 'text/html')
 		render json: "succ"
     end
