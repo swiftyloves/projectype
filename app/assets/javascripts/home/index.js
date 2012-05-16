@@ -45,14 +45,17 @@ $(function() {
     $.get("/home/logout")
     $("#content").empty();
     $("#projectName span").empty();
+    doBlockingStart();
     $.ajax({
       //type: 'POST',
       url: '/welcome',
       error: function(response) {
         console.log("err");
+        doBlockingEnd();
       },
       success: function(response) {
         handleResponse(response);
+        doBlockingEnd();
       }
     });
   };
@@ -63,17 +66,7 @@ $(function() {
   window.onresize = function(event) {
     resetMainHeight();
   };
-  $("#helpContent").dialog({
-    autoOpen: false,
-    show: 'fold',
-    hide: 'fold',
-    modal: true,
-    resizable: false,
-    dialogClass: 'helpDialog',
-    width: 500,
-    height: 500,
-  });
-
+  
   //$("#content").jScrollPane();
   
   // fix ajax clear session  
@@ -92,15 +85,18 @@ $(function() {
       resetToggle();
       $(this).addClass("toggling");
       $("#triangle").addClass("pointUser").removeClass("hide");
+      doBlockingStart();
       $.ajax({
         //type: 'POST',
         url: '/user',
         //data: {"name": name},
         error: function(response) {
           console.log("err");
+          doBlockingEnd();
         },
         success: function(response) {
           handleResponse(response);
+          doBlockingEnd();
         }
       });
     }
@@ -117,16 +113,19 @@ $(function() {
       }
       if (name) {
         console.log("recieve:" + name);
+        doBlockingStart();
         $.ajax({
           type: 'POST',
           url: '/task',
           //data: {"name": name},
           error: function(response) {
             console.log("err");
+            doBlockingEnd();
           },
           success: function(response) {
             handleResponse(response);
             $("#projectName span").empty().append(name);
+            doBlockingEnd();
           }
         });
       }
@@ -148,7 +147,19 @@ $(function() {
 
   $("#helpButton").click(function(event) {
     console.log($(this));
-    $("#helpContent").dialog("open");
+    $.blockUI( {message: $("#helpContent"),
+                css: { 
+                  background: "rgba(0, 0, 0, 0)",
+                  border: "none",
+                  top: "-50px",
+                  left: "250px",
+                  cursor: "help",
+                },
+               });
+  });
+
+  $("#helpContent").click(function(event) {
+    $.unblockUI();
   });
 
   $("#fbButton").click(function(event) {

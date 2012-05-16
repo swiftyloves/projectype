@@ -58,9 +58,15 @@
 
   function doBlockingStart() {
     console.log("start blocking");
+    $.blockUI({ message:"Loading!!" });
   };  
   function doBlockingEnd() {
     console.log("end blocking");
+
+    //for (var i = 0; i < 10000000; ++i);
+
+    //$.unblockUI({fadeOut: 1000});
+    $.unblockUI();
   };  
 
   function requestTask(name) {
@@ -116,5 +122,5 @@
     </div>
   </div>
 </div>
-<div id="helpContent"></div>
+<div id="helpContent" style="display:none;"></div>
 
