@@ -77,8 +77,8 @@ $(document).ready(function() {
 				url: 'http://google.com/'
 			}
 		],
-		color: 'red'
-		// textcolor: 'red'
+		color: 'red',
+		textcolor: 'blue'
 	});
 	
 });

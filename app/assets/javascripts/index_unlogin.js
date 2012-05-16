@@ -1,19 +1,17 @@
 
-$(function(){
-	console.log('in the function')
-        $($('.fbicon')[0]).click(function(){
-	  console.log('fb.click')
-          $('#fbButton').trigger("click");
-        });
-        $($('.gicon')[0]).click(function(){
-	  console.log('g.click')
-	  $('#gButton').trigger("click");
-        });
-
-        $($('.helpButton')[0]).click(function(){
-	  console.log('helpButton.click')
-      	  $('#helpButton').trigger("click");
-        });
+$(function(){	
+    $($('.fbicon')[0]).click(function(){	  
+      $('#fbButton').trigger("click");
+    });
+    $($('.gicon')[0]).click(function(){
+  		$('#gButton').trigger("click");
+    });
+    $($('.helpButton')[0]).click(function(){
+  		$('#helpButton').trigger("click");
+    });
+    $($('.s')[0]).click(function(){
+  		$('#taskButton').trigger("click");
+    });    
 });
 
 // .fbicon{}
