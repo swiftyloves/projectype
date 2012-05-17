@@ -6,7 +6,7 @@ $(function(){
     $($('.gicon')[0]).click(function(){
   		$('#gButton').trigger("click");
     });
-    $($('.helpButton')[0]).click(function(){
+    $($('.first')[0]).click(function(){
   		$('#helpButton').trigger("click");
     });
     $($('.s')[0]).click(function(){
