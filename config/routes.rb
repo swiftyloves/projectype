@@ -26,6 +26,7 @@ Projectype::Application.routes.draw do
   get '/getEvent' => 'page#getEvent'
   get '/unlogin' => 'page#unlogin'
   get '/invite' => 'page#invite'
+  get '/mail' => 'page#mail'
   # TODO: may change method POST
   get '/user' => 'page#user'
   get '/welcome' => 'page#welcome'

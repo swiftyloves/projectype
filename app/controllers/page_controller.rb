@@ -20,6 +20,10 @@ class PageController < ApplicationController
 		render json: "succ"
     end
 
+    def mail
+    	    	
+    end
+
 	def unlogin
 		render :layout => 'selectable'
 	end
