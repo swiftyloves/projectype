@@ -139,3 +139,18 @@ end
 unless sub4.befores.exists?(sub2)
   sub4.befores << sub2
 end
+
+###########################################################
+# delete example                                          #
+###########################################################
+
+# sub1.users.delete(user1)
+# proj1.users.delete(user1)
+# user1.projects.delete(user1)
+#
+# or just get a object and destroy it!
+# user1.destroy
+#
+# To reset all data, just destroy all user, other data would be
+# deleted automatically.
+# User.destroy_all
