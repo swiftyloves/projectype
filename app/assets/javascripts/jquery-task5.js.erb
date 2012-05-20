@@ -14,12 +14,55 @@
 		var tmp;// = $('<li><input type="text" value="New Task"> </li>'); 
 		var input;
 		var button;	
-		
+		document.oncontextmenu=new Function("return false"); 
 		var div; 
 		var ul;
 		var first = 1;
 		var second = 1;
-		$("#addButton").click(function() {	
+		function handlesortstop(event, ui) {
+			$("ul").children("button").remove();
+			//console.log($("ul"));
+			bigbutton = $('<button>Add Task</button>'); 
+            bigbutton.appendTo("ul");  
+			//console.log($(this).parent("ul").children("li").length);
+			console.log($("#placeholder").children("ul").last());
+            if(($("#placeholder").children("ul").last().children("li").length==1)){
+				console.log($(this));
+				var ul2 =  $('<ul class="connectedlist main"></ul>');
+				ul2.appendTo("#placeholder");
+				var bigbutton2 = $('<button>Add Task</button>');
+				bigbutton2.appendTo(ul2);
+				ul2.sortable({
+					connectWith: ".connectedlist", tolerance: 'pointer'			
+				}).disableSelection();  
+				ul2.bind( "sortstop", function(event, ui) {           
+					handlesortstop(event, ui);
+				});
+			}			
+			//check successive empty uls (without lis)
+			var ularray = $("#placeholder").children("ul");
+			var alength = ularray.length;
+            var index=-1;			
+			console.log(alength);
+			console.log($(ularray[0]));
+			for(i = alength-1;i>=0;i--){
+			    if($(ularray[i]).children("li").length==0)
+				   index = i;
+				else break;   
+			}
+			//index = index+1;
+            console.log(index);			
+			if(index!=alength){
+			    //var span = alength-index;
+				console.log(index);
+				for(j=alength-1;j>index;j--){
+				   console.log($(ularray[j]));
+				   $(ularray[j]).remove();
+				}   
+			}
+		};
+		
+		$("#placeholder ul").on("click", "button", function(){ 
 		    console.log($(this));
 		    if($(this).parent("ul").parent("div").children("ul").children("li").hasClass('editing')){
 			    console.log($(this));
@@ -58,10 +101,13 @@
 			  //$("#line1").sortable("destroy");
               $("#line1, ul").sortable({
 			     connectWith: ".connectedlist", tolerance: 'pointer'			
-		      }).disableSelection();              
+		      }).disableSelection();  
+              $(".connectedlist" ).bind( "sortstop", function(event, ui) {           
+					handlesortstop(event, ui);
+		      });					  
             }			
 	    });	
-		document.oncontextmenu=new Function("return false"); 
+		
 		$("#placeholder").on("mousedown", "ul>li>span", function(event){
 		    console.log($(this));
 			event.preventDefault();
@@ -162,21 +208,35 @@
             div.hide();
             $(this).appendTo($(this).parent("ul"));
 			console.log($(this).parent("ul").children("li").length);
-			if($(this).parent("ul").children("li").length==1){			
+			//if($(this).parent("ul").children("li").length==1){	
+            if(($(this).parent("ul").children("li").length==1)&&($("#placeholder").children("ul").last().children("li").length==1)){			
 			  console.log($(this).parent("ul").has("li").length);
+			  console.log($("#placeholder").last().length);
               ul.appendTo("#placeholder");
               bigbutton.appendTo(ul);
               $("#line1, ul").sortable({
 			     connectWith: ".connectedlist", tolerance: 'pointer'			
-		      }).disableSelection();	 
+		      }).disableSelection();              
+             		  
               $(".connectedlist" ).bind( "sortstop", function(event, ui) {           
-                 $("ul").children("button").remove();
+                 handlesortstop(event, ui);
+				 /*$("ul").children("button").remove();
 			     console.log($("ul"));
 			     bigbutton = $('<button>Add Task</button>'); 
-                 bigbutton.appendTo("ul");            
-		      });			  
+                 bigbutton.appendTo("ul");  
+				 console.log($(this).parent("ul").children("li").length);
+				 console.log($("#placeholder").last().length);
+                 if(($("#placeholder").children("ul").last().children("li").length==1)){
+                     console.log($(this));
+					 var ul2 =  $('<ul class="connectedlist main"></ul>');
+					 ul2.appendTo("#placeholder");
+					 var bigbutton2 = $('<button>Add Task</button>');
+                     bigbutton2.appendTo(ul2);
+				 }*/		 
+		      });		
             }                		
 	    });	
+			  
         var subtask ;			
 		$("#placeholder").on("click", "ul>li>span", function(){             
 			var temp = $(this).parent("li").children("div");
@@ -197,10 +257,6 @@
 			}			
 		});
 		$("#placeholder ul").on("click","div button", function(event){
-		    /*console.log("par: placeholder -> div");
-		    console.log($(this).parents("#placeholder").find("div"));
-			console.log("par: placeholder -> div -> li");*/
-			//var why = $(this).parents("#placeholder").find("div");
 		    console.log($(this).parents("#placeholder").find("div").children("li"));
 		    if($(this).parents("#placeholder").find("div").children("li").hasClass('altering')){
 			    console.log($(this).parents("#placeholder").find("div").children("li"));
@@ -246,21 +302,26 @@
 			$(this).appendTo($(this).parent("div"));
 			console.log(event);
 			event.stopPropagation();
-		});	
-        /*$("#placeholder").on("hover","li li span", function(event){
+		});		
+        $("#placeholder").on("hover","li li span", function(event){
 		    //alert("show image");
+            if($(this).parent("li").children("div").hasClass('hidden')){
+			   $(this).parent("li").children("div").show();
+			   $(this).parent("li").children("div").removeClass('hidden');
+			}
             if($(this).parent("li").children("div").size()==0){
-            $(this).parent("li").append('<div style="background: url('+imgfortask+') center no-repeat; background-size: 15%;"></div>');
-            }
-            $(this).mouseleave(function() {
-                $(this).parent("li").children("div").hide();
-            });
+               $(this).parent("li").append('<div style="background: url('+imgfortask+') center no-repeat; background-size: 15%;"></div>');
+            }            
 			event.stopPropagation();
 		});	
+        $("#placeholder").on("mouseleave","li li span", function(event){
+			$(this).parent("li").children("div").hide();
+			$(this).parent("li").children("div").addClass('hidden');
+			event.stopPropagation();
+		});	 
         $("#placeholder").on("click","li li span", function(event){
 		    alert("show small card");
 			event.stopPropagation();
-		});*/	
-		
+		});
 });
 
