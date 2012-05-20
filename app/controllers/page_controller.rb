@@ -9,20 +9,42 @@ class PageController < ApplicationController
     	unless user
     		user = ""
     	end
+    	@name = "hahaha"
+
+    	mailcontent = render :file => "page/mail", :layout => false
+    	mailcontent = mailcontent[0].to_s.sub("\\n", "")
+    	puts mailcontent
     	#puts mail
     	require 'gmail_sender'
     	g = GmailSender.new("ProjecType@gmail.com","project123?")
 		g.send(:to => mail,
 		       :subject => "#{user} Invite you to use ProjecType!!",
-		       :content => '''<p>Welcome to use Projectype to manage your project!!</p>
-                                      <a href="http://projectype.heroku.com/home">http://projectype.heroku.com/home</a>''',
+		       :content => mailcontent,
 		       :content_type => 'text/html')
-		render json: "succ"
+		# render json: "succ"
     end
 
-    def mail
-    	    	
+    # use for test
+    def mail    	
     end
+    def j_hw6
+        response = {}
+        puts params[:acc]        
+        # 參與project的user資訊
+        # :acc - project account /id
+        unless @usr = User.find_by_account(:acc)
+            @usr = User.find_by_id(:acc)
+        end
+
+        # user對應負責subtask ID
+        # @proj = @usr.projects.find_by_name() # this proj ?
+        # @task = @proj.tasks..find_by_name("test1_task1")
+        # @subtasks = @task.all
+
+        # subtask資訊
+        
+    end
+
 
 	def unlogin
 		render :layout => 'selectable'
