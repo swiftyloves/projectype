@@ -1,0 +1,155 @@
+<script>
+
+// class
+var node = function(sub) {
+  this.subtask = sub;
+  this.after = [];
+  this.s = 0; // dfs stime
+  this.f = 0; // dfs ftime
+};
+
+var dfsTimeStamp = 1;
+
+function go() {
+  var query = $("#input").val();
+  $.ajax({
+    type: 'POST',
+    url: '/subtask/query',
+    data: {"id": query},
+    error: function(response) {
+      console.log(response);
+      alert("err");
+    },
+    success: function(response) {
+      console.log(response);
+      $("#content table").append(
+        "<tr>" +
+        "<td>" + response.id + "</td>" +
+        "<td>" + response.name + "</td>" +
+        "<td>" + response.description + "</td>" +
+        "<td>" + response.sday + "</td>" +
+        "<td>" + response.sday + "</td>" +
+        "<td>" + response.task_id + "</td>" +
+        "</tr>");
+    }
+  });
+};
+
+function go2() {
+  var query = $("#input").val();
+  $.ajax({
+    type: 'POST',
+    url: '/subtask/order',
+    data: {"id": query},
+    error: function(response) {
+      console.log(response);
+      alert("err");
+    },
+    success: function(response) {
+      console.log(response);
+      var map = [];
+      for (var i = 0; i < response.order.length; ++i) {
+        var tmp = new node(response.order[i].subtask);
+        map["id" + tmp.subtask.id] = tmp;
+        map.push(tmp.subtask.id);
+      }
+      for (var i = 0; i < response.order.length; ++i) {
+        var id = response.order[i].subtask.id;
+        for (var j = 0; j < response.order[i].after.length; ++j) {
+          map["id" + id].after.push(map["id" + response.order[i].after[j]]);
+        }
+      }
+      dfsTimeStamp = 1;
+      for (var i = 0; i < map.length; ++i) {
+        dfs(map["id" + map[i]]);
+      }
+      var sorted_tmp = [];
+      var sorted = [];
+      for (var i = 0; i < map.length; ++i) {
+        sorted_tmp[map["id" + map[i]].f] = map["id" + map[i]];
+      }
+      for (var i = sorted_tmp.length - 1; i >= 0; --i) {
+        if (sorted_tmp[i] != undefined) {
+          sorted.push(sorted_tmp[i]);
+        }
+      }
+      console.log(sorted);
+      $("#content2 table tbody").empty();
+      for (var i = 0; i < sorted.length; ++i) {
+        var str = "";
+        for (var j = 0; j < sorted[i].after.length; ++j) {
+          str += sorted[i].after[j].subtask.id + " ";
+        }
+        $("#content2 table tbody").append(
+          "<tr>" +
+          "<td>" + sorted[i].subtask.id + "</td>" +
+          "<td>" + sorted[i].subtask.name + "</td>" +
+          "<td>" + sorted[i].subtask.description + "</td>" +
+          "<td>" + sorted[i].subtask.sday + "</td>" +
+          "<td>" + sorted[i].subtask.sday + "</td>" +
+          "<td>" + str + "</td>" +
+          "</tr>");
+      }
+    }
+  });
+};
+
+function dfs(obj) {
+  if (obj.s == 0) {
+    obj.s = dfsTimeStamp++;
+    for (var i = 0; i < obj.after.length; ++i) {
+      dfs(obj.after[i]);
+    }
+    obj.f = dfsTimeStamp++;
+  }
+};
+
+
+</script>
+<style>
+  #content {
+    background: rgba(255, 0, 0, 0.5);
+  }
+  #content2 {
+    background: rgba(255, 255, 0, 0.5);
+  }
+  table, tr, th, td, tbody, thead, tfoot {
+    border: 1px solid;
+    border-spacing: 10px;
+    padding: 5px 5px 5px 5px;
+  }
+</style>
+
+<p>go(42), go2(39)</p>
+<input type="text" id="input"></input>
+<button onclick="go()">go()</button>
+<button onclick="go2()">go2()</button>
+
+<div id="content">
+  <table>
+    <tr>
+      <th>id</th>
+      <th>name</th>
+      <th>description</th>
+      <th>sday</th>
+      <th>dday</th>
+      <th>belong to</th>
+    </tr>
+  </table>
+</div>
+<div id="content2">
+  <table>
+    <thead>
+      <tr>
+        <th>id</th>
+        <th>name</th>
+        <th>description</th>
+        <th>sday</th>
+        <th>dday</th>
+        <th>after id</th>
+      </tr>
+    </thead>
+    <tbody>
+    </tbody>
+  </table>
+</div>
