@@ -4,8 +4,38 @@
 
 <body>
 <%= form_tag '/j_hw6' do %>
-<%= text_field_tag :acc %>
-<%= submit_tag %>
+user name:
+<%= text_field_tag :usracc %>
+</br>project account
+<%= text_field_tag :projacc %>
+<%= submit_tag 'submit' %>
 <% end %>
+
+</br>
+參與project的user資訊(id/account):
+<% @proj_users.each do |u| %>	
+	<tr>
+	<td><%= u.id %></td>
+	<td><%= u.account %></td>
+	</tr>
+<% end %>
+</br></br>user對應負責subtask ID & subtask info</br>
+<% @proj.tasks.each do |t| %>
+    <% t.subtasks.each do |s| %>
+        <% s.users.each do |u| %>
+            <% if u.account == @uacc %>
+            	<tr>
+                <td><%=u.account%></td>
+                <td><%=s.id%></td>
+                <td><%=s.name %></td>
+                <td><%=s.sday %></td>
+                <td><%=s.dday%></td>
+                <td><%=s.description%></td>
+                </tr>
+            <%end%>
+        <%end%>
+    <%end%>
+<%end %>
+
 </body>
 </html>

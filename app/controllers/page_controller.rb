@@ -28,16 +28,20 @@ class PageController < ApplicationController
     def mail    	
     end
     def j_hw6
-        response = {}
-        puts params[:acc]        
-        # 參與project的user資訊
-        # :acc - project account /id
-        unless @usr = User.find_by_account(:acc)
-            @usr = User.find_by_id(:acc)
-        end
+        response = {}    
+        @uacc = params[:usracc]
+        @pacc = params[:projacc]
+        # uid = 5, pid =6
+        
+        @usr = User.find_by_account(@uacc)        
+        @proj = Project.find_by_name(@pacc)
+        @proj_users = @proj.users
+        # puts @usr
+        # puts @proj
+        # 參與project的user資訊        
+        
+        # user對應負責subtask ID        
 
-        # user對應負責subtask ID
-        # @proj = @usr.projects.find_by_name() # this proj ?
         # @task = @proj.tasks..find_by_name("test1_task1")
         # @subtasks = @task.all
 
