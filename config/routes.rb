@@ -37,9 +37,12 @@ Projectype::Application.routes.draw do
   post '/task' => 'task#taskmode'
   get '/task/test' => 'task#test'
 
-
   #hw6
   post '/j_hw6' => 'page#j_hw6'
+  #subtaskInfo
+  get '/subtask/test' => 'subtask#test'
+  post '/subtask/query' => 'subtask#query'
+  post '/subtask/order' => 'subtask#order'
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
