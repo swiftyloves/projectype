@@ -1,4 +1,9 @@
 $(function() {
+  $("#projectData span").click(function (event, ui) {
+    console.log($(this));
+    requestTask($(this));
+  });
+
   $("#addButton").click(function (event) {
     if ($("#projectData input").size()) {
       return;
@@ -40,7 +45,7 @@ $(function() {
           $("#projectData input").before(obj2).remove();
           obj2.click(function (event, ui) {
             console.log($(this));
-            requestTask($(this).html());
+            requestTask($(this));
           });
         }
       });
