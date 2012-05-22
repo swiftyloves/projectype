@@ -38,7 +38,10 @@ Projectype::Application.routes.draw do
   get '/task/test' => 'task#test'
 
   #hw6
-  post '/j_hw6' => 'page#j_hw6'
+  get '/j_hw6' => 'page#j_hw6'
+  post '/usrmode/test' => 'page#usrmode_t'
+  post '/usrmode/usub' => 'page#usrsub'
+
   #subtaskInfo
   get '/subtask/test' => 'subtask#test'
   post '/subtask/query' => 'subtask#query'
