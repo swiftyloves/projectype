@@ -67,7 +67,8 @@ class HomeController < ApplicationController
       end
     end
     # https://graph.facebook.com/id/picture
-    render json: {:token => rest_graph.access_token}
+    # render json: {:token => rest_graph.access_token}
+    redirect_to '/home/'
   end
 
   def ask

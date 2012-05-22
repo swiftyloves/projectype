@@ -19,6 +19,10 @@ Projectype::Application.routes.draw do
   #project
   get '/project/' => 'project#index'
   get '/project/test' => 'project#test'
+  post '/project/add' => 'project#add'
+  put '/project/edit' => 'project#edit'
+  delete '/project/delete' => 'project#delete'
+
   
   # page
   get '/' => 'page#index'
@@ -39,6 +43,7 @@ Projectype::Application.routes.draw do
 
   #hw6
   post '/j_hw6' => 'page#j_hw6'
+
   #subtaskInfo
   get '/subtask/test' => 'subtask#test'
   post '/subtask/query' => 'subtask#query'
