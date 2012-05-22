@@ -22,7 +22,7 @@ Projectype::Application.routes.draw do
   post '/project/add' => 'project#add'
   put '/project/edit' => 'project#edit'
   delete '/project/delete' => 'project#delete'
-
+  get '/project/invite/:hash' => 'project#participate'
   
   # page
   get '/' => 'page#index'

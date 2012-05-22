@@ -45,4 +45,20 @@ class ProjectController < ApplicationController
     end
     render json: ret
   end
+  def participate
+    unless session[:current_user]
+      render json: "please login"
+      return
+    end
+    url = Inviteurl.find_by_hashcode(params[:hash])
+    unless url
+      render json: "No found"
+      return
+    end
+    # TODO: clear garbage
+    user = User.find_by_account(session[:current_user])
+    user.projects << url.project
+    url.destroy
+    render json: "success"
+  end
 end
