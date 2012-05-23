@@ -1,4 +1,9 @@
 $(function() {
+  $("#projectData span").click(function (event, ui) {
+    console.log($(this));
+    requestTask($(this));
+  });
+
   $("#addButton").click(function (event) {
     if ($("#projectData input").size()) {
       return;
@@ -20,11 +25,29 @@ $(function() {
         return;
       }
       // ajax callback
-      var obj2 = $("<span>" + $(this).attr("value") + "</span>");
-      $(this).before(obj2).remove();
-      obj2.click(function (event, ui) {
-        console.log($(this));
-        requestTask($(this).html());
+      $.ajax({
+        type: 'POST',
+        url: '/project/add',
+        data: {"name": $(this).val()},
+        error: function(response) {
+          console.log(response);
+          alert("err");
+        },
+        success: function(response) {
+          console.log(response);
+          if (!response["id"]) {
+            alert("err");
+            $("#projectData input").trigger('focus');
+            return;
+          }
+          var obj2 = $("<span pid='"+response["id"]+"'>" + 
+                     $("#projectData input").attr("value") + "</span>");
+          $("#projectData input").before(obj2).remove();
+          obj2.click(function (event, ui) {
+            console.log($(this));
+            requestTask($(this));
+          });
+        }
       });
     });
   });

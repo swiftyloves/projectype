@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120517030908) do
+ActiveRecord::Schema.define(:version => 20120522074417) do
 
   create_table "assigns", :force => true do |t|
     t.integer  "user_id"
@@ -25,6 +25,13 @@ ActiveRecord::Schema.define(:version => 20120517030908) do
     t.text     "msg"
     t.integer  "user_id"
     t.integer  "subtask_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "inviteurls", :force => true do |t|
+    t.integer  "project_id"
+    t.string   "hashcode"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end

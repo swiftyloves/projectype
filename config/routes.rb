@@ -19,6 +19,10 @@ Projectype::Application.routes.draw do
   #project
   get '/project/' => 'project#index'
   get '/project/test' => 'project#test'
+  post '/project/add' => 'project#add'
+  put '/project/edit' => 'project#edit'
+  delete '/project/delete' => 'project#delete'
+  get '/project/invite/:hash' => 'project#participate'
   
   # page
   get '/' => 'page#index'
