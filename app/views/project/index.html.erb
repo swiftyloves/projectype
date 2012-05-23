@@ -26,9 +26,15 @@
   <div id="projectData">
     <h4>Projects</h5>
     <hr>
-<% user.projects.each { |p| %>
-    <span pid=<%= p.id %>><%= p.name%></span>
-<% }%>
+<% if user
+    user.projects.each { |p| %>
+      <div>
+        <span pid=<%= p.id %>><%= p.name%></span>
+        <div class="edit"></div>
+        <div class="trash"></div>
+      </div>
+<%  }
+   end %>
     <p id="addButton">Add</p>
   </div>
 </div>

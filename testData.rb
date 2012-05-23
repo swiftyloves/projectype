@@ -1,35 +1,35 @@
 # create users
 unless User.find_by_account('g@testUser1')
-  User.new(:account => 'testUser1',
+  User.new(:account => 'g@testUser1',
            :img => "http://help.twweb.org/wp-content/uploads/2012/05/2084.jpg"
           ).save
 end
 unless User.find_by_account('g@testUser2')
-  User.new(:account => 'testUser2',
+  User.new(:account => 'g@testUser2',
            :img => "http://pic.pimg.tw/webosstw/1336663319-2421088193.jpg"
           ).save
 end
 unless User.find_by_account('g@testUser3')
-  User.new(:account => 'testUser3',
+  User.new(:account => 'g@testUser3',
            :img => "http://static.ettoday.net/images/85/d85562.jpg"
           ).save
 end
 unless User.find_by_account('g@testUser4')
-  User.new(:account => 'testUser4',
+  User.new(:account => 'g@testUser4',
            :img => "http://a5.sphotos.ak.fbcdn.net/hphotos-ak-ash3/582156_10150870157304871_183954419870_9366325_66317856_n.jpg"
           ).save
 end
 unless User.find_by_account('g@testUser5')
-  User.new(:account => 'testUser5',
+  User.new(:account => 'g@testUser5',
            :img => "http://pic.wenwen.soso.com/p/20110218/20110218091159-775312496.jpg"
           ).save
 end
 
-user1 = User.find_by_account('testUser1')
-user2 = User.find_by_account('testUser2')
-user3 = User.find_by_account('testUser3')
-user4 = User.find_by_account('testUser4')
-user5 = User.find_by_account('testUser5')
+user1 = User.find_by_account('g@testUser1')
+user2 = User.find_by_account('g@testUser2')
+user3 = User.find_by_account('g@testUser3')
+user4 = User.find_by_account('g@testUser4')
+user5 = User.find_by_account('g@testUser5')
 
 # user create projects
 ## if a user have projects with same name, use where() to find
