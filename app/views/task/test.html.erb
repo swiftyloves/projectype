@@ -13,24 +13,52 @@ function go() {
     },
     success: function(response) {
       console.log(response);
-      
-      //var l_task = response.tasks.length;
-      //var l_users = response.users.length;
-      //console.log(l_task);
       $("#content table").append(
         "<tr>" +
-        "<td>" + response.id + "</td>" +
-        "<td>" + response.name + "</td>" +        
-        "<td>" + response.task + "</td>" +
-        "<td>" + response.user + "</td>" +
+        "<td>" + response['p'].id + "</td>" +
+        "<td>" + response['p'].name + "</td>" +               
         "</tr>");
-      $("#content2 table").append(
-        "<tr>" +
-        "<td>" + response.task_id + "</td>" +            
-        "<td>" + response.task.subtask + "</td>" +
-        "<td>" + response.task.subtask.user + "</td>" +
-        "</tr>");
-    }
+      $.each(response['u'],function(){ 
+		  $("#content1 table").append(
+		    "<tr>" +
+		    "<td>" + this.id + "</td>" + 
+            "<td>" + this.account + "</td>" +        
+		    "</tr>");
+        });     
+      $.each(response['t'],function(){   
+          var subtasks = new Array(response['s'].length)
+          var counter = 0            
+          console.log(response['s'].length) 
+          console.log("id:"+this.id)   
+          console.log(response['s'][0])
+          console.log(response['s'][1])
+          console.log(response['s'][2])
+          console.log(response['s'][3])                           
+          for(var i=0; i<response['s'].length; i++){
+             console.log("dd:"+response['s'][i].task_id)
+             if(response['s'][i].task_id==this.id){
+                console.log("map:"+response['s'][i].task_id)
+                subtasks[counter] = response['s'][i]
+                counter++
+             } 
+          }
+          //if(counter>0)
+          //   counter--
+          console.log(counter)
+          var sub = ""
+          for(var i=0;i<counter;i++){
+             sub += subtasks[i].id
+             console.log(subtasks[i].id)
+             console.log(sub)
+          }
+		  $("#content2 table").append(
+		    "<tr>" +
+		    "<td>" + this.id + "</td>" + 
+            "<td>" + this.name + "</td>" +           
+		    "<td>" + sub + "</td>" +		    
+		    "</tr>");
+        });     
+      }	        
   });
 };
 
@@ -59,10 +87,16 @@ function go() {
 <div id="content">
   <table>
     <tr>
-      <th>id</th>
-      <th>name</th>
-      <th>task ids</th>
-      <th>project users</th>
+      <th>project id</th>
+      <th>project name</th>     
+    </tr>
+  </table>
+</div>
+<div id="content1">
+  <table>
+    <tr>          
+      <th>project user ID</th>
+      <th>project user account</th>
     </tr>
   </table>
 </div>
@@ -70,8 +104,8 @@ function go() {
   <table>
     <tr>
       <th>task id</th>
-      <th>subtask ids</th>
-      <th>subtask users</th>      
+      <th>task name</th>
+      <th>subtask ids</th>          
     </tr>
   </table>
 </div>
