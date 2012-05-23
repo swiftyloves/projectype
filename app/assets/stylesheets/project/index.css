@@ -1,9 +1,23 @@
+.trash, .edit {
+  width: 30px;
+  height: 30px;
+  visibility: hidden;
+}
+
+.trash {
+  background: rgba(255, 0, 0, 0.5);
+}
+
+.edit {
+  background: rgba(0, 255, 0, 0.5);
+}
+
 #projectPage {
   margin-top: 100px;
   margin-left: 200px;
 }
 
-#projectPage > div {
+#projectPage > div, #projectData > div > div {
   display: inline-block;
   vertical-align: top;
 }
@@ -15,7 +29,11 @@
 
 #projectData > span {
   color: rgba(98, 54, 7, 1);
-  cursor: pointer;
+  cursor: pointer;  
+}
+
+#projectData > div:hover .edit, #projectData > div:hover .trash {
+  visibility: visible;
 }
 
 #personalData {
@@ -23,20 +41,20 @@
   margin-right: 60px;
 }
 
-#projectData > input, #projectData > span, #projectData > p {
+#projectData > p {
   display: block;
 }
 
-#projectData > input, #projectData > span {
+#projectData input, #projectData span {
   height: 30px;
   font-size: 25px;
+  width: 285px;
 }
 
-#projectData > input {
+#projectData input {
   border: none;
   outline: none;
   background: rgba(255, 255, 255, 1);
-  width: 285px;
   border-radius: 5px;
 }
 
