@@ -1,0 +1,111 @@
+<script>
+
+// class
+function go() {
+  var query = $("#input").val();
+  $.ajax({
+    type: 'POST',
+    url: '/task/query',
+    data: {"id": query},
+    error: function(response) {
+      console.log(response);
+      alert("err");
+    },
+    success: function(response) {
+      console.log(response);
+      $("#content table").append(
+        "<tr>" +
+        "<td>" + response['p'].id + "</td>" +
+        "<td>" + response['p'].name + "</td>" +               
+        "</tr>");
+      $.each(response['u'],function(){ 
+		  $("#content1 table").append(
+		    "<tr>" +
+		    "<td>" + this.id + "</td>" + 
+            "<td>" + this.account + "</td>" +        
+		    "</tr>");
+        });     
+      $.each(response['t'],function(){   
+          var subtasks = new Array(response['s'].length)
+          var counter = 0            
+          console.log(response['s'].length) 
+          console.log("id:"+this.id)   
+          console.log(response['s'][0])
+          console.log(response['s'][1])
+          console.log(response['s'][2])
+          console.log(response['s'][3])                           
+          for(var i=0; i<response['s'].length; i++){
+             console.log("dd:"+response['s'][i].task_id)
+             if(response['s'][i].task_id==this.id){
+                console.log("map:"+response['s'][i].task_id)
+                subtasks[counter] = response['s'][i]
+                counter++
+             } 
+          }
+          //if(counter>0)
+          //   counter--
+          console.log(counter)
+          var sub = ""
+          for(var i=0;i<counter;i++){
+             sub += subtasks[i].id
+             console.log(subtasks[i].id)
+             console.log(sub)
+          }
+		  $("#content2 table").append(
+		    "<tr>" +
+		    "<td>" + this.id + "</td>" + 
+            "<td>" + this.name + "</td>" +           
+		    "<td>" + sub + "</td>" +		    
+		    "</tr>");
+        });     
+      }	        
+  });
+};
+
+</script>
+
+<style>
+  #content {
+    background: rgba(255, 0, 0, 0.5);
+  }
+  #content2 {
+    background: rgba(255, 255, 0, 0.5);
+  }
+  table, tr, th, td, tbody, thead, tfoot {
+    border: 1px solid;
+    border-spacing: 10px;
+    padding: 5px 5px 5px 5px;
+  }
+</style>
+
+<p>go(project id)</p>
+<p>go: get tasks belonging to project and tasks' subtask ID
+  and also get users in this project</p>
+<input type="text" id="input"></input>
+<button onclick="go()">go()</button>
+
+<div id="content">
+  <table>
+    <tr>
+      <th>project id</th>
+      <th>project name</th>     
+    </tr>
+  </table>
+</div>
+<div id="content1">
+  <table>
+    <tr>          
+      <th>project user ID</th>
+      <th>project user account</th>
+    </tr>
+  </table>
+</div>
+<div id="content2">
+  <table>
+    <tr>
+      <th>task id</th>
+      <th>task name</th>
+      <th>subtask ids</th>          
+    </tr>
+  </table>
+</div>
