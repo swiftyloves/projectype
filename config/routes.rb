@@ -34,11 +34,12 @@ Projectype::Application.routes.draw do
 
 
   #task
-  post '/task' => 'task#taskmode'
-  get '/task/test' => 'task#test'
+  post '/task' => 'task#taskmode'  
 
   #hw6
   post '/j_hw6' => 'page#j_hw6'
+  get '/task/test' => 'task#test'
+  post '/task/query' => 'task#query'
   #subtaskInfo
   get '/subtask/test' => 'subtask#test'
   post '/subtask/query' => 'subtask#query'

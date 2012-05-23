@@ -4,8 +4,20 @@ class TaskController < ApplicationController
     render :layout => false
   end
   def test
-    render :layout => "home", :action => :taskmode
+     render :layout => 'home'
   end
+
+  def query
+      project = Project.find(params[:id]) 
+      puts project
+      proj_users = project.users
+      proj_tasks = project.tasks
+      puts proj_users[0].id
+      puts proj_tasks.length
+      render json: project #proj_users proj_tasks
+
+  end
+
 
 private
         def common_sel

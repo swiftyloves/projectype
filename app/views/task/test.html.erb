@@ -1,0 +1,77 @@
+<script>
+
+// class
+function go() {
+  var query = $("#input").val();
+  $.ajax({
+    type: 'POST',
+    url: '/task/query',
+    data: {"id": query},
+    error: function(response) {
+      console.log(response);
+      alert("err");
+    },
+    success: function(response) {
+      console.log(response);
+      
+      //var l_task = response.tasks.length;
+      //var l_users = response.users.length;
+      //console.log(l_task);
+      $("#content table").append(
+        "<tr>" +
+        "<td>" + response.id + "</td>" +
+        "<td>" + response.name + "</td>" +        
+        "<td>" + response.task + "</td>" +
+        "<td>" + response.user + "</td>" +
+        "</tr>");
+      $("#content2 table").append(
+        "<tr>" +
+        "<td>" + response.task_id + "</td>" +            
+        "<td>" + response.task.subtask + "</td>" +
+        "<td>" + response.task.subtask.user + "</td>" +
+        "</tr>");
+    }
+  });
+};
+
+</script>
+
+<style>
+  #content {
+    background: rgba(255, 0, 0, 0.5);
+  }
+  #content2 {
+    background: rgba(255, 255, 0, 0.5);
+  }
+  table, tr, th, td, tbody, thead, tfoot {
+    border: 1px solid;
+    border-spacing: 10px;
+    padding: 5px 5px 5px 5px;
+  }
+</style>
+
+<p>go(project id)</p>
+<p>go: get tasks belonging to project and tasks' subtask ID
+  and also get users in this project</p>
+<input type="text" id="input"></input>
+<button onclick="go()">go()</button>
+
+<div id="content">
+  <table>
+    <tr>
+      <th>id</th>
+      <th>name</th>
+      <th>task ids</th>
+      <th>project users</th>
+    </tr>
+  </table>
+</div>
+<div id="content2">
+  <table>
+    <tr>
+      <th>task id</th>
+      <th>subtask ids</th>
+      <th>subtask users</th>      
+    </tr>
+  </table>
+</div>
