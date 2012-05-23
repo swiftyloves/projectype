@@ -72,7 +72,8 @@ class PageController < ApplicationController
             end
         end
         tmp[:u] = @usr
-        tmp[:s] = sub        
+        tmp[:s] = sub 
+        puts tmp
         render json: tmp
     end
 

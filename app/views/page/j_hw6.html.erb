@@ -39,8 +39,7 @@ $(function() {
 			},
 			success: function(response){
 				console.log('success!')
-				console.log(response['u']);
-    			$.each(response['s'],function(){    				
+    			$.each(response['s'],function(){	
     				$('.us table').append(
     					'<tr>' + 
 						'<td>' + response['u'].id + '</td>' + 
