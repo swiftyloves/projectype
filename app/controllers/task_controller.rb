@@ -1,6 +1,7 @@
 class TaskController < ApplicationController
   before_filter :common_sel
   def taskmode
+    session[:current_pid] = params[:id]
     render :layout => false
   end
   def test
