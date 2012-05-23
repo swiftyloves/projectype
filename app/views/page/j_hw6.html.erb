@@ -38,17 +38,21 @@ $(function() {
 				alert('err');
 			},
 			success: function(response){
-				console.log(response);
-				# cannot this ?
-				$('.us table').append( '<tr>' + <%=@usr.id%>  + <%=@usr.account%> )
-    			$.each(response,function(){    				
-    				$('.us table').append(    					
-    					'<td>' + this.id + '</td>' +
-    					'<td>' + this.account + '</td>' +
-    					'<td>' + this.img + '</td>' +
+				console.log('success!')
+				console.log(response['u']);
+    			$.each(response['s'],function(){    				
+    				$('.us table').append(
+    					'<tr>' + 
+						'<td>' + response['u'].id + '</td>' + 
+    					'<td>' + response['u'].account + '</td>' +
+    					'<td>' + this.id + '</td>' + 
+    					'<td>' + this.name + '</td>' + 
+    					'<td>' + this.description + '</td>' +
+    					'<td>' + this.sday + '</td>' +
+    					'<td>' + this.dday + '</td>' +
     					'</tr>'
     				);
-    			});				
+    			});    			
 			}
 		});
 	});
@@ -85,13 +89,19 @@ projectName:
 userAcc:
 <input type='test' id='input2' />
 <input type='button' id='usub' value='submit' />
+<div class="u">
+<table></table>
+</div>
 <div class="us">
   <table>
-    <tr>
-      <th>usr_id</th>
+    <tr>      
+      <th>user_id</th>
       <th>user_account</th>
       <th>subtask_id</th>
       <th>subtask_name</th>
+      <th>subtask_description</th>
+      <th>subtask_sday</th>
+      <th>subtask_dday</th>
     </tr>
   </table>	
 </div>

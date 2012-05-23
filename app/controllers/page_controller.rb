@@ -55,12 +55,9 @@ class PageController < ApplicationController
     def usrsub
         @pacc = params[:projName]
         @uacc = params[:uacc]
-        puts params[:uacc]
-        puts params[:projName]
         @usr = User.find_by_account(@uacc)
         @proj = Project.find_by_name(@pacc)
-        @tasks = @proj.tasks
-        puts @tasks[0].name
+        @tasks = @proj.tasks        
         tmp = {}
         sub = []
         @tasks.each do |t|
@@ -68,16 +65,14 @@ class PageController < ApplicationController
                 s.users.each do |u|
                     puts u.account
                     puts @uacc
-                    if u.account == @uacc
-                        puts 'u.account == @uass'
+                    if u.account == @uacc                        
                         sub.append(s)
                     end
                 end
             end
         end
         tmp[:u] = @usr
-        tmp[:s] = sub
-        puts sub
+        tmp[:s] = sub        
         render json: tmp
     end
 
