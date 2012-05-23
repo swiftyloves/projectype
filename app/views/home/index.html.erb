@@ -27,7 +27,7 @@
     var list = [];
     $("#content").empty();
     obj.each(function () {
-      console.log($(this).is("script"));
+      //console.log($(this).is("script"));
       if ($(this).attr("src")) {
         var script = document.createElement('script');
         script.type = 'text/javascript';
@@ -69,8 +69,8 @@
     $.unblockUI();
   };  
 
-  function requestTask(name) {
-    $("#taskButton").trigger("click", name);
+  function requestTask(ui) {
+    $("#taskButton").trigger("click", ui);
   }
 
 </script>

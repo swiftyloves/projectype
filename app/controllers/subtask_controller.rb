@@ -13,7 +13,7 @@ class SubtaskController < ApplicationController
   end
 
   def order
-    ret = {}
+    ret = {}    
     task = Task.find(params[:id])
     arr = []
     task.subtasks.each { |s|

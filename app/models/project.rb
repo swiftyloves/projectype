@@ -5,6 +5,8 @@ class Project < ActiveRecord::Base
 
   has_many :tasks, :dependent => :destroy
 
+  has_many :inviteurls, :dependent => :destroy
+
   def check_has_users (user)
     if self.users.empty?
       self.destroy

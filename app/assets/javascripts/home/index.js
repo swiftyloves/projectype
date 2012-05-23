@@ -102,17 +102,28 @@ $(function() {
     }
   });
 
-  $("#taskButton").click(function(event, name) {
+  $("#taskButton").click(function(event, ui) {
     if (currentState != $(this)) {
       currentState = $(this);
       resetToggle();
       $(this).addClass("toggling");
       $("#triangle").addClass("pointTask").removeClass("hide");
-      if (!name && $("#projectName span").html().length != 0) {
+      var name;
+      var id;
+      if (ui) {
+        name = $(ui).html();
+        id = $(ui).attr("pid");
+      } else if ($("#projectName span").html().length != 0) {
         name = $("#projectName span").html();
+        id = $("#projectName span").attr("pid");
+      } else {
+        name = "Project1";
+        id = -1;
       }
       if (name) {
         console.log("recieve:" + name);
+        $("#projectName span").empty().append(name);
+        $("#projectName span").attr("pid", id);
         doBlockingStart();
         $.ajax({
           type: 'POST',
@@ -120,11 +131,12 @@ $(function() {
           //data: {"name": name},
           error: function(response) {
             console.log("err");
+            $("#projectName span").empty();
+            $("#projectName span").attr("pid", "");
             doBlockingEnd();
           },
           success: function(response) {
             handleResponse(response);
-            $("#projectName span").empty().append(name);
             doBlockingEnd();
           }
         });
@@ -218,11 +230,33 @@ $(function() {
   });
 
   $("#projectName input").blur(function() {
-    $("#projectName").removeClass("editingName");
-    $("#projectName").addClass("noeditingName");
-    var ctx = $("#projectName input").attr("value");
-    $("#projectName span").empty().append(ctx);
     // ajax
+    doBlockingStart();
+    $.ajax({
+      type: 'PUT',
+      url: '/project/edit',
+      data: {"name": $(this).val(), 
+             "id": $("#projectName span").attr("pid")
+            },
+      error: function(response) {
+        console.log(response);
+        $("#projectName").removeClass("editingName");
+        $("#projectName").addClass("noeditingName");
+        doBlockingEnd();
+        alert("err");
+      },
+      success: function(response) {
+        console.log(response);
+        if (response["state"] != "succ") {
+          alert("err");
+          return;
+        }
+        $("#projectName span").empty().append($("#projectName input").val());
+        $("#projectName").removeClass("editingName");
+        $("#projectName").addClass("noeditingName");
+        doBlockingEnd();
+      }
+    });
   });
 
   $("#projectName input").keydown(function(event) {

@@ -1,41 +1,111 @@
 <html>
 <head>
+<script>
+$(function() {
+	console.log('lalala')
+	$('#usrinfo').click(function(){
+		console.log('submit!!')
+		$.ajax({
+			type: 'POST',
+			url: '/usrmode/test',
+			data: {"projName": $("#input").val() },
+			error: function(response) {
+      			console.log(response);
+      			alert("err");
+    		},
+    		success: function(response) {
+    			console.log(response[0]);
+    			$.each(response,function(){    				
+    				$('.up table').append(
+    					'<tr>' +
+    					'<td>' + this.id + '</td>' +
+    					'<td>' + this.account + '</td>' +
+    					'<td>' + this.img + '</td>' +
+    					'</tr>'
+    				);
+    			});
+    		}
+		});
+	});
+	$('#usub').click(function(){
+		console.log('usub submit')		
+		$.ajax({			
+			type: 'POST',
+			url: '/usrmode/usub',
+			data: {"projName": $('#input').val() ,"uacc": $('#input2').val()},
+			error: function(response){
+				console.log(response);
+				alert('err');
+			},
+			success: function(response){
+				console.log('success!')
+				console.log(response['u']);
+    			$.each(response['s'],function(){    				
+    				$('.us table').append(
+    					'<tr>' + 
+						'<td>' + response['u'].id + '</td>' + 
+    					'<td>' + response['u'].account + '</td>' +
+    					'<td>' + this.id + '</td>' + 
+    					'<td>' + this.name + '</td>' + 
+    					'<td>' + this.description + '</td>' +
+    					'<td>' + this.sday + '</td>' +
+    					'<td>' + this.dday + '</td>' +
+    					'</tr>'
+    				);
+    			});    			
+			}
+		});
+	});
+});
+
+</script>
+
+<style>
+tr th{
+	border:2px solid red;
+	width:100px;
+}
+tr:nth-child(even) {background: #CCC}
+
+</style>
 </head>
 
 <body>
-<%= form_tag '/j_hw6' do %>
-user name:
-<%= text_field_tag :usracc %>
-</br>project account
-<%= text_field_tag :projacc %>
-<%= submit_tag 'submit' %>
-<% end %>
 
+projectName:
+<input type='test' id='input' />
+<input type='button' id='usrinfo' value='submit' />
 </br>
-參與project的user資訊(id/account):
-<% @proj_users.each do |u| %>	
-	<tr>
-	<td><%= u.id %></td>
-	<td><%= u.account %></td>
-	</tr>
-<% end %>
-</br></br>user對應負責subtask ID & subtask info</br>
-<% @proj.tasks.each do |t| %>
-    <% t.subtasks.each do |s| %>
-        <% s.users.each do |u| %>
-            <% if u.account == @uacc %>
-            	<tr>
-                <td><%=u.account%></td>
-                <td><%=s.id%></td>
-                <td><%=s.name %></td>
-                <td><%=s.sday %></td>
-                <td><%=s.dday%></td>
-                <td><%=s.description%></td>
-                </tr>
-            <%end%>
-        <%end%>
-    <%end%>
-<%end %>
+<p>user of this project<p/>
+<div class="up">
+  <table>
+    <tr>
+      <th>usrid</th>
+      <th>account</th>
+      <th>img</th>
+    </tr>
+  </table>
+</div></br></br>
+userAcc:
+<input type='test' id='input2' />
+<input type='button' id='usub' value='submit' />
+<div class="u">
+<table></table>
+</div>
+<div class="us">
+  <table>
+    <tr>      
+      <th>user_id</th>
+      <th>user_account</th>
+      <th>subtask_id</th>
+      <th>subtask_name</th>
+      <th>subtask_description</th>
+      <th>subtask_sday</th>
+      <th>subtask_dday</th>
+    </tr>
+  </table>	
+</div>
+
 
 </body>
 </html>

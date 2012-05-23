@@ -27,13 +27,16 @@ class PageController < ApplicationController
     # use for test
     def mail    	
     end
-    def j_hw6
+
+    # 
+    def usrmode_t
+        @pacc = params[:projName]
+        puts @pacc
         response = {}    
-        @uacc = params[:usracc]
-        @pacc = params[:projacc]
+        # @uacc = params[:usracc]
         # uid = 5, pid =6
         
-        @usr = User.find_by_account(@uacc)        
+        # @usr = User.find_by_account(@uacc)        
         @proj = Project.find_by_name(@pacc)
         @proj_users = @proj.users
         # puts @usr
@@ -45,8 +48,37 @@ class PageController < ApplicationController
         # @task = @proj.tasks..find_by_name("test1_task1")
         # @subtasks = @task.all
 
-        # subtask資訊
-        
+        # subtask資訊 
+        render json: @proj_users
+    end
+
+    def usrsub
+        @pacc = params[:projName]
+        @uacc = params[:uacc]
+        @usr = User.find_by_account(@uacc)
+        @proj = Project.find_by_name(@pacc)
+        @tasks = @proj.tasks        
+        tmp = {}
+        sub = []
+        @tasks.each do |t|
+            t.subtasks.each do |s|
+                s.users.each do |u|
+                    puts u.account
+                    puts @uacc
+                    if u.account == @uacc                        
+                        sub.append(s)
+                    end
+                end
+            end
+        end
+        tmp[:u] = @usr
+        tmp[:s] = sub        
+        render json: tmp
+    end
+
+
+    def j_hw6
+        render :layout => 'home'
     end
 
 
