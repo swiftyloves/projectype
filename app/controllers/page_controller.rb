@@ -5,11 +5,14 @@ class PageController < ApplicationController
 	
     def sendmail
     	mail = params[:mail]
-    	user = session[:current_name]
-    	unless user
-    		user = ""
+    	@name = session[:current_name]
+        @proj = Project.find(session[:current_proj]).name
+    	unless @name
+    	       @name = ""
     	end
-    	@name = "hahaha"
+    	unless @proj
+    	       @proj = ""
+    	end
 
         # gen random sequence
         o =  [('a'..'z'),('A'..'Z')].map{|i| i.to_a}.flatten
@@ -24,6 +27,7 @@ class PageController < ApplicationController
         end
 
         @url = "http://" + request.host_with_port + "/project/invite/" + string
+        @home = "http://" + request.host_with_port + "/home"
 
     	mailcontent = render :file => "page/mail", :layout => false
     	mailcontent = mailcontent[0].to_s.sub("\\n", "")
@@ -32,7 +36,7 @@ class PageController < ApplicationController
     	require 'gmail_sender'
     	g = GmailSender.new("ProjecType@gmail.com","project123?")
 		g.send(:to => mail,
-		       :subject => "#{user} Invite you to use ProjecType!!",
+		       :subject => "#{@name} Invite you to use ProjecType!!",
 		       :content => mailcontent,
 		       :content_type => 'text/html')
 		# render json: "succ"

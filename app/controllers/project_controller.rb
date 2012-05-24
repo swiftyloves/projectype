@@ -22,7 +22,7 @@ class ProjectController < ApplicationController
       user = User.find_by_account(session[:current_user])
       proj = user.projects.find(params[:id])
       if proj
-        proj.destroy
+        user.projects.delete(proj)
         ret[:state] = "succ"
       end
     elsif
@@ -57,7 +57,9 @@ class ProjectController < ApplicationController
     end
     # TODO: clear garbage
     user = User.find_by_account(session[:current_user])
-    user.projects << url.project
+    unless user.projects.exists?(url.project)
+      user.projects << url.project
+    end
     url.destroy
     render json: "success"
   end
