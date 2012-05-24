@@ -30,9 +30,7 @@
 }
 
 #projectData > div > span {
-  /*color:white;*/
-  color: #E7E3DF;
-  /*color: rgba(98, 54, 7, 1);*/
+  color:#A87446;  
   cursor: pointer;  
   text-shadow: -1px 0px gray;
 }
