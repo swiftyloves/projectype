@@ -27,6 +27,7 @@ class PageController < ApplicationController
         end
 
         @url = "http://" + request.host_with_port + "/project/invite/" + string
+        @home = "http://" + request.host_with_port + "/home"
 
     	mailcontent = render :file => "page/mail", :layout => false
     	mailcontent = mailcontent[0].to_s.sub("\\n", "")
