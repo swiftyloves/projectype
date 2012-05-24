@@ -5,7 +5,10 @@ $(function(){
 	var y = date.getFullYear();
 
 	var worker = 0;
+	var load = 1;
 	
+	var done = false;
+
 	var calendar = $('#calendar').fullCalendar({			
 		header: {
 			left: 'title',
@@ -23,35 +26,48 @@ $(function(){
 		        error: function(err) {
 		          alert('Err');
 		          console.log(err);
+		          doBlockingEnd();
 		        },	            	            
 	            success: function(doc) {
 	            	console.log('success!')
-	               	console.log(doc['s'])
-	               	$.each(doc['c'],function(){
-	               		console.log(this.img)	               		
-		                $('#workers').append(
-							'<div class="worker" uid="'+ this.id +'" style="background:url(' + this.img +  ') center no-repeat; background-size: 100%;"> </div>'
-						)    		
-	               	});
-	                var events = [{title:'la',start:'2012-05-22',end:'2012-05-23',textColor:'red'}];
+	               	// console.log(doc['s'])
+	               	if(load == 1){
+		               	$.each(doc['c'],function(){
+		               		// console.log(this.img)	               		
+			                $('#workers').append(
+								'<div class="worker" uid="'+ this.id +'" style="background:url(' + this.img +  ') center no-repeat; background-size: 100%;"> </div>'
+							)    		
+		               	});
+		            }else{
+		            	console.log('change style')
+						console.log(worker)		            	            	
+		            	$('.sel').removeClass('sel')		            	
+		            	$('.worker[uid='+worker+']').addClass('sel')		            			            
+		            }
+		            
+	                var events = [];
 	               	$.each(doc['s'],function(){
 	               		console.log(this)
 	               		events.push({
 	               			title:this.name,start:this.sday,end:this.dday
 	               		})
 	               	});
-	               	$('.worker').click(function(){
-						console.log($(this).attr('uid'))
-						worker = $(this).attr('uid');
-						console.log(worker);
-					});
+	               	if (load == 1) {
+		               	$('.worker').click(function(){
+		               		console.log('.click!')
+		               		console.log(worker)
+							worker = $(this).attr('uid');
+		               		// console.log(worker)
+		               		$('#calendar').fullCalendar('removeEvents')
+							$('#calendar').fullCalendar('refetchEvents');
+							load = 0;
+						});
+	                }
 	                callback(events); 
 	            }
 	        });
 		}
 	});
-
-	
 });
 	
 	// $('#calendar').fullCalendar('removeEvents')
