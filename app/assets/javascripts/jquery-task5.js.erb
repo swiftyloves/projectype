@@ -2,23 +2,22 @@
 		$("#line1").sortable({
 			connectWith: ".connectedlist", tolerance: 'pointer'			
 		}).disableSelection();		
-		var bigbutton; 
-	    /*$(".connectedlist" ).bind( "sortstop", function(event, ui) {           
-            $("ul").children("button").remove();
-			console.log($("ul"));
-			bigbutton = $('<button>Add Task</button>'); 
-            bigbutton.appendTo("ul");            
-		});*/
+		var bigbutton; 	    
         var subtaskul;	
 		var first = 1;
-		var tmp;// = $('<li><input type="text" value="New Task"> </li>'); 
+		var tmp; 
 		var input;
 		var button;	
+		var triangle;
 		document.oncontextmenu=new Function("return false"); 
 		var div; 
 		var ul;
 		var first = 1;
 		var second = 1;
+		var rename;
+		var del;
+		var finish;
+		var open;
 		function handlesortstop(event, ui) {
 			$("ul").children("button").remove();
 			//console.log($("ul"));
@@ -60,122 +59,7 @@
 				   $(ularray[j]).remove();
 				}   
 			}
-		};
-		
-		$("#placeholder ul").on("click", "button", function(){ 
-		    console.log($(this));
-		    if($(this).parent("ul").parent("div").children("ul").children("li").hasClass('editing')){
-			    console.log($(this));
-			    tmp.removeClass('editing').prepend('<span>New Task</span>');//val()拿字	
-				tmp.children("input").remove();   
-			}	
-		    bigbutton = $('<button>Add Task</button>');
-		    button = $('<button>Add subtask</button>');
-			ul = $('<ul class="connectedlist main"></ul>'); // 
-            tmp = $('<li><input type="text" maxlength=11 value="New Task"></li>'); 		// 
-			div = $('<div></div>');			
-		    tmp.addClass('editing').appendTo('#line1'); //display inline
-            //div.appendTo('#line1');			
-			//console.log(tmp);
-            tmp.children("input").trigger('focus').keydown(function (event) {
-               if (event.which == 13) {
-                 event.preventDefault();
-                 tmp.children("input").trigger('blur');
-               }
-            }).blur(function() {  //?
-			    console.log(tmp);
-                //tmp.removeClass('editing');
-				//console.log(tmp);
-				tmp.removeClass('editing').prepend('<span>' + tmp.children("input").attr('value') + "</span>");//val()拿字	
-				tmp.children("input").remove();
-				//console.log(tmp);
-            });        	
-            button.appendTo(div);
-            div.appendTo(tmp);	
-            div.hide();
-            $(this).appendTo($(this).parent("ul"));
-			if(first==1){
-              ul.appendTo("#placeholder");
-              bigbutton.appendTo(ul);
-			  first = 0; 
-			  //$("#line1").sortable("destroy");
-              $("#line1, ul").sortable({
-			     connectWith: ".connectedlist", tolerance: 'pointer'			
-		      }).disableSelection();  
-              $(".connectedlist" ).bind( "sortstop", function(event, ui) {           
-					handlesortstop(event, ui);
-		      });					  
-            }			
-	    });	
-		
-		$("#placeholder").on("mousedown", "ul>li>span", function(event){
-		    console.log($(this));
-			event.preventDefault();
-			
-			var input2 = $(this).parents("#placeholder").children("ul").children("li").children("input");
-			input2.parent("li").removeClass("editing").prepend('<span>'+input2.attr('value')+'</span>');
-			input2.remove();	
-
-            var input3 = $(this).parents("#placeholder").find("div").children("li").children("input");
-			//input.parent("li").removeClass("altering").prepend('<span>New Subtask</span>');
-			input3.parent("li").removeClass("altering").prepend('<span>'+input3.attr('value')+'</span>');
-			input3.remove();			
-				
-			if(event.button==2){
-			   console.log($(this));
-			   parentli = $(this).parent("li");
-			   input = $('<input type="text" maxlength=11 value="' + $(this).html()+'">'); 	
-			   input.prependTo(parentli).addClass('editing'); 	
-               $(this).remove();   
-			   parentli.children("input").trigger('focus').keydown(function (event) {
-                 if (event.which == 13) {
-                 event.preventDefault();
-                 parentli.children("input").trigger('blur');
-                 }
-               }).blur(function() {  //?
-			     //console.log(tmp);               
-			     parentli.removeClass('editing').prepend('<span>' + parentli.children("input").attr('value') + "</span>");//val()拿字
-                 if(parentli.hasClass("presenting"))
-                    parentli.children('span').addClass("showing"); 				 
-			     parentli.children("input").remove();				
-               });             	 
-            }            					
-		});		
-		$("#placeholder").on("mousedown", "ul div li span", function(event){
-		    console.log($(this));			
-			event.preventDefault();
-			//if($(this).parents("#placeholder").find("div").children("li").children("input")){
-			//    console.log($(this).parents("#placeholder").find("div").children("li"));
-				var input3 = $(this).parents("#placeholder").find("div").children("li").children("input");
-				//input.parent("li").removeClass("altering").prepend('<span>New Subtask</span>');
-				input3.parent("li").removeClass("altering").prepend('<span>'+input3.attr('value')+'</span>');
-				input3.remove();				
-			//}	
-			
-			var input2 = $(this).parents("#placeholder").children("ul").children("li").children("input");
-			input2.parent("li").removeClass("editing").prepend('<span>'+input2.attr('value')+'</span>');
-			input2.remove();								
-			
-			if(event.button==2){
-			   console.log($(this));
-			   parentli = $(this).parent("li");
-			   input = $('<input type="text" maxlength=20 value="' + $(this).html()+'">'); 	
-			   parentli.addClass('altering'); 
-			   input.appendTo(parentli);	
-               $(this).remove();   
-			   parentli.children("input").trigger('focus').keydown(function (event) {                 
-				 if (event.which == 13) {
-                 event.preventDefault();
-                 parentli.children("input").trigger('blur');
-                 }
-               }).blur(function() {  //?
-			     //console.log(tmp);               
-			     parentli.removeClass('altering').prepend('<span>' + parentli.children("input").attr('value') + "</span>");//val()拿字	
-			     parentli.children("input").remove();				
-               });            	 
-            }	
-            event.stopPropagation();			
-		});
+		};		
 		$("#placeholder").on("click", "ul button", function(){ 
 		    console.log($(this));
 		    if($(this).parent("ul").parent("div").children("ul").children("li").hasClass('editing')){
@@ -185,27 +69,38 @@
 		    bigbutton = $('<button>Add Task</button>');
 		    button = $('<button>Add subtask</button>');
 			ul = $('<ul class="connectedlist main"></ul>'); // 
-            tmp = $('<li><input type="text" maxlength=11 value="New Task"></li>'); 		// 
-			div = $('<div></div>');			
+            tmp = $('<li><div><input type="text" maxlength=11 value="New Task"></div></li>'); 		// 
+			div = $('<div></div>');	
+            triangle = $('<button id="triangle">Triangle</button>');	   			
 		    tmp.addClass('editing').appendTo($(this).parent("ul")); //display inline
             //div.appendTo('#line1');			
 			//console.log(tmp);
-            tmp.children("input").trigger('focus').keydown(function (event) {
+            tmp.children("div").children("input").trigger('focus').keydown(function (event) {
                if (event.which == 13) {
                  event.preventDefault();
-                 tmp.children("input").trigger('blur');
+                 tmp.children("div").children("input").trigger('blur');
                }
             }).blur(function() {  //?
 			    console.log(tmp);
                 //tmp.removeClass('editing');
 				//console.log(tmp);
-				tmp.removeClass('editing').prepend('<span>' + tmp.children("input").attr('value') + "</span>");//val()拿字	
-				tmp.children("input").remove();
+				tmp.removeClass('editing').children("div:nth-child(1)").prepend('<span>' + tmp.children("div").children("input").attr('value') + "</span>");
+				tmp.children("div:nth-child(1)").children("input").remove();
 				//console.log(tmp);
-            });        
+            });       
+            triangle.appendTo(tmp.children("div:nth-child(1)"));
+            triangle.hide();	 			
             button.appendTo(div);
             div.appendTo(tmp);	
-            div.hide();
+			div.hide();		
+            rename = $('<button id="rename">Rename</button>');	
+			del = $('<button id="delete">Delete</button>');
+			finish = $('<button id="finish">Finish</button>');
+			open = $('<button id="open">Open</button>');
+			rename.appendTo(tmp.children("div:nth-child(1)")).hide();
+			del.appendTo(tmp.children("div:nth-child(1)")).hide();
+			finish.appendTo(tmp.children("div:nth-child(1)")).hide();
+			open.appendTo(tmp.children("div:nth-child(1)")).hide();			
             $(this).appendTo($(this).parent("ul"));
 			console.log($(this).parent("ul").children("li").length);
 			//if($(this).parent("ul").children("li").length==1){	
@@ -219,27 +114,67 @@
 		      }).disableSelection();              
              		  
               $(".connectedlist" ).bind( "sortstop", function(event, ui) {           
-                 handlesortstop(event, ui);
-				 /*$("ul").children("button").remove();
-			     console.log($("ul"));
-			     bigbutton = $('<button>Add Task</button>'); 
-                 bigbutton.appendTo("ul");  
-				 console.log($(this).parent("ul").children("li").length);
-				 console.log($("#placeholder").last().length);
-                 if(($("#placeholder").children("ul").last().children("li").length==1)){
-                     console.log($(this));
-					 var ul2 =  $('<ul class="connectedlist main"></ul>');
-					 ul2.appendTo("#placeholder");
-					 var bigbutton2 = $('<button>Add Task</button>');
-                     bigbutton2.appendTo(ul2);
-				 }*/		 
+                 handlesortstop(event, ui);				 
 		      });		
             }                		
 	    });	
+		// new!!
+		$("#placeholder").on("hover", "ul>li>div:nth-child(1)", function(event){		    
+			$(this).children("#triangle").show();
+			event.preventDefault();						
+		});		
+		$("#placeholder").on("mouseleave","ul>li>div:nth-child(1)", function(event){
+		    $(this).children("button").hide();   			
+			event.stopPropagation();
+		});			
+		$("#placeholder").on("click","ul>li>div:nth-child(1)>#triangle", function(event){		    
+			$(this).parent("div").children("button").show();			
+			event.stopPropagation();
+		});	
+		$("#placeholder").on("click","ul>li>div:nth-child(1)>#rename", function(event){		    
+			var input2 = $(this).parents("#placeholder").find("div:nth-child(1)").children("input");
+			input2.parents("li").removeClass("editing").children("div:nth-child(1)").prepend('<span>'+input2.attr('value')+'</span>');
+			input2.remove();	
+
+            var input3 = $(this).parents("#placeholder").find("div:nth-child(2)").children("li").children("input");			
+			input3.parent("li").removeClass("altering").prepend('<span>'+input3.attr('value')+'</span>');
+			input3.remove();						
+			   parentli = $(this).parents("li");
+			   parentdiv = $(this).parent("div");
+			   input = $('<input type="text" maxlength=11 value="' + $(this).siblings("span").html()+'">');                  
+			   input.prependTo(parentdiv).addClass('editing'); 	
+               parentdiv.children("span").remove();
+               console.log(parentdiv.children("input"))			   
+			   parentdiv.children("input").trigger('focus').keydown(function (event) {
+                 if (event.which == 13) {
+                 event.preventDefault();
+                 parentdiv.children("input").trigger('blur');
+                 }
+               }).blur(function() {  //?			                  
+			     parentli.removeClass('editing');
+				 parentdiv.prepend('<span>' + parentdiv.children("input").attr('value') + '</span>');//val()拿字
+                 if(parentli.hasClass("presenting"))
+                    parentli.children('span').addClass("showing"); 				 
+			     parentdiv.children("input").remove();				
+               });                      							
+			event.stopPropagation();
+		});
+        $("#placeholder").on("click","ul>li>div:nth-child(1)>#delete", function(event){		    
+			$(this).parents("li").remove();		
+			event.stopPropagation();
+		});	
+        $("#placeholder").on("click","ul>li>div:nth-child(1)>#finish", function(event){		    
+			$(this).parents("li").addClass("done");				
+			event.stopPropagation();
+		});	
+        $("#placeholder").on("click","ul>li>div:nth-child(1)>#open", function(event){					
+			event.stopPropagation();
+		});	  		
+		//			
 			  
         var subtask ;			
-		$("#placeholder").on("click", "ul>li>span", function(){             
-			var temp = $(this).parent("li").children("div");
+		$("#placeholder").on("click", "ul>li>div:nth-child(1)", function(){             
+			var temp = $(this).parent("li").children("div:nth-child(2)");
 			console.log(temp);
 			if(!temp.hasClass('showing')){
 			   $(this).addClass('showing');
@@ -252,39 +187,12 @@
 			   $(this).removeClass('showing');
 			   temp.removeClass('showing');
 			   temp.slideUp('normal');	 
-			   $(this).parent("li").removeClass('presenting');	
-               //$(this).removeClass('showing');				   
+			   $(this).parent("li").removeClass('presenting');	               			   
 			}			
-		});
-		$("#placeholder ul").on("click","div button", function(event){
-		    console.log($(this).parents("#placeholder").find("div").children("li"));
-		    if($(this).parents("#placeholder").find("div").children("li").hasClass('altering')){
-			    console.log($(this).parents("#placeholder").find("div").children("li"));
-			    subtask.removeClass('altering').prepend('<span>New Subtask</span>');//val()拿字	
-				subtask.children("input").remove();   
-			}
-		    console.log($(this));
-			subtask = $('<li><input type="text" maxlength=20 value="New Subtask"></li>')						
-			subtask.addClass('altering').appendTo($(this).parent("div"));//append to subtaskul .children("ul")
-			subtask.children("input").trigger('focus').keydown(function (event) {
-               if (event.which == 13) {
-                  event.preventDefault();
-                  subtask.children("input").trigger('blur');
-               }
-            }).blur(function() {  
-				subtask.removeClass('altering').prepend('<span>' + subtask.children("input").attr('value') + "</span>");	        
-                subtask.children("input").remove();				
-			});
-			$(this).appendTo($(this).parent("div"));
-			console.log(event);
-			event.stopPropagation();
-		});	
-		$("#placeholder").on("click","ul div button", function(event){
-		    /*console.log($(this));
-			console.log($(this).parents("#placeholder").find("div").children("li"));
-			console.log($(this).parents("#placeholder").find("div").children("li").hasClass('altering'));*/
-		    if($(this).parents("#placeholder").find("div").children("li").hasClass('altering')){
-			    console.log($(this).parents("#placeholder").find("div").children("li"));
+		});		
+		$("#placeholder").on("click","ul div:nth-child(2) button", function(event){		    
+		    if($(this).parents("#placeholder").find("div:nth-child(2)").children("li").hasClass('altering')){
+			    console.log($(this).parents("#placeholder").find("div:nth-child(2)").children("li"));
 			    subtask.removeClass('altering').prepend('<span>New Subtask</span>');//val()拿字	
 				subtask.children("input").remove();   
 			}	
@@ -298,12 +206,74 @@
             }).blur(function() {  
 				subtask.removeClass('altering').prepend('<span>' + subtask.children("input").attr('value') + "</span>");	        
                 subtask.children("input").remove();				
-			});
+			});		
+            triangle = $('<button id="triangle">Triangle</button>');			
+			rename = $('<button id="rename">Rename</button>');	
+			del = $('<button id="delete">Delete</button>');
+			finish = $('<button id="finish">Finish</button>');
+			open = $('<button id="open">Open</button>');
+			triangle.appendTo(subtask).hide();
+			rename.appendTo(subtask).hide();
+			del.appendTo(subtask).hide();
+			finish.appendTo(subtask).hide();
+			open.appendTo(subtask).hide();	
 			$(this).appendTo($(this).parent("div"));
 			console.log(event);
 			event.stopPropagation();
+		});	
+
+        //new!!!
+        $("#placeholder").on("hover", "ul>li>div:nth-child(2)>li", function(event){		
+            console.log($(this));		
+			$(this).children("#triangle").show();
+			event.preventDefault();						
 		});		
-        $("#placeholder").on("hover","li li span", function(event){
+		$("#placeholder").on("mouseleave","ul>li>div:nth-child(2)>li", function(event){
+		    $(this).children("button").hide();   			
+			event.stopPropagation();
+		});			
+		$("#placeholder").on("click","ul>li>div:nth-child(2) #triangle", function(event){		    
+			$(this).parent("li").children("button").show();			
+			event.stopPropagation();
+		});			
+		$("#placeholder").on("click","ul>li>div:nth-child(2) #rename", function(event){		    			
+			var input2 = $(this).parents("#placeholder").find("div:nth-child(1)").children("input");
+			input2.parents("li").removeClass("editing").children("div:nth-child(1)").prepend('<span>'+input2.attr('value')+'</span>');
+			input2.remove();	
+
+            var input3 = $(this).parents("#placeholder").find("div:nth-child(2)").children("li").children("input");			
+			input3.parent("li").removeClass("altering").prepend('<span>'+input3.attr('value')+'</span>');
+			input3.remove();	
+			
+			parentli = $(this).parent("li");
+			input = $('<input type="text" maxlength=20 value="' + $(this).siblings("span").html()+'">'); 	
+		    parentli.addClass('altering'); 
+		    input.prependTo(parentli);	
+            parentli.children("span").remove();
+		    parentli.children("input").trigger('focus').keydown(function (event) {                 
+				 if (event.which == 13) {
+                 event.preventDefault();
+                 parentli.children("input").trigger('blur');
+                 }
+             }).blur(function() {  //?
+			     //console.log(tmp);               
+			     parentli.removeClass('altering').prepend('<span>' + parentli.children("input").attr('value') + "</span>");//val()拿字	
+			     parentli.children("input").remove();				
+             });			 							
+			event.stopPropagation();
+		});
+        $("#placeholder").on("click","ul>li>div:nth-child(2) #delete", function(event){		    
+			$(this).parent("li").remove();		
+			event.stopPropagation();
+		});	
+        $("#placeholder").on("click","ul>li>div:nth-child(2) #finish", function(event){		    
+			$(this).parent("li").addClass("subdone");				
+			event.stopPropagation();
+		});	
+        $("#placeholder").on("click","ul>li>div:nth-child(2) #open", function(event){					
+			event.stopPropagation();
+		});		
+        /*$("#placeholder").on("hover","li li span", function(event){
 		    //alert("show image");
             if($(this).parent("li").children("div").hasClass('hidden')){
 			   $(this).parent("li").children("div").show();
@@ -322,6 +292,6 @@
         $("#placeholder").on("click","li li span", function(event){
 		    alert("show small card");
 			event.stopPropagation();
-		});
+		});*/
 });
 
