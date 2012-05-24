@@ -273,14 +273,14 @@
         $("#placeholder").on("click","ul>li>div:nth-child(2) #open", function(event){					
 			event.stopPropagation();
 		});		
-        /*$("#placeholder").on("hover","li li span", function(event){
+        $("#placeholder").on("hover","li li span", function(event){
 		    //alert("show image");
             if($(this).parent("li").children("div").hasClass('hidden')){
 			   $(this).parent("li").children("div").show();
 			   $(this).parent("li").children("div").removeClass('hidden');
 			}
-            if($(this).parent("li").children("div").size()==0){
-               $(this).parent("li").append('<div style="background: url('+imgfortask+') center no-repeat; background-size: 15%;"></div>');
+            if($(this).parent("li").children("#img").size()==0){
+               ($(this).parent("li").children("#triangle")).before('<div id ="img" style="background: url('+imgfortask+') center no-repeat; background-size: 15%;"></div>');
             }            
 			event.stopPropagation();
 		});	
@@ -292,6 +292,6 @@
         $("#placeholder").on("click","li li span", function(event){
 		    alert("show small card");
 			event.stopPropagation();
-		});*/
+		});
 });
 
