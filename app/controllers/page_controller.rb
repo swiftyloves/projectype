@@ -15,10 +15,15 @@ class PageController < ApplicationController
         o =  [('a'..'z'),('A'..'Z')].map{|i| i.to_a}.flatten
         string  = (0..50).map{ o[rand(o.length)]}.join
         # get proj by params[:id] or session[:current_pid]
-        # proj = Project.find(session[:current_pid])
-        #proj.inviteurls.create(:hashcode => string)
+        proj = Project.find(session[:current_proj])
+        proj.inviteurls.create(:hashcode => string)
         
-        url = "http://" + request.host_with_port + "/project/invite/" + string
+        # clear timeout url
+        Inviteurl.where("created_at <= '#{Time.now - 7*86400}'").each do |i|
+          i.destroy
+        end
+
+        @url = "http://" + request.host_with_port + "/project/invite/" + string
 
     	mailcontent = render :file => "page/mail", :layout => false
     	mailcontent = mailcontent[0].to_s.sub("\\n", "")
