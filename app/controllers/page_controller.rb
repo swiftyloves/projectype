@@ -5,11 +5,14 @@ class PageController < ApplicationController
 	
     def sendmail
     	mail = params[:mail]
-    	user = session[:current_name]
-    	unless user
-    		user = ""
+    	@name = session[:current_name]
+        @proj = Project.find(session[:current_proj]).name
+    	unless @name
+    	       @name = ""
     	end
-    	@name = "hahaha"
+    	unless @proj
+    	       @proj = ""
+    	end
 
         # gen random sequence
         o =  [('a'..'z'),('A'..'Z')].map{|i| i.to_a}.flatten
