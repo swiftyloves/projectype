@@ -80,6 +80,10 @@ $(function() {
   // buttons
 
   $("#userButton").click(function(event) {
+    if ($("#projectName span").html().length == 0) {
+      return;
+    }
+
     if (currentState != $(this)) {
       currentState = $(this);
       resetToggle();
@@ -128,7 +132,7 @@ $(function() {
         $.ajax({
           type: 'POST',
           url: '/task',
-          //data: {"name": name},
+          data: {"id": id},
           error: function(response) {
             console.log("err");
             $("#projectName span").empty();
@@ -176,6 +180,7 @@ $(function() {
 
   $("#fbButton").click(function(event) {
     console.log($(this));
+    /*
     FB.login(function(res) {
       if (res.authResponse) {
         console.log('success');
@@ -185,6 +190,8 @@ $(function() {
         console.log('User cancelled login or did not fully authorize.');
       }
     }, { scope: 'user_photos' });
+    */
+    window.location = "/home/fblogin"; 
   });
 
   $("#gButton").click(function(event) {
