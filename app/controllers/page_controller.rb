@@ -98,11 +98,11 @@ class PageController < ApplicationController
         doc = {}
         if params[:w]=='0'
             @usr = User.find_by_account(session[:current_user])
-            puts 'here!!'
+            # puts 'here!!'
         else
             @usr = User.find_by_id(params[:w])  
         end
-        puts 'usr: ',@usr
+        # puts 'usr: ',@usr
         @proj = Project.find_by_id(session[:current_proj])
         puts session[:current_user]
         puts session[:current_proj]
@@ -110,22 +110,17 @@ class PageController < ApplicationController
         @proj_users = @proj.users
         puts @proj_users
         @proj_users.each do |pu|
-            puts pu.id
-            puts 
             if pu.id != @usr.id
-                puts '!='
-                puts pu.id 
                 cowroker.append(pu)
             end
         end
-        puts 'lalala'
         # puts cowroker
         sub = []
         @tasks = @proj.tasks
         @tasks.each do |t|
             t.subtasks.each do |s|
                 s.users.each do |u| 
-                    puts 'u.acc: ',u.account
+                    # puts 'u.acc: ',u.account
                     # puts @usr.account                                   
                     if u.account == @usr.account
                         sub.append(s)
@@ -133,8 +128,8 @@ class PageController < ApplicationController
                 end
             end
         end
-        puts 'sub:'
-        puts sub
+        # puts 'sub:'
+        # puts sub
         doc[:u] = @usr
         doc[:s] = sub 
         doc[:c] = cowroker

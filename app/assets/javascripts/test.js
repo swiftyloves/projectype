@@ -40,19 +40,20 @@ $(function(){
 	               			title:this.name,start:this.sday,end:this.dday
 	               		})
 	               	});
+	               	$('.worker').click(function(){
+						console.log($(this).attr('uid'))
+						worker = $(this).attr('uid');
+						console.log(worker);
+					});
 	                callback(events); 
 	            }
 	        });
 		}
 	});
 
+	
 });
 	
 	// $('#calendar').fullCalendar('removeEvents')
 	// $('#calendar').fullCalendar('refetchEvents')
 
-$('.worker').click(function(){
-	// puts $(this).attr('uid')
-	// worker = $(this).attr('uid');
-	console.log(worker);
-});
