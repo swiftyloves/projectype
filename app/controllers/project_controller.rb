@@ -22,7 +22,7 @@ class ProjectController < ApplicationController
       user = User.find_by_account(session[:current_user])
       proj = user.projects.find(params[:id])
       if proj
-        proj.destroy
+        user.projects.delete(proj)
         ret[:state] = "succ"
       end
     elsif
