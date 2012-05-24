@@ -22,23 +22,37 @@
   vertical-align: top;
 }
 
-#projectPage h4 {
+#projectPage h1 {
   color: rgba(105, 49, 0, 1);
-  font-size: 50px;
+  font-size:40px;
+  text-shadow: -1px 0px black;
+  text-shadow: 2px 0px 5px gray;
 }
 
-#projectData > span {
-  color: rgba(98, 54, 7, 1);
+#projectData > div > span {
+  /*color:white;*/
+  color: #E7E3DF;
+  /*color: rgba(98, 54, 7, 1);*/
   cursor: pointer;  
+  text-shadow: -1px 0px gray;
 }
 
 #projectData > div:hover .edit, #projectData > div:hover .trash {
   visibility: visible;
+  cursor: pointer;
+  float:right;
+}
+
+#projectData > div:hover span{
+  cursor: pointer;
+  color:#FF6587;
+  text-shadow:1px 1px 5px white;
 }
 
 #personalData {
   margin-top: 50px;
   margin-right: 60px;
+  text-align:center;
 }
 
 #projectData > p {
@@ -48,7 +62,6 @@
 #projectData input, #projectData span {
   height: 30px;
   font-size: 25px;
-  width: 285px;
 }
 
 #projectData input {
@@ -56,6 +69,12 @@
   outline: none;
   background: rgba(255, 255, 255, 1);
   border-radius: 5px;
+  width: 285px;
+}
+
+#projectData > div {
+  width: 285px;
+  height: 30px;
 }
 
 #projectData > hr {
@@ -71,12 +90,18 @@
   background-size: 100%;
   background-repeat: no-repeat;
   background-position: center;
+  border:6px solid rgba(250, 216, 209, 1);
+  box-shadow:5px 5px 10px #888888;
+  border-radius:5px;
 }
 
 #pName {
   display: block;
   text-align: center;
-  margin-top: 5px;
+  margin-top: 15px;
+  font-size:32px;
+  text-shadow: 0px -1px black;
+  color:rgba(127, 84, 0, 1);
 }
 
 #addButton {
@@ -94,6 +119,8 @@
   border-radius: 5px;
   box-shadow: 0px 1px 2px 1px rgba(128, 128, 128, 1);
   color: rgba(98, 54, 7, 1);
+  /*color:white;*/
+  text-shadow:1px 1px 3px white;
   cursor: pointer;
 }
 

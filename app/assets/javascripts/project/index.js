@@ -46,7 +46,7 @@ $(function() {
                    $(this).attr("ori") + "</span>");
         var edit = $("<div class='edit'></div>")
         var trash = $("<div class='trash'></div>");
-        $(this).after(trash).after(edit).after(obj2);
+        $(this).after(edit).after(trash).after(obj2);
         obj2.click(function(event, ui) {
           spanClick(event, $(this));
         });
@@ -81,7 +81,7 @@ $(function() {
                      $("#projectData input").val() + "</span>");
           var edit = $("<div class='edit'></div>")
           var trash = $("<div class='trash'></div>");
-          $("#projectData input").after(trash).after(edit).after(obj2);
+          $("#projectData input").after(edit).after(trash).after(obj2);
           obj2.click(function(event, ui) {
             spanClick(event, $(this));
           });
@@ -160,7 +160,7 @@ $(function() {
           });
           obj2.click(function (event, ui) {
             spanClick(event, $(this));
-          }).after(trash).after(edit);
+          }).after(edit).after(trash);
         }
       });
     });
