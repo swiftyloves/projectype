@@ -57,7 +57,9 @@ class ProjectController < ApplicationController
     end
     # TODO: clear garbage
     user = User.find_by_account(session[:current_user])
-    user.projects << url.project
+    unless user.projects.exists?(url.project)
+      user.projects << url.project
+    end
     url.destroy
     render json: "success"
   end
