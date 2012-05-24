@@ -27,7 +27,6 @@ Projectype::Application.routes.draw do
   # page
   get '/' => 'page#index'
   get '/sel' => 'page#selectable'
-  get '/getEvent' => 'page#getEvent'
   get '/unlogin' => 'page#unlogin'
   get '/invite' => 'page#invite'
   get '/mail' => 'page#mail'
@@ -35,7 +34,9 @@ Projectype::Application.routes.draw do
   get '/user' => 'page#user'
   get '/welcome' => 'page#welcome'
   post '/sendmail' => 'page#sendmail'
-
+  # calender
+  post '/user/cal' => 'page#cal'
+  post '/getEvent' => 'page#getEvent'
 
   #task
   post '/task' => 'task#taskmode'  
