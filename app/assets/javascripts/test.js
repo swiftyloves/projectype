@@ -15,7 +15,7 @@ $(function(){
 		},
 		events: function(start,end,callback){
 	        $.ajax({
-	            url: '/getEvent',
+	            url: '/user/cal',
 	            type: 'POST',
 	            data: {
 	            	w: worker
@@ -25,8 +25,16 @@ $(function(){
 		          console.log(err);
 		        },	            	            
 	            success: function(doc) {
+	            	console.log('success!')
 	                var events = [{title:'la',start:'2012-05-31',textColor:'red'}];
-	                callback(events);
+	                callback(events); 
+	               	console.log(doc['c'])
+	               	$.each(doc['c'],function(){
+
+		                $('#workers').append(
+							'<div class="worker" style="background:url('#{this['img']}') center no-repeat; background-size: 100%;"> </div>'
+						)	               		
+	               	});
 	            }
 	        });
 		}
@@ -38,6 +46,7 @@ $(function(){
 	// $('#calendar').fullCalendar('refetchEvents')
 
 function addw(){
-	$('#workers').append(		
+	$('#workers').append(
+		'<div class="worker"> </div>'
 	)
 }

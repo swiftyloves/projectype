@@ -94,26 +94,44 @@ class PageController < ApplicationController
     def cal
         puts 'touch page#get !'
         # current proj/user/cowroker ?
-        @usr = User.find_by_account(session[:current_user])
-        @proj = Project.find_by_name(session[:current_proj])
-        @tasks = @proj.tasks        
-        tmp = {}
+        # params[:w]
+        doc = {}
+        if params[:w]==0
+            @usr = User.find_by_account(session[:current_user])
+        else
+            @usr = User.find_by_account(session[:current_user])  
+        end
+
+        @proj = Project.find_by_id(session[:current_proj])
+        puts session[:current_user]
+        puts session[:current_proj]
+        cowroker = []
+        @proj_users = @proj.users        
+        @proj_users.each do |pu|
+            if pu.id != @usr.id
+                cowroker.append(pu)
+            end
+        end
+        # puts cowroker
         sub = []
+        @tasks = @proj.tasks
         @tasks.each do |t|
             t.subtasks.each do |s|
-                s.users.each do |u|
-                    puts u.account
-                    puts @uacc
-                    if u.account == @uacc                        
+                s.users.each do |u| 
+                    puts 'u.acc: ',u.account
+                    # puts @usr.account                                   
+                    if u.account == @usr.account
                         sub.append(s)
                     end
                 end
             end
         end
-        tmp[:u] = @usr
-        tmp[:s] = sub 
-        tmp[:e] = [2,3]
-        render json: tmp
+        puts 'sub:'
+        puts sub
+        doc[:u] = @usr
+        doc[:s] = sub 
+        doc[:c] = cowroker
+        render json: doc
     end
 
 
