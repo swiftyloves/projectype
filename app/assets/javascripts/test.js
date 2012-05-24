@@ -26,15 +26,21 @@ $(function(){
 		        },	            	            
 	            success: function(doc) {
 	            	console.log('success!')
-	                var events = [{title:'la',start:'2012-05-31',textColor:'red'}];
-	                callback(events); 
-	               	console.log(doc['c'])
+	               	console.log(doc['s'])
 	               	$.each(doc['c'],function(){
-
+	               		console.log(this.img)	               		
 		                $('#workers').append(
-							'<div class="worker" style="background:url('#{this['img']}') center no-repeat; background-size: 100%;"> </div>'
-						)	               		
+							'<div class="worker" uid="'+ this.id +'" style="background:url(' + this.img +  ') center no-repeat; background-size: 100%;"> </div>'
+						)    		
 	               	});
+	                var events = [{title:'la',start:'2012-05-22',end:'2012-05-23',textColor:'red'}];
+	               	$.each(doc['s'],function(){
+	               		console.log(this)
+	               		events.push({
+	               			title:this.name,start:this.sday,end:this.dday
+	               		})
+	               	});
+	                callback(events); 
 	            }
 	        });
 		}
@@ -45,8 +51,8 @@ $(function(){
 	// $('#calendar').fullCalendar('removeEvents')
 	// $('#calendar').fullCalendar('refetchEvents')
 
-function addw(){
-	$('#workers').append(
-		'<div class="worker"> </div>'
-	)
-}
+$('.worker').click(function(){
+	// puts $(this).attr('uid')
+	// worker = $(this).attr('uid');
+	console.log(worker);
+});
