@@ -5,6 +5,7 @@ $(function(){
 	var y = date.getFullYear();
 
 	var worker = 0;
+	var tmp = -1;
 	var load = 1;
 	
 	var done = false;
@@ -31,7 +32,7 @@ $(function(){
 	            success: function(doc) {
 	            	console.log('success!')
 	               	// console.log(doc['s'])
-	               	if(load == 1){
+	               	if(load == 1 && tmp!= worker){
 		               	$.each(doc['c'],function(){
 		               		// console.log(this.img)	               		
 			                $('#workers').append(
@@ -62,6 +63,7 @@ $(function(){
 							$('#calendar').fullCalendar('refetchEvents');
 							load = 0;
 						});
+						tmp = worker;
 	                }
 	                callback(events); 
 	            }
