@@ -14,6 +14,13 @@ $(function() {
     HoverPaintStyle: {strokeStyle:"#42a62c"}
   });
 
+  function dateToYMD(date) {
+    var d = date.getDate();
+    var m = date.getMonth()+1;
+    var y = date.getFullYear();
+    return '' + y +'-'+ (m<=9?'0'+m:m) +'-'+ (d<=9?'0'+d:d);
+  }
+
   var scrollThreshold = 30;
   var snapOffset;
   var snapUnit;
@@ -64,6 +71,28 @@ $(function() {
                          }
                          $(this).offset({left: $(this).offset().left + adj});
                          // ajax
+                         var s = ($(this).offset().left - $(".dummyStart").offset().left) / 30 - 1;
+                         var w = $(this).outerWidth() / 30;
+                         var head = (new Date(firstday)).valueOf();
+                         var ss = new Date(head + 86400000 * s);
+                         var dd = new Date(head + 86400000 * (s + w - 1));
+                         var tmpSday = dateToYMD(ss);
+                         var tmpDday = dateToYMD(dd);
+                         var id = $(this).attr("id");
+                         id = id.substr(2, id.length);
+                        
+                         $.ajax({
+                           type: 'PUT',
+                           url: '/subtask/edit',
+                           data: {"id": id, "sday": tmpSday, "dday": tmpDday},
+                           error: function(response) {
+                             console.log(response);
+                             alert("err");
+                           },
+                           success: function(response) {
+                           }
+                         });
+
                          jsPlumb.repaintEverything();
                        },
                        stack: ".window",
@@ -75,6 +104,23 @@ $(function() {
   $(".viewPort, .dragHelper").scrollsync({targetSelector: "#timeBarDragHelper", axis: "x"});
   
   jsPlumb.bind("click", function(c) {
+    var s = $(c.source[0]);
+    var t = $(c.target[0]);
+    var sid = s.attr("id");
+    sid = sid.substr(2, sid.length);
+    var tid = t.attr("id");
+    tid = tid.substr(2, tid.length);
+    $.ajax({
+      type: 'PUT',
+      url: '/subtask/edit',
+      data: {"id": sid, "dafterid": tid},
+      error: function(response) {
+        console.log(response);
+        alert("err");
+      },
+      success: function(response) {
+      }
+    });
     jsPlumb.detach(c);
   });
 
@@ -162,11 +208,34 @@ $(function() {
         console.log("forbidden");
         return;
       }
+      var sid = s.attr("id");
+      sid = sid.substr(2, sid.length);
+      var tid = t.attr("id");
+      tid = tid.substr(2, tid.length);
       // ajax
+      $.ajax({
+        type: 'PUT',
+        url: '/subtask/edit',
+        data: {"id": sid, "afterid": tid},
+        error: function(response) {
+          console.log(response);
+          alert("err");
+        },
+        success: function(response) {
+        }
+      });
     });
   }
-
-  
+/*
+  $('#mainCanvas').dialog({
+    autoOpen: false,
+    resizable: false,
+    height: 470,
+    width: 630,
+    modal: true,
+    dialogClass: "bigCard",
+  });
+*/
   function test() {
     initTimebar("2012-04-01", "2012-05-01");
     putTask(10, "2012-04-02", "2012-04-10", "haha");

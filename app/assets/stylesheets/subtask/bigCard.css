@@ -83,12 +83,12 @@
   border-radius: 30px;
 }
 
-/*
-#bigCard .ui-widget-overlay {
+
+.bigCard .ui-widget-overlay {
   background: #666666; opacity: .50;filter:Alpha(Opacity=50); 
 }
 
-#bigCard .ui-dialog {
+.bigCard .ui-dialog {
   -moz-border-radius: 10px;
   -webkit-border-radius: 10px;
   -khtml-border-radius: 10px;
@@ -97,20 +97,20 @@
   box-shadow: 0px 2px 10px 2px rgb(0, 0, 0); 
 }
 
-#bigCard .ui-dialog-titlebar {
+.bigCard .ui-dialog-titlebar {
   background: rgb(248, 242, 218);
   border: 0px;
 }
 
-#bigCard .ui-dialog-title {
+.bigCard .ui-dialog-title {
   color: rgb(100, 52, 3);
 }
 
-#bigCard .ui-dialog-title:before {
+.bigCard .ui-dialog-title:before {
   content: "★";
 }
 
-#bigCard .ui-dialog-titlebar .ui-state-hover {
+.bigCard .ui-dialog-titlebar .ui-state-hover {
   border: 1px solid #999999; background: #dadada; color: #212121; 
 }
-*/
+

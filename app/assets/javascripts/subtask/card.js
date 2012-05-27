@@ -198,7 +198,16 @@ $(function() {
   $("#userList .mem").click(function(event, ui) {
     addUserToMem(event, $(this));
   });
-
+/*
+  $('#card').dialog({
+    //autoOpen: false,
+    resizable: false,
+    height: 570,
+    width: 500,
+    modal: true,
+    dialogClass: "smallCard",
+  });
+*/
   function test() {
     addUserList(1, "");
     addUserList(2, "");

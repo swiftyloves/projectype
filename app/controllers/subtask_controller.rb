@@ -74,15 +74,34 @@ class SubtaskController < ApplicationController
     if subtask
       if params[:uid]
         subtask.users << User.find(params[:uid])
-      elsif params[:sday] # check if break dependency
+      end
+      if params[:sday] # check if break dependency
         subtask.sday = params[:sday]
-      elsif params[:dday]
+        subtask.befores.each do |b|
+          if (b.dday > subtask.sday)
+            subtask.befores.delete(b)
+          end
+        end
+      end
+      if params[:dday]
         subtask.dday = params[:dday]
-      elsif params[:duid]
+        subtask.afters.each do |a|
+          if (a.sday < subtask.dday)
+            subtask.afters.delete(a)
+          end
+        end
+      end
+      if params[:duid]
         subtask.users.delete(User.find(params[:duid]))
-      elsif params[:desc]
+      end
+      if params[:desc]
         subtask.description = params[:desc]
-      else
+      end
+      if params[:afterid]
+        subtask.afters << Subtask.find(params[:afterid])
+      end
+      if params[:dafterid]
+        subtask.afters.delete(Subtask.find(params[:dafterid]))
       end
       subtask.save
     end
@@ -96,5 +115,4 @@ class SubtaskController < ApplicationController
     end
     render json: ""
   end
-
 end

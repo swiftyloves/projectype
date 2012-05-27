@@ -20,6 +20,7 @@
     },
     success: function(response) {
       console.log(response);
+      $("#mainCanvas").attr("title", response.task.name);
       initTimebar(response.sday, response.dday);
       for (var i = 0; i < response.order.length; ++i) {
         var tmp = response.order[i];
@@ -38,18 +39,16 @@
 </script>
 
 
-<div id="bigCard">
-  <div id="mainCanvas" title="Task">
-    <div id="taskViewPort" class="viewPort">
-      <div id="taskCanvas">
-      </div>
+<div id="mainCanvas">
+  <div id="taskViewPort" class="viewPort">
+    <div id="taskCanvas">
     </div>
-    <div id="timeViewPort" class="viewPort">
-      <div id="timeBarDragHelper" class="dragHelper"></div>
-      <div id="timeBar">
-      <div class="dummyStart"></div>
-      <div class="dummyEnd"></div>
-      </div>
+  </div>
+  <div id="timeViewPort" class="viewPort">
+    <div id="timeBarDragHelper" class="dragHelper"></div>
+    <div id="timeBar">
+    <div class="dummyStart"></div>
+    <div class="dummyEnd"></div>
     </div>
   </div>
 </div>
