@@ -69,4 +69,32 @@ class SubtaskController < ApplicationController
     render :layout => 'home'
   end
 
+  def edit
+    subtask = Subtask.find(params[:id])
+    if subtask
+      if params[:uid]
+        subtask.users << User.find(params[:uid])
+      elsif params[:sday] # check if break dependency
+        subtask.sday = params[:sday]
+      elsif params[:dday]
+        subtask.dday = params[:dday]
+      elsif params[:duid]
+        subtask.users.delete(User.find(params[:duid]))
+      elsif params[:desc]
+        subtask.description = params[:desc]
+      else
+      end
+      subtask.save
+    end
+    render json: ""
+  end
+
+  def comment
+    if session[:current_user] && params[:id] && params[:text]
+      user = User.find(session[:current_user])
+      user.comments.create(:subtask_id => params[:id], :msg => params[:text])
+    end
+    render json: ""
+  end
+
 end

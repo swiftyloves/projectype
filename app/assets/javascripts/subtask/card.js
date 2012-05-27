@@ -60,6 +60,19 @@ $(function() {
       return;
     }
     // ajax
+
+    $.ajax({
+      type: 'PUT',
+      url: '/subtask/edit',
+      data: {"id": $("#card").attr("subid"), "uid": id},
+      error: function(response) {
+        console.log(response);
+        alert("err");
+      },
+      success: function(response) {
+      }
+    });
+
     var img = ui.css("background-image");
     img = img.substr(4, img.length - 5);
     addMem(id, img);
@@ -68,7 +81,30 @@ $(function() {
   // init
   $("#userList").hide();
 
-  $("#sddaysArea input").datepicker({dateFormat: "yy-mm-dd"});
+  $("#sddaysArea input").datepicker({
+    dateFormat: "yy-mm-dd",
+    onSelect: function(dateText, inst) {
+      var d;
+      if ($(this).attr("id") == "sday") {
+        d = {"id": $("#card").attr("subid"),
+                "sday": dateText};
+      } else {
+        d = {"id": $("#card").attr("subid"),
+                "dday": dateText};
+      }
+      $.ajax({
+        type: 'PUT',
+        url: '/subtask/edit',
+        data: d,
+        error: function(response) {
+          console.log(response);
+          alert("err");
+        },
+        success: function(response) {
+        }
+      });
+    },
+    });
 
   $("#card").on("keydown", "textarea", function(event) {
     if (event.which == 16) {
@@ -98,17 +134,56 @@ $(function() {
       return;
     }
     // ajax
+
+    $.ajax({
+      type: 'POST',
+      url: '/subtask/comment',
+      data: {"id": $("#card").attr("subid"), "text": $(this).val()},
+      error: function(response) {
+        console.log(response);
+        alert("err");
+      },
+      success: function(response) {
+      }
+    });
+
     addComment(tmp, $("#headImg").attr("uid"), $("#headImg").css("background-image"));
     $(this).val("");
   });
 
   $("#discription textarea").blur(function(event) {
     // ajax
+
+    $.ajax({
+      type: 'PUT',
+      url: '/subtask/edit',
+      data: {"id": $("#card").attr("subid"), "desc": $(this).val()},
+      error: function(response) {
+        console.log(response);
+        alert("err");
+      },
+      success: function(response) {
+      }
+    });
+
   });
 
 
   $(".deleteMem").click(function(event, ui) {
     // ajax
+/*
+    $.ajax({
+      type: 'PUT',
+      url: '/subtask/edit',
+      data: {"id": $("#card").attr("subid"), "duid": $(this).attr("uid")},
+      error: function(response) {
+        console.log(response);
+        alert("err");
+      },
+      success: function(response) {
+      }
+    });
+*/
     deleteMem(event, $(this));
   });
 
