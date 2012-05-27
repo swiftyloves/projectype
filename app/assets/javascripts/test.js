@@ -17,6 +17,19 @@ $(function(){
 			// right:cd  'month,agendaWeek,agendaDay'
 			right:''
 		},
+		eventClick: function(event) {
+			console.log('eventClick!!!')
+			console.log(this)
+			console.log('event: ')
+			console.log(event)
+	        // alert('Event: ' + calEvent.title);
+	        // alert('Coordinates: ' + jsEvent.pageX + ',' + jsEvent.pageY);
+	        // alert('View: ' + view.name);
+
+	        // // change the border color just for fun
+	        $(this).css('border-color', 'red');
+
+		},
 		events: function(start,end,callback){
 	        $.ajax({
 	            url: '/user/cal',
@@ -48,7 +61,7 @@ $(function(){
 		            
 	                var events = [];
 	               	$.each(doc['s'],function(){
-	               		console.log(this)
+	               		// console.log(this)
 	               		events.push({
 	               			title:this.name,start:this.sday,end:this.dday
 	               		})
@@ -66,12 +79,30 @@ $(function(){
 						tmp = worker;
 	                }
 	                callback(events); 
+					// eventClick: function(event, element) {
+					// 	console.log('eventClick')
+					// }
 	            }
 	        });
-		}
+		},
 	});
 });
 	
-	// $('#calendar').fullCalendar('removeEvents')
-	// $('#calendar').fullCalendar('refetchEvents')
+// function( event, jsEvent, view ) {
+// 	console.log('eventMouseover');
+// 	console.log(event);
+// }
 
+
+// $('#calendar').fullCalendar({
+//     eventClick: function(calEvent, jsEvent, view) {
+
+//         alert('Event: ' + calEvent.title);
+//         alert('Coordinates: ' + jsEvent.pageX + ',' + jsEvent.pageY);
+//         alert('View: ' + view.name);
+
+//         // change the border color just for fun
+//         $(this).css('border-color', 'red');
+
+//     }
+// });

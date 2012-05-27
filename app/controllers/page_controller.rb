@@ -143,8 +143,12 @@ class PageController < ApplicationController
 
 
 	def invite
-		# @members = "#{Project.find_by_id(session[:]).users}"
-		# @pic = "#{User.find_by_account(session[:current_user])['img']}"
+        puts 'current_proj: '
+        @proj = Project.find_by_id(session[:current_proj])
+        puts Project.find_by_id(session[:current_proj])
+        puts 'current_proj.users: '
+		@members = Project.find_by_id(session[:current_proj]).users
+		@pic = "#{User.find_by_account(session[:current_user])['img']}"
 		render :layout => 'home'
 	end
 	def getEvent
