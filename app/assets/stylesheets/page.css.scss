@@ -1,7 +1,7 @@
 // Place all the styles related to the page controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
-
+@import "compass/css3";
 
 .half{
 	display:inline-block;
@@ -29,10 +29,12 @@
 				color:rgb(200,0,0);
 				text-shadow: -1px 0px white, 0px -1px white;
 			}
-			#whatext{
-				display:block;
-				float:right;
-			}
+		}
+
+		&:hover + #whatext{
+			opacity:1.0;
+			// height:40px;
+			z-index:1;
 		}
 	}
 	.first:hover{
@@ -86,14 +88,21 @@ span{
 }
 
 #whatext{
-	display:none;
-	position:relative;
+	// display:none;
+	opacity: 0;
+	-moz-opacity: 0;
+	filter:alpha(opacity=0);
+	position:absolute;
 	border-radius:10px;
-	font-size:13px;
-	float:left;
+	font-size:13px;	
 	color:white;
-	background:rgba(0,0,0,0.6);
+	background:rgba(0,0,0,0.8);
 	margin-left:38px;
 	line-height:18px;
 	padding:2px 7px;
+	// height:0px;
+	z-index:-1;
+    @include transition-property(all);
+    @include transition-duration(1s);
+
 }
