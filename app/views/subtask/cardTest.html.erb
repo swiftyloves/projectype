@@ -1,0 +1,70 @@
+<script>
+
+// class
+var node = function(sub) {
+  this.subtask = sub;
+  this.after = [];
+  this.s = 0; // dfs stime
+  this.f = 0; // dfs ftime
+};
+
+var dfsTimeStamp = 1;
+
+function go() {
+  var query = $("#input").val();
+  $.ajax({
+    type: 'POST',
+    url: '/subtask/card',
+    data: {"id": query},
+    error: function(response) {
+      console.log(response);
+      alert("err");
+    },
+    success: function(response) {
+      $("#content").empty().append(response);
+    }
+  });
+};
+
+function go2() {
+  var query = $("#input").val();
+  $.ajax({
+    type: 'POST',
+    url: '/subtask/bigCard',
+    data: {"id": query},
+    error: function(response) {
+      console.log(response);
+      alert("err");
+    },
+    success: function(response) {
+      $("#content2").empty().append(response);
+    }
+  });
+};
+
+function dfs(obj) {
+  if (obj.s == 0) {
+    obj.s = dfsTimeStamp++;
+    for (var i = 0; i < obj.after.length; ++i) {
+      dfs(obj.after[i]);
+    }
+    obj.f = dfsTimeStamp++;
+  }
+};
+
+
+</script>
+<style>
+</style>
+
+<p>go(subtask_id), go2(task_id)</p>
+<p>go: get subtask information</p>
+<p>go2: get subtask order inormation</p>
+<input type="text" id="input"></input>
+<button onclick="go()">go()</button>
+<button onclick="go2()">go2()</button>
+
+<div id="content">
+</div>
+<div id="content2">
+</div>

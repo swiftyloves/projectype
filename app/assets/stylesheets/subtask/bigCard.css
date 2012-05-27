@@ -2,6 +2,8 @@
   background: rgb(248, 242, 218);
   overflow: hidden;
   /*border: 1px solid;*/
+  height: 470px;
+  width: 630px;
 }
 
 .ep {
@@ -81,11 +83,12 @@
   border-radius: 30px;
 }
 
-.ui-widget-overlay {
+/*
+#bigCard .ui-widget-overlay {
   background: #666666; opacity: .50;filter:Alpha(Opacity=50); 
 }
 
-.ui-dialog {
+#bigCard .ui-dialog {
   -moz-border-radius: 10px;
   -webkit-border-radius: 10px;
   -khtml-border-radius: 10px;
@@ -94,19 +97,20 @@
   box-shadow: 0px 2px 10px 2px rgb(0, 0, 0); 
 }
 
-.ui-dialog-titlebar {
+#bigCard .ui-dialog-titlebar {
   background: rgb(248, 242, 218);
   border: 0px;
 }
 
-.ui-dialog-title {
+#bigCard .ui-dialog-title {
   color: rgb(100, 52, 3);
 }
 
-.ui-dialog-title:before {
+#bigCard .ui-dialog-title:before {
   content: "★";
 }
 
-.ui-dialog-titlebar .ui-state-hover {
-border: 1px solid #999999; background: #dadada; color: #212121; 
+#bigCard .ui-dialog-titlebar .ui-state-hover {
+  border: 1px solid #999999; background: #dadada; color: #212121; 
 }
+*/

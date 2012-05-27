@@ -1,30 +1,39 @@
+var addComment;
+var addMem;
+var addUserList;
+
 $(function() {
   var disableEnter = false;
   var maxLine = 3;
 
-  function addComment(comment, id, img) {
+  addComment = function(comment, id, img) {
+    img = "url(" + img + ")";
     var com = $('<div class="comment">' +
                       '<div class="mem" uid=' + id + '></div>' +
                       '<pre>' + comment + '</pre>' +
                     '</div>');
-    com.children("div").attr("background-image", img); 
+    com.children("div").css("background-image", img); 
     $("#comments").prepend(com);
   };
  
-  function addMem(id, img) {
+  addMem = function(id, img) {
+    img = "url(" + img + ")";
+
     var tmp = $("<div class='mem' uid='"+id+"'>" +
                 "<div class='deleteMem'><div></div></div>" +
                 "</div>");
-    tmp.attr("background-image", img); 
+    tmp.css("background-image", img); 
     tmp.children(".deleteMem").click(function(event, ui) {
       deleteMem(event, $(this));
     });
     $("#mems").append(tmp);
   };
 
-  function addUserList(id, img) {
+  addUserList = function(id, img) {
+    img = "url(" + img + ")";
+
     var tmp = $("<div class='mem' uid='"+id+"'></div>");
-    tmp.attr("background-image", img);
+    tmp.css("background-image", img);
     tmp.click(function(event, ui) {
       addUserToMem(event, $(this));
     });
@@ -51,7 +60,9 @@ $(function() {
       return;
     }
     // ajax
-    addMem(id, ui.attr("background-image"));
+    var img = ui.css("background-image");
+    img = img.substr(4, img.length - 5);
+    addMem(id, img);
   };
 
   // init
@@ -87,7 +98,7 @@ $(function() {
       return;
     }
     // ajax
-    addComment(tmp, $("#headImg").attr("uid"), $("#headImg").attr("background-image"));
+    addComment(tmp, $("#headImg").attr("uid"), $("#headImg").css("background-image"));
     $(this).val("");
   });
 
@@ -125,6 +136,6 @@ $(function() {
     
   };
 
-  test();
-
+  //test();
+  
 });

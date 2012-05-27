@@ -1,3 +1,8 @@
+var initTimebar;
+var putTask;
+var connect;
+var prepareEnd;
+
 $(function() {
   jsPlumb.setRenderMode(jsPlumb.SVG);
   jsPlumb.importDefaults({
@@ -58,6 +63,7 @@ $(function() {
                            }
                          }
                          $(this).offset({left: $(this).offset().left + adj});
+                         // ajax
                          jsPlumb.repaintEverything();
                        },
                        stack: ".window",
@@ -67,19 +73,7 @@ $(function() {
   $(".viewPort, .dragHelper").scrollsync({targetSelector: "#timeViewPort", axis: "x"});
   $(".viewPort, .dragHelper").scrollsync({targetSelector: "#taskViewPort", axis: "x"});
   $(".viewPort, .dragHelper").scrollsync({targetSelector: "#timeBarDragHelper", axis: "x"});
-
-  $('#mainCanvas').dialog({
-    autoOpen: false,
-    resizable: false,
-    height: 470,
-    width: 630,
-    modal: true,
-  });
-  $('#testButton').click(function() {
-    $('#mainCanvas').dialog('open');
-    jsPlumb.repaintEverything();
-  });
-
+  
   jsPlumb.bind("click", function(c) {
     jsPlumb.detach(c);
   });
@@ -88,7 +82,7 @@ $(function() {
   var endday;
   var count = 2;
 
-  function initTimebar(sday, dday) {
+  initTimebar = function (sday, dday) {
     firstday = new Date(sday);
     endday = new Date(dday);
     var i = firstday;
@@ -103,13 +97,13 @@ $(function() {
     snapUnit = $($("#timeBar").children()[1]).offset().left - $($("#timeBar").children()[0]).offset().left;
   };
 
-  function putTask(id, sday, dday, name) {
+  putTask = function (id, sday, dday, name) {
     var s = new Date(sday);
     var d = new Date(dday);
     var ss = (s.valueOf() - firstday.valueOf()) / 86400000; 
     var dd = (d.valueOf() - firstday.valueOf()) / 86400000;
     var w = dd - ss + 1;
-    var tmp = $("<div class='window' style='width:"+w*30+";' id=id"+id+">"
+    var tmp = $("<div class='window' id=id"+id+">"
                 +"<span>"+name+"</span>"
                 +"<div class='ep'></div>"
                 +"</div>");
@@ -126,6 +120,7 @@ $(function() {
       //console.log(tmp.css("left"), tmp.outerWidth(), $(list[i]).css("left"), $(list[i]).outerWidth());
     }
     tmp.offset({top: count * 60});
+    tmp.width(w*30);
     jsPlumb.draggable(tmp, draggableOpt);
     jsPlumb.makeTarget(tmp, {
       dropOptions:{ hoverClass:"dragHover" },
@@ -139,11 +134,11 @@ $(function() {
     $("#taskCanvas").append(tmp);
   }
 
-  function connect(from, to) {
+  connect = function (from, to) {
     jsPlumb.connect({ source:"id"+from, target:"id"+to });
   }
 
-  function prepareEnd() {
+  prepareEnd = function () {
     jsPlumb.bind("jsPlumbConnection", function(conn) {
       var s = $(conn.source[0]);
       var t = $(conn.target[0]);
@@ -167,9 +162,11 @@ $(function() {
         console.log("forbidden");
         return;
       }
+      // ajax
     });
   }
 
+  
   function test() {
     initTimebar("2012-04-01", "2012-05-01");
     putTask(10, "2012-04-02", "2012-04-10", "haha");

@@ -8,16 +8,48 @@
 
 <%= stylesheet_link_tag "subtask/bigCard.css" %>
 
-<div id="mainCanvas" title="Task">
-  <div id="taskViewPort" class="viewPort">
-    <div id="taskCanvas">
+<script>
+
+  $.ajax({
+    type: 'POST',
+    url: '/subtask/order',
+    data: {"id": <%= @id %>},
+    error: function(response) {
+      console.log(response);
+      alert("err");
+    },
+    success: function(response) {
+      console.log(response);
+      initTimebar(response.sday, response.dday);
+      for (var i = 0; i < response.order.length; ++i) {
+        var tmp = response.order[i];
+        putTask(tmp.subtask.id, tmp.subtask.sday, tmp.subtask.dday, tmp.subtask.name);
+      }
+      for (var i = 0; i < response.order.length; ++i) {
+        var tmp = response.order[i];
+        for (var j = 0; j < tmp.after.length; ++j) {
+          connect(tmp.subtask.id, tmp.after[j]);
+        }
+      }
+      prepareEnd();
+    }
+  });
+
+</script>
+
+
+<div id="bigCard">
+  <div id="mainCanvas" title="Task">
+    <div id="taskViewPort" class="viewPort">
+      <div id="taskCanvas">
+      </div>
     </div>
-  </div>
-  <div id="timeViewPort" class="viewPort">
-    <div id="timeBarDragHelper" class="dragHelper"></div>
-    <div id="timeBar">
-    <div class="dummyStart"></div>
-    <div class="dummyEnd"></div>
+    <div id="timeViewPort" class="viewPort">
+      <div id="timeBarDragHelper" class="dragHelper"></div>
+      <div id="timeBar">
+      <div class="dummyStart"></div>
+      <div class="dummyEnd"></div>
+      </div>
     </div>
   </div>
 </div>

@@ -47,10 +47,14 @@ Projectype::Application.routes.draw do
   get '/j_hw6' => 'page#j_hw6'
   post '/usrmode/test' => 'page#usrmode_t'
   post '/usrmode/usub' => 'page#usrsub'
+
   #subtaskInfo
   get '/subtask/test' => 'subtask#test'
   post '/subtask/query' => 'subtask#query'
   post '/subtask/order' => 'subtask#order'
+  get '/subtask/cardTest' => 'subtask#cardTest'
+  post '/subtask/card' => 'subtask#card'
+  post '/subtask/bigCard' => 'subtask#bigCard'
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
