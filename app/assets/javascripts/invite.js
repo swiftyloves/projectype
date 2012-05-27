@@ -9,7 +9,7 @@ $(function() {
 		show: { effect: 'drop', direction: "up" },
 		draggable: false
 	});	
-	$('.invite').click(function(){
+	$('#inviteb').click(function(){
 		$(".inviteCard").dialog("close");
 		console.log('lalala')
 		var url = $(".inviteCard input").val()
