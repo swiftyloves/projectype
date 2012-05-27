@@ -16,12 +16,23 @@
 	width:400px;
 	vertical-align:middle;	
 	.first{
-		img{
-		padding-right:10px;
+		span{
+			font-size:20px;
+			vertical-align:text-top;
+			line-height:0px;
 		}
-		span:hover{
-			color:rgb(200,0,0);
-			text-shadow: -1px 0px white, 0px -1px white;
+		img{
+			padding-right:10px;
+		}
+		&:hover{
+			span{
+				color:rgb(200,0,0);
+				text-shadow: -1px 0px white, 0px -1px white;
+			}
+			#whatext{
+				display:block;
+				float:right;
+			}
 		}
 	}
 	.first:hover{
@@ -35,6 +46,14 @@
 		padding-top:9px;
 		img{
 			padding-left:3px;
+		}
+		img:hover{
+			background:white;
+			box-shadow:1px 1px 5px #663300;
+		}
+		img:active{
+			background:gray;
+			box-shadow:-1px -1px 5px #663300;	
 		}
 	}
 	.third{
@@ -64,4 +83,17 @@ span{
 	color:rgb(240,30,0);
 	text-shadow: 1px 0px white, 0px -1px black;
 	font-weight: bold;	
+}
+
+#whatext{
+	display:none;
+	position:relative;
+	border-radius:10px;
+	font-size:13px;
+	float:left;
+	color:white;
+	background:rgba(0,0,0,0.6);
+	margin-left:38px;
+	line-height:18px;
+	padding:2px 7px;
 }
