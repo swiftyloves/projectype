@@ -43,7 +43,8 @@ $(function(){
                           success: function(response) {
                           	$(".smallCard").remove();
                           	$("#card").remove();
-                            $("#userCardPlace").empty().hide().append(response);
+                                $(".ui-datepicker").remove();
+                                $("#userCardPlace").empty().hide().append(response);
                         	$("#card").bind("dialogclose",function(){
                         		console.log('dialogclose')
                         		$('#userButton').trigger("click")

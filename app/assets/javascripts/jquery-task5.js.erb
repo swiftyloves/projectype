@@ -622,6 +622,7 @@
                       },
                       success: function(response) {
                         $(".smallCard").remove();
+                        $(".ui-datepicker").remove();
                         $("#taskSmallCardPlace").empty().hide().append(response);
                       }
                     });
