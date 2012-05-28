@@ -208,7 +208,9 @@ $(function() {
 
   $("#inviteButton").click(function(event) {
     console.log($(this));
-    $(".inviteCard").dialog("open");
+    if ($("#projectName span").html() != "") {
+      $(".inviteCard").dialog("open");
+    }
   });
 
   $("#logoutButton").click(function(event) {

@@ -1,0 +1,54 @@
+<%= javascript_include_tag "subtask/1.3.9/jsPlumb-1.3.9-RC1.js" %>
+<%= javascript_include_tag "subtask/1.3.9/jsPlumb-defaults-1.3.9-RC1.js" %>
+<%= javascript_include_tag "subtask/1.3.9/jsPlumb-renderers-svg-1.3.9-RC1.js" %>
+<%= javascript_include_tag "subtask/1.3.9/jquery.jsPlumb-1.3.9-RC1.js" %>
+<%= javascript_include_tag "subtask/scrollsync.js" %>
+<%= javascript_include_tag "subtask/dragscrollable.js" %>
+<%= javascript_include_tag "subtask/bigCard.js" %>
+
+<%= stylesheet_link_tag "subtask/bigCard.css" %>
+
+<script>
+
+  $.ajax({
+    type: 'POST',
+    url: '/subtask/order',
+    data: {"id": <%= @id %>},
+    error: function(response) {
+      console.log(response);
+      alert("err");
+    },
+    success: function(response) {
+      console.log(response);
+      $("#mainCanvas").attr("title", response.task.name);
+      initTimebar(response.sday, response.dday);
+      for (var i = 0; i < response.order.length; ++i) {
+        var tmp = response.order[i];
+        putTask(tmp.subtask.id, tmp.subtask.sday, tmp.subtask.dday, tmp.subtask.name);
+      }
+      for (var i = 0; i < response.order.length; ++i) {
+        var tmp = response.order[i];
+        for (var j = 0; j < tmp.after.length; ++j) {
+          connect(tmp.subtask.id, tmp.after[j]);
+        }
+      }
+      prepareEnd();
+    }
+  });
+
+</script>
+
+
+<div id="mainCanvas">
+  <div id="taskViewPort" class="viewPort">
+    <div id="taskCanvas">
+    </div>
+  </div>
+  <div id="timeViewPort" class="viewPort">
+    <div id="timeBarDragHelper" class="dragHelper"></div>
+    <div id="timeBar">
+    <div class="dummyStart"></div>
+    <div class="dummyEnd"></div>
+    </div>
+  </div>
+</div>

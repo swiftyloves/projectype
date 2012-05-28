@@ -1,6 +1,40 @@
 <%= javascript_include_tag "subtask/card.js" %>
 <%= stylesheet_link_tag "subtask/card.css" %>
 
+<script>
+  $.ajax({
+    type: 'POST',
+    url: '/subtask/query',
+    data: {"id": <%= @id %>},
+    error: function(response) {
+      console.log(response);
+      alert("err");
+    },
+    success: function(response) {
+      console.log(response);
+      $("#card").attr("title", response.subtask.name);
+      $("#card").attr("subid", response.subtask.id);
+      $("#sday").val(response.subtask.sday);
+      $("#dday").val(response.subtask.dday);
+      $("#discription textarea").val(response.subtask.description);
+      for (var i = 0; i < response.comment.length; ++i) {
+        var tmp = response.comment[i];
+        addComment(tmp.msg, tmp.uid, tmp.img);
+      }
+      for (var i = 0; i < response.user.length; ++i) {
+        var tmp = response.user[i];
+        addUserList(tmp.id, tmp.img);
+      }
+      for (var i = 0; i < response.mem.length; ++i) {
+        var tmp = response.mem[i];
+        addMem(tmp.id, tmp.img);
+      }
+      prepareEnd();
+    }
+  });
+
+</script>
+
 <div id="card" title="">
   <div id="sddaysArea">
     <input id="sday"></input>
@@ -16,6 +50,8 @@
       <div id="addMemButton">
         <span>+</span>
       </div>
+      <div id="userList">
+      </div>
     </div>
     <div id="mems">
     </div>
@@ -24,8 +60,6 @@
     <p>comment:<p>
     <textarea row=3></textarea>
     <div id="comments">
-      <div class="comment">
-      </div>
     </div>
   </div>
 </div>

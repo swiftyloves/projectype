@@ -7,20 +7,36 @@
 	width: 900px;
 	margin: 0 auto;
 }
-
+ 
 .worker{
 	height:67px;
 	width:67px;
 	border:10px solid #D5CB6A;
-	border-radius:46px;	
-	/*background-color:white;*/
-	/*background-image: url('');*/
-	/*float:left;*/
+	border-radius:46px;		
 	margin-left:19px;
-	margin-top:42px;
+	margin-top:20px;
+	z-index:1;
+	opacity:0.7;
+}
+.worker:hover{
+	opacity:1.0;
+	cursor: pointer;
+	box-shadow:2px 2px 5px #CAC7C3;
+}
+#workers{
 	position:absolute;
 	z-index:1;
 }
+#workers .firstw{
+	margin-top:42px;	
+}
+
+#workers .sel{
+	opacity:1.0;
+	box-shadow:5px 5px 10px #888888;
+	cursor: default;
+}
+
 .pic{
 	border:10px solid #D5CB6A;
 }

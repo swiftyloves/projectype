@@ -1,33 +1,16 @@
-
-<link rel="stylesheet" type="text/css" href="http://yui.yahooapis.com/3.4.1/build/cssreset/cssreset-min.css"/>
-<link href='http://fonts.googleapis.com/css?family=Comfortaa|Oxygen' rel='stylesheet' type='text/css'>
-
-<style>
-#mail{
-	font-family: 'Comfortaa', sans-serif;
-	margin: 20px 10px ;
-} 
-#mail p{
-	font-size:25px;
-	margin: 20px 10px;
-}
-</style>
-
-<div id='mail'>
-hi <%= @name %>
-<p>your friend <%= %> want to invite you to join his project 
-	<span style="color:"><%= %> </span> <%= %>
+<div id='mail' style="margin: 20px 10px;">
+<p style="font-size:25px; margin:8px 10px;">hi</p>
+<p style="font-size:25px; margin:8px 10px;">your friend <%= @name %> wants to invite you to join his project <a href="<%= @url %>" style="color: orange"><%= @proj %></a>
 </p>
 
-<p style="color:#FFCBC9;font-size:20px; ">Notice: to join the project, you need to confirm.</p>
+<p style="color:#C80000;font-size:20px; margin:10px 10px; font-weight: bold;">Notice: to join the project, you need to login.</p>
 
-<p style="margin:30px 10px">
+<p style="font-size:25px; margin:8px 10px;">
 If you havn't use ProjecType before, 
-<a href="<%= @url %>"> Try it!! </a>
+<a href="<%= @home %>"> Try it!! </a>
 </p>
 
-<p style="color:">Wish you enjoy it !</p>
-
+<p style="font-size:25px; margin:10px 10px;">Wish you enjoy it !</p>
 </br>
-<p style="font-size:20px; margin:10px 200px;">ProjecType team</p>
+<p style="font-size:20px; margin:10px 400px;">ProjecType team</p>
 </div>

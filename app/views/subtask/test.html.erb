@@ -24,12 +24,12 @@ function go() {
       console.log(response);
       $("#content table").append(
         "<tr>" +
-        "<td>" + response.id + "</td>" +
-        "<td>" + response.name + "</td>" +
-        "<td>" + response.description + "</td>" +
-        "<td>" + response.sday + "</td>" +
-        "<td>" + response.sday + "</td>" +
-        "<td>" + response.task_id + "</td>" +
+        "<td>" + response.subtask.id + "</td>" +
+        "<td>" + response.subtask.name + "</td>" +
+        "<td>" + response.subtask.description + "</td>" +
+        "<td>" + response.subtask.sday + "</td>" +
+        "<td>" + response.subtask.sday + "</td>" +
+        "<td>" + response.subtask.task_id + "</td>" +
         "</tr>");
     }
   });

@@ -5,11 +5,14 @@ class PageController < ApplicationController
 	
     def sendmail
     	mail = params[:mail]
-    	user = session[:current_name]
-    	unless user
-    		user = ""
+    	@name = session[:current_name]
+        @proj = Project.find(session[:current_proj]).name
+    	unless @name
+    	       @name = ""
     	end
-    	@name = "hahaha"
+    	unless @proj
+    	       @proj = ""
+    	end
 
         # gen random sequence
         o =  [('a'..'z'),('A'..'Z')].map{|i| i.to_a}.flatten
@@ -24,6 +27,7 @@ class PageController < ApplicationController
         end
 
         @url = "http://" + request.host_with_port + "/project/invite/" + string
+        @home = "http://" + request.host_with_port + "/home"
 
     	mailcontent = render :file => "page/mail", :layout => false
     	mailcontent = mailcontent[0].to_s.sub("\\n", "")
@@ -32,7 +36,7 @@ class PageController < ApplicationController
     	require 'gmail_sender'
     	g = GmailSender.new("ProjecType@gmail.com","project123?")
 		g.send(:to => mail,
-		       :subject => "#{user} Invite you to use ProjecType!!",
+		       :subject => "#{@name} Invite you to use ProjecType!!",
 		       :content => mailcontent,
 		       :content_type => 'text/html')
 		# render json: "succ"
@@ -94,33 +98,57 @@ class PageController < ApplicationController
     def cal
         puts 'touch page#get !'
         # current proj/user/cowroker ?
-        @usr = User.find_by_account(session[:current_user])
-        @proj = Project.find_by_name(session[:current_proj])
-        @tasks = @proj.tasks        
-        tmp = {}
+        puts params[:w]
+        doc = {}
+        if params[:w]=='0'
+            @usr = User.find_by_account(session[:current_user])
+            # puts 'here!!'
+        else
+            @usr = User.find_by_id(params[:w])  
+        end
+        # puts 'usr: ',@usr
+        @proj = Project.find_by_id(session[:current_proj])
+        puts session[:current_user]
+        puts session[:current_proj]
+        cowroker = []
+        @proj_users = @proj.users
+        puts @proj_users
+        @proj_users.each do |pu|
+            if pu.id != @usr.id
+                cowroker.append(pu)
+            end
+        end
+        # puts cowroker
         sub = []
+        @tasks = @proj.tasks
         @tasks.each do |t|
             t.subtasks.each do |s|
-                s.users.each do |u|
-                    puts u.account
-                    puts @uacc
-                    if u.account == @uacc                        
+                s.users.each do |u| 
+                    # puts 'u.acc: ',u.account
+                    # puts @usr.account                                   
+                    if u.account == @usr.account
                         sub.append(s)
                     end
                 end
             end
         end
-        tmp[:u] = @usr
-        tmp[:s] = sub 
-        tmp[:e] = [2,3]
-        render json: tmp
+        # puts 'sub:'
+        # puts sub
+        doc[:u] = @usr
+        doc[:s] = sub 
+        doc[:c] = cowroker
+        render json: doc
     end
 
 
 
 	def invite
-		# @members = "#{Project.find_by_id(session[:]).users}"
-		# @pic = "#{User.find_by_account(session[:current_user])['img']}"
+        puts 'current_proj: '
+        @proj = Project.find_by_id(session[:current_proj])
+        puts Project.find_by_id(session[:current_proj])
+        puts 'current_proj.users: '
+		@members = Project.find_by_id(session[:current_proj]).users
+		@pic = "#{User.find_by_account(session[:current_user])['img']}"
 		render :layout => 'home'
 	end
 	def getEvent

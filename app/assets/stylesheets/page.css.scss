@@ -1,7 +1,7 @@
 // Place all the styles related to the page controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
-
+@import "compass/css3";
 
 .half{
 	display:inline-block;
@@ -16,12 +16,25 @@
 	width:400px;
 	vertical-align:middle;	
 	.first{
-		img{
-		padding-right:10px;
+		span{
+			font-size:20px;
+			vertical-align:text-top;
+			line-height:0px;
 		}
-		span:hover{
-			color:rgb(200,0,0);
-			text-shadow: -1px 0px white, 0px -1px white;
+		img{
+			padding-right:10px;
+		}
+		&:hover{
+			span{
+				color:rgb(200,0,0);
+				text-shadow: -1px 0px white, 0px -1px white;
+			}
+		}
+
+		&:hover + #whatext{
+			opacity:1.0;
+			// height:40px;
+			z-index:1;
 		}
 	}
 	.first:hover{
@@ -35,6 +48,14 @@
 		padding-top:9px;
 		img{
 			padding-left:3px;
+		}
+		img:hover{
+			background:white;
+			box-shadow:1px 1px 5px #663300;
+		}
+		img:active{
+			background:gray;
+			box-shadow:-1px -1px 5px #663300;	
 		}
 	}
 	.third{
@@ -64,4 +85,24 @@ span{
 	color:rgb(240,30,0);
 	text-shadow: 1px 0px white, 0px -1px black;
 	font-weight: bold;	
+}
+
+#whatext{
+	// display:none;
+	opacity: 0;
+	-moz-opacity: 0;
+	filter:alpha(opacity=0);
+	position:absolute;
+	border-radius:10px;
+	font-size:13px;	
+	color:white;
+	background:rgba(0,0,0,0.8);
+	margin-left:38px;
+	line-height:18px;
+	padding:2px 7px;
+	// height:0px;
+	z-index:-1;
+    @include transition-property(all);
+    @include transition-duration(1s);
+
 }
