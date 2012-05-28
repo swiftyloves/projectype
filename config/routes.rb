@@ -45,6 +45,7 @@ Projectype::Application.routes.draw do
   get '/task/test' => 'task#test'
   post '/task/query' => 'task#query'
   get '/task/loading' => 'task#loading'
+  post '/task/subuser' => 'task#subuser'
   post '/task/savetask' => 'task#savetask' 
   post '/task/deletetask' => 'task#deletetask'
   post '/task/renametask' => 'task#renametask'

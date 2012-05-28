@@ -40,15 +40,14 @@
 }
 
 #card {
-  width: 320px;
-  height: 360px;
   overflow: auto;
   background: rgba(248, 242, 218, 1);
 }
 
 #card textarea {
   resize: none;
-  width: 188px;
+  width: 300px;
+  outline: none;
 }
 
 #discription textarea {

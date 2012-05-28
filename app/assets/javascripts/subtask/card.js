@@ -13,7 +13,7 @@ $(function() {
       //autoOpen: false,
       resizable: false,
       height: 400,
-      width: 300,
+      width: 356,
       modal: true,
       dialogClass: "smallCard",
       open: function(event) {
@@ -205,6 +205,17 @@ $(function() {
 
 
   $(".deleteMem").click(function(event, ui) {
+    $.ajax({
+      type: 'PUT',
+      url: '/subtask/edit',
+      data: {"id": $("#card").attr("subid"), "duid": $(this).attr("uid")},
+      error: function(response) {
+        console.log(response);
+        alert("err");
+      },
+      success: function(response) {
+      }
+    });
     deleteMem(event, $(this));
   });
 
