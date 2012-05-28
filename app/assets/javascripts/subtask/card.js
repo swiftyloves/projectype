@@ -84,6 +84,18 @@ $(function() {
   };
  
   function deleteMem(event, ui) {
+    // ajax
+    $.ajax({
+      type: 'PUT',
+      url: '/subtask/edit',
+      data: {"id": $("#card").attr("subid"), "duid": ui.parent().attr("uid")},
+      error: function(response) {
+        console.log(response);
+        alert("err");
+      },
+      success: function(response) {
+      }
+    });
     ui.parent().remove();
   };
 
@@ -191,8 +203,6 @@ $(function() {
 
 
   $(".deleteMem").click(function(event, ui) {
-    // ajax
-
     $.ajax({
       type: 'PUT',
       url: '/subtask/edit',
@@ -204,7 +214,6 @@ $(function() {
       success: function(response) {
       }
     });
-
     deleteMem(event, $(this));
   });
 
