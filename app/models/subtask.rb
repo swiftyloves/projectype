@@ -12,7 +12,7 @@ class Subtask < ActiveRecord::Base
 
   before_create :init  
   def init
-    self.done = false
+    self.done ||= false
   end
 
 end
