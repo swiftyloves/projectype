@@ -135,7 +135,7 @@ $(function() {
           url: '/task',
           data: {"id": id},
           error: function(response) {
-            console.log("err");
+            console.log(response);
             $("#projectName span").empty();
             $("#projectName span").attr("pid", "");
             doBlockingEnd();
