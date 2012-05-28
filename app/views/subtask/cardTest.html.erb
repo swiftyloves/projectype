@@ -1,15 +1,5 @@
 <script>
 
-// class
-var node = function(sub) {
-  this.subtask = sub;
-  this.after = [];
-  this.s = 0; // dfs stime
-  this.f = 0; // dfs ftime
-};
-
-var dfsTimeStamp = 1;
-
 function go() {
   var query = $("#input").val();
   $.ajax({
@@ -21,7 +11,7 @@ function go() {
       alert("err");
     },
     success: function(response) {
-      $("#content").empty().append(response);
+      $("#content").empty().hide().append(response);
     }
   });
 };
@@ -37,7 +27,7 @@ function go2() {
       alert("err");
     },
     success: function(response) {
-      $("#content2").empty().append(response);
+      $("#content2").empty().hide().append(response);
     }
   });
 };

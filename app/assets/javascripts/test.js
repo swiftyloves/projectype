@@ -22,6 +22,20 @@ $(function(){
 			console.log(this)
 			console.log('event: ')
 			console.log(event)
+                        $.ajax({
+                          type: 'POST',
+                          url: '/subtask/card',
+                          data: {"id": event.id},
+                          error: function(response) {
+                            console.log(response);
+                            alert("err");
+                          },
+                          success: function(response) {
+                            $("#userCardPlace").empty().hide().append(response);
+                          }
+                        });
+
+                        
 	        // alert('Event: ' + calEvent.title);
 	        // alert('Coordinates: ' + jsEvent.pageX + ',' + jsEvent.pageY);
 	        // alert('View: ' + view.name);

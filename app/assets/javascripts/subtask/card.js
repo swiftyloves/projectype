@@ -1,10 +1,53 @@
 var addComment;
 var addMem;
 var addUserList;
+var prepareEnd;
+
 
 $(function() {
   var disableEnter = false;
   var maxLine = 3;
+
+  prepareEnd = function () {
+    $('#card').dialog({
+      //autoOpen: false,
+      resizable: false,
+      height: 400,
+      width: 300,
+      modal: true,
+      dialogClass: "smallCard",
+      open: function(event) {
+        console.log(event);
+        $("#sddaysArea input").datepicker({
+          dateFormat: "yy-mm-dd",
+          onSelect: function(dateText, inst) {
+            var d;
+            if ($(this).attr("id") == "sday") {
+              d = {"id": $("#card").attr("subid"),
+                  "sday": dateText};
+            } else {
+              d = {"id": $("#card").attr("subid"),
+                  "dday": dateText};
+            }
+            $.ajax({
+              type: 'PUT',
+              url: '/subtask/edit',
+              data: d,
+              error: function(response) {
+                console.log(response);
+                alert("err");
+              },
+              success: function(response) {
+              }
+            });
+          },
+        });
+      },
+    });
+
+    $('#sday').trigger("blur");
+
+  };
 
   addComment = function(comment, id, img) {
     img = "url(" + img + ")";
@@ -80,32 +123,7 @@ $(function() {
 
   // init
   $("#userList").hide();
-
-  $("#sddaysArea input").datepicker({
-    dateFormat: "yy-mm-dd",
-    onSelect: function(dateText, inst) {
-      var d;
-      if ($(this).attr("id") == "sday") {
-        d = {"id": $("#card").attr("subid"),
-                "sday": dateText};
-      } else {
-        d = {"id": $("#card").attr("subid"),
-                "dday": dateText};
-      }
-      $.ajax({
-        type: 'PUT',
-        url: '/subtask/edit',
-        data: d,
-        error: function(response) {
-          console.log(response);
-          alert("err");
-        },
-        success: function(response) {
-        }
-      });
-    },
-    });
-
+  
   $("#card").on("keydown", "textarea", function(event) {
     if (event.which == 16) {
       disableEnter = true;
@@ -147,7 +165,9 @@ $(function() {
       }
     });
 
-    addComment(tmp, $("#headImg").attr("uid"), $("#headImg").css("background-image"));
+    var img = $("#headImg").css("background-image");
+    img = tmp.substr(4, tmp.length - 5);
+    addComment(tmp, $("#headImg").attr("uid"), img);
     $(this).val("");
   });
 
@@ -198,16 +218,7 @@ $(function() {
   $("#userList .mem").click(function(event, ui) {
     addUserToMem(event, $(this));
   });
-/*
-  $('#card').dialog({
-    //autoOpen: false,
-    resizable: false,
-    height: 570,
-    width: 500,
-    modal: true,
-    dialogClass: "smallCard",
-  });
-*/
+
   function test() {
     addUserList(1, "");
     addUserList(2, "");

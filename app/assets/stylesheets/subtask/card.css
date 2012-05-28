@@ -1,3 +1,8 @@
+#sddaysArea input, #card textarea {
+  font-size: 14px;
+  background: rgba(255, 255, 255, 0.3);
+}
+
 .mem, .deleteMem {
   width: 50px;
   height: 50px;
@@ -43,6 +48,7 @@
 
 #card textarea {
   resize: none;
+  width: 188px;
 }
 
 #discription textarea {
@@ -50,11 +56,11 @@
 }
 
 #sddaysArea input {
-  width: 66px;
+  width: 86px;
+  height: 16px;
   border: none;
   outline: none;
 }
-
 
 #memArea > div, #mems > div {
   display: inline-block;
@@ -68,10 +74,12 @@
 #userList {
   position: absolute;
   /*visibility: hidden;*/
+  margin-top: 5px;
 }
 
 #userList > div {
-  margin-bottom: 5px;
+  margin-left: 5px;
+  display: inline-block;
 }
 
 #mems > div {
@@ -80,8 +88,8 @@
 
 #addMemButton {
   margin-left: 41px;
-  width: 13px;
-  height: 13px;
+  width: 15px;
+  height: 15px;
   background: rgba(233, 225, 158, 1);
   box-shadow: 0px 1px 2px 0px rgba(32, 32, 32, 1);
 }
@@ -97,11 +105,19 @@
 
 #addMemButton span {
   position: relative;
-  top: -1px;
-  left: 2px;
+  top: -4px;
+  left: 0px;
   color: red;
 }
 
-#mems {
-  /*border: solid 1px black;*/
+/*dialog style*/
+
+.smallCard .ui-dialog-titlebar {
+  background: rgb(248, 242, 218);
+  border: 0px;
 }
+
+.smallCard .ui-dialog-title {
+  color: rgb(100, 52, 3);
+}
+
