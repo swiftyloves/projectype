@@ -84,6 +84,8 @@
 }
 
 
+/*dialog style*/
+
 .bigCard .ui-widget-overlay {
   background: #666666; opacity: .50;filter:Alpha(Opacity=50); 
 }

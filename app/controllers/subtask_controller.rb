@@ -9,7 +9,7 @@ class SubtaskController < ApplicationController
       obj[:uid] = c.user.id
       obj[:img] = c.user.img
       obj[:msg] = c.msg
-      tmp.insert(0, obj);
+      tmp.insert(-1, obj);
     end
     ret[:comment] = tmp
     ret[:mem] = subtask.users
@@ -24,15 +24,15 @@ class SubtaskController < ApplicationController
     arr = []
     min = nil
     max = nil
-    task.subtasks.each { |s|
+    task.subtasks.order("sday").each { |s|
       tmp = {}
       tmp[:subtask] = s
       tmp2 = []
       s.afters.each { |a|
-        tmp2.insert(0, a.id)
+        tmp2.insert(-1, a.id)
       }
       tmp[:after] = tmp2
-      arr.insert(0, tmp)
+      arr.insert(-1, tmp)
       if !min
         min = s.sday
         max = s.dday

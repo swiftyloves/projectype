@@ -12,8 +12,8 @@ $(function() {
     $('#card').dialog({
       //autoOpen: false,
       resizable: false,
-      height: 570,
-      width: 500,
+      height: 400,
+      width: 300,
       modal: true,
       dialogClass: "smallCard",
       open: function(event) {
@@ -44,6 +44,9 @@ $(function() {
         });
       },
     });
+
+    $('#sday').trigger("blur");
+
   };
 
   addComment = function(comment, id, img) {
