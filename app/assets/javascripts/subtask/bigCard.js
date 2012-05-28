@@ -80,7 +80,7 @@ $(function() {
                          var tmpDday = dateToYMD(dd);
                          var id = $(this).attr("id");
                          id = id.substr(2, id.length);
-                        
+                         $("#mainCanvas").attr("dirty", 1); 
                          $.ajax({
                            type: 'PUT',
                            url: '/subtask/edit',
@@ -110,6 +110,7 @@ $(function() {
     sid = sid.substr(2, sid.length);
     var tid = t.attr("id");
     tid = tid.substr(2, tid.length);
+    $("#mainCanvas").attr("dirty", 1); 
     $.ajax({
       type: 'PUT',
       url: '/subtask/edit',
@@ -213,6 +214,7 @@ $(function() {
       var tid = t.attr("id");
       tid = tid.substr(2, tid.length);
       // ajax
+      $("#mainCanvas").attr("dirty", 1); 
       $.ajax({
         type: 'PUT',
         url: '/subtask/edit',

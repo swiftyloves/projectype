@@ -61,7 +61,13 @@ class SubtaskController < ApplicationController
   end
   
   def bigCard
-    @id = params[:id]
+    if params[:id]
+      @id = params[:id]
+    else
+      proj = Project.find(session[:current_proj])
+      task = proj.tasks.where(:pos_x => params[:x], :pos_y => params[:y])[0]
+      @id = task.id
+    end
     render :layout => false
   end
 

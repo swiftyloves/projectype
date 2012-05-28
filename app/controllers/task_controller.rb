@@ -22,15 +22,23 @@ class TaskController < ApplicationController
        end           
     end    
     tmp[:p] = @project
-    tmp[:u] = @proj_users
+    #tmp[:u] = @proj_users
     tmp[:t] = @proj_tasks.order("pos_y")   
     tmp[:s] = sub  #@subtasks.order("dday") 
     render json: tmp   
   end
-  def test
-     render :layout => 'home'
+  #def test
+  #   render :layout => 'home'
+  #end
+  def subuser # name and position
+      @project = Project.find(session[:current_proj])
+      @subtask = Subtask.find(params[:subid])  
+      @users = @subtask.users
+      tmp = {}     
+      tmp[:u] = @users
+      tmp[:s] = @subtask        
+      render json: tmp 
   end
-
   def savetask # name and position
       @project = Project.find(session[:current_proj])
       task = @project.tasks.create(:name=> params[:taskname] , :pos_x => params[:posx] , :pos_y => params[:posy])	         
