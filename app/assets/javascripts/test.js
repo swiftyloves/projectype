@@ -6,8 +6,8 @@ $(function(){
 
 	var colors = ['#ABD4FF','#FEBDC1','#FFFECB','#9FFF97',
  				  '#EEB1E6','#FFD697',]
-	var textColors = ['#5C7373','#653416','#B9B739','#487444',
-					  '#801F68','#D78F22']
+	var textColors = ['#284B4B','#653416','#B77C0A','#274025',
+					  '#801F68','#B76D00']
 	var worker = 0;
 	var tmp = -1;
 	var load = 1;
