@@ -150,6 +150,13 @@ unless sub4.befores.exists?(sub2)
   sub4.befores << sub2
 end
 
+# task & subtask done
+sub1.done = true
+proj1_task3.done = true
+
+sub1.save
+proj1_task3.save
+
 ###########################################################
 # delete example                                          #
 ###########################################################
