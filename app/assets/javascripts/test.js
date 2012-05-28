@@ -46,7 +46,8 @@ $(function(){
                             $("#userCardPlace").empty().hide().append(response);
                         	$("#card").bind("dialogclose",function(){
                         		console.log('dialogclose')
-                        		$('#userButton').trigger("click")
+                        		if($("#card").attr('dirty')==1)
+                        			$('#userButton').trigger("click")
                         	});
                           }
                         });
