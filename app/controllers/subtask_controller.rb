@@ -77,19 +77,9 @@ class SubtaskController < ApplicationController
       end
       if params[:sday] # check if break dependency
         subtask.sday = params[:sday]
-        subtask.befores.each do |b|
-          if (b.dday > subtask.sday)
-            subtask.befores.delete(b)
-          end
-        end
       end
       if params[:dday]
         subtask.dday = params[:dday]
-        subtask.afters.each do |a|
-          if (a.sday < subtask.dday)
-            subtask.afters.delete(a)
-          end
-        end
       end
       if params[:duid]
         subtask.users.delete(User.find(params[:duid]))
