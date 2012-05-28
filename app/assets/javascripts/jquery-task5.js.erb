@@ -1,4 +1,4 @@
-﻿$(function() {		
+﻿$(function() {	//todo: order subtasks by start date? put a cross line on finished tasks and subtasks? delete subtasks @@?	
 		$("#line1").sortable({
 			connectWith: ".connectedlist", tolerance: 'pointer'			
 		}).disableSelection();		
@@ -18,54 +18,175 @@
 		var del;
 		var finish;
 		var open;
-		function handlesortstop(event, ui) {
-			$("ul").children("button").remove();
-			//console.log($("ul"));
+        //load data from database
+        //console.log(tmp);
+        $.ajax({
+			type: 'GET',
+			url: '/task/loading',
+			//data: {"id": query},
+			error: function(response) {
+			  console.log(response);
+			  alert("err");
+			},
+			success: function(response) {
+              console.log(response)
+              var ulnum = 0;  
+              for(var i=0;i<response['t'].length;i++){
+                  if(response['t'][i].pos_x > ulnum){
+                     ulnum = response['t'][i].pos_x;   
+                  }
+              }                
+              var subtasks = new Array(response['s'].length);
+              if((ulnum==0)&&(response['t'].length==0)){ } //total new project with no content
+              else{
+		          for(var i=0;i<=ulnum;i++){ // the last ul will be empty
+		             ul = $('<ul class="connectedlist main"></ul>'); 
+		             bigbutton = $('<button>Add Task</button>');                   
+		             ul.appendTo("#placeholder");
+		             bigbutton.appendTo(ul); 
+		             var oldposx;
+					 var oldposy;
+					 ul.sortable({
+						connectWith: ".connectedlist", tolerance: 'pointer'			
+					 }).disableSelection();  
+					 ul.bind( "sortstart", function(event, ui) {                 
+		              oldposx = $(ui.item[0]).parent("ul").index();
+					  oldposy = $(ui.item[0]).index();                		 
+				     });					 
+		             ul.bind( "sortstop", function(event, ui) {   
+		               console.log("ui",$(ui.item[0]));	                
+					   handlesortstop(event, $(ui.item[0]), oldposx, oldposy);				 
+				     });		
+		          }  
+              }
+              var ularray = $("#placeholder").children("ul"); 
+              console.log("ulnum",ulnum, "ulength", ularray.length);
+              for(var i=0;i<response['t'].length;i++){                  
+                  for(var j=0;j<=ulnum;j++){                     
+		             if(response['t'][i].pos_x==j){                                                                           
+		                 tmp = $('<li><div><span>' + response['t'][i].name + '</span></div></li>'); 	
+		                 triangle = $('<button id="triangle">Triangle</button>');
+		                 rename = $('<button id="rename">Rename</button>');	
+						 del = $('<button id="delete">Delete</button>');
+						 finish = $('<button id="finish">Finish</button>');
+						 open = $('<button id="open">Open</button>');
+		                 div = $('<div></div>');	
+		                 button = $('<button>Add subtask</button>');
+		                 tmp.appendTo($(ularray[j]));
+		                 triangle.appendTo(tmp.children("div:nth-child(1)")).hide();		
+		                 rename.appendTo(tmp.children("div:nth-child(1)")).hide();	
+						 del.appendTo(tmp.children("div:nth-child(1)")).hide();	
+						 finish.appendTo(tmp.children("div:nth-child(1)")).hide();	
+						 open.appendTo(tmp.children("div:nth-child(1)")).hide(); 
+		                 div.appendTo(tmp).hide();	
+		                 button.appendTo(div);
+                         //add subtask, subtask order by start date?                           			                  
+						 for(var k=0; k<response['s'].length; k++){			     
+							 if(response['s'][k].task_id==response['t'][i].id){
+                                 subtask = $('<li><span>' + response['s'][k].name + '</span></li>')                                 
+						         triangle = $('<button id="triangle">Triangle</button>');
+						         rename = $('<button id="rename">Rename</button>');	
+								 del = $('<button id="delete">Delete</button>');
+								 finish = $('<button id="finish">Finish</button>');
+						         subtask.appendTo(div);
+						         triangle.appendTo(subtask).hide();
+								 rename.appendTo(subtask).hide();
+								 del.appendTo(subtask).hide();
+								 finish.appendTo(subtask).hide();                                 								 
+							 } 
+						  }						               
+					 } 
+                  }                       
+               }				  
+               $("ul").children("button").remove();			
+			   bigbutton = $('<button>Add Task</button>');  
+               bigbutton.appendTo("ul");   
+               var secdivs = $("ul").children("li").children("div:nth-child(2)");
+               $(secdivs).children("button").remove();
+               button = $('<button>Add subtask</button>');
+               button.appendTo(secdivs);
+			}	       
+	    });
+        // 
+	    function handlesortstop(event, tmp, posx, posy) {
+			$("ul").children("button").remove();			
 			bigbutton = $('<button>Add Task</button>'); 
-            bigbutton.appendTo("ul");  
-			//console.log($(this).parent("ul").children("li").length);
-			console.log($("#placeholder").children("ul").last());
-            if(($("#placeholder").children("ul").last().children("li").length==1)){
-				console.log($(this));
+            bigbutton.appendTo("ul");           		
+			//console.log($("#placeholder").children("ul").last());
+			//console.log(tmp); 
+            if(($("#placeholder").children("ul").last().children("li").length==1)){				
 				var ul2 =  $('<ul class="connectedlist main"></ul>');
 				ul2.appendTo("#placeholder");
 				var bigbutton2 = $('<button>Add Task</button>');
 				bigbutton2.appendTo(ul2);
+                var oldposx;
+				var oldposy;
 				ul2.sortable({
 					connectWith: ".connectedlist", tolerance: 'pointer'			
 				}).disableSelection();  
-				ul2.bind( "sortstop", function(event, ui) {           
-					handlesortstop(event, ui);
-				});
-			}			
+				(ul2).bind( "sortstart", function(event, ui) {                 
+                  oldposx = $(ui.item[0]).parent("ul").index();
+			      oldposy = $(ui.item[0]).index();                		 
+		        });					 
+                ul2.bind( "sortstop", function(event, ui) {   
+                   console.log("ui",$(ui.item[0]));	                
+				   handlesortstop(event, $(ui.item[0]), oldposx, oldposy);				 
+		        });		
+			}	
+            var thisul = tmp.parents("ul");
+			var newposx = $(thisul).index();   
+			var newposy =$(tmp).index();
+            console.log("posx", posx, "posy", posy);   	 			
+            console.log("newposx", newposx, "newposy", newposy);   	
+            $.ajax({
+                   type: 'POST',
+                   url: '/task/ordertask',
+                   data: {"oldposx":posx, "oldposy":posy, "newposx":newposx, "newposy":newposy},
+                   error: function(response) {
+                       console.log(response);
+                       alert("err");
+                   },
+                   success: function(response) {
+                       console.log("success!");
+                   }
+            }); 		
 			//check successive empty uls (without lis)
 			var ularray = $("#placeholder").children("ul");
 			var alength = ularray.length;
-            var index=-1;			
-			console.log(alength);
-			console.log($(ularray[0]));
+            var index=-1;
 			for(i = alength-1;i>=0;i--){
 			    if($(ularray[i]).children("li").length==0)
 				   index = i;
 				else break;   
-			}
-			//index = index+1;
-            console.log(index);			
-			if(index!=alength){
-			    //var span = alength-index;
-				console.log(index);
+			}						
+			if(index!=alength){			    
 				for(j=alength-1;j>index;j--){
-				   console.log($(ularray[j]));
+				   //console.log($(ularray[j]));
 				   $(ularray[j]).remove();
 				}   
 			}
-		};		
+		};	
+        $("#line1").bind( "sortstart", function(event, ui) {   
+                //console.log("ui",$(ui.item[0]));	
+                 oldposx = $(ui.item[0]).parent("ul").index();
+			     oldposy = $(ui.item[0]).index(); 				 
+                 //console.log("oldposx", oldposx, "oldposy", oldposy);   	
+				 //handlesortstop(event, $(ui.item[0]), posx, posy);				 
+		});					 
+        $("#line1").bind( "sortstop", function(event, ui) {   
+                 console.log("ui",$(ui.item[0]));	
+                 //var posx = $(ui.item[0]).parent("ul").index();
+			     //var posy = $(ui.item[0]).index(); 				 
+                 //console.log("posx", oldposx, "posy", oldposy); 	
+				 handlesortstop(event, $(ui.item[0]), oldposx, oldposy);				 
+		});			 			
 		$("#placeholder").on("click", "ul button", function(){ 
 		    console.log($(this));
 		    if($(this).parent("ul").parent("div").children("ul").children("li").hasClass('editing')){
 			    tmp.removeClass('editing').prepend('<span>New Task</span>');//val()拿字	
 				tmp.children("input").remove();   
-			}	
+			}
+            var thisul = $(this).parent("ul");	
 		    bigbutton = $('<button>Add Task</button>');
 		    button = $('<button>Add subtask</button>');
 			ul = $('<ul class="connectedlist main"></ul>'); // 
@@ -85,7 +206,23 @@
                 //tmp.removeClass('editing');
 				//console.log(tmp);
 				tmp.removeClass('editing').children("div:nth-child(1)").prepend('<span>' + tmp.children("div").children("input").attr('value') + "</span>");
-				tmp.children("div:nth-child(1)").children("input").remove();
+                
+				var posx = $(thisul).index();                
+				var posy = $(tmp).index();		
+                var savetask = $(tmp.children("div:nth-child(1)").children("input")).val();
+                $.ajax({
+                   type: 'POST',
+                   url: '/task/savetask',
+                   data: {"taskname": savetask, "posx":posx, "posy":posy},
+                   error: function(response) {
+                       console.log(response);
+                       alert("err");
+                   },
+                   success: function(response) {
+                       console.log("success!");
+                   }
+                }); 
+                tmp.children("div:nth-child(1)").children("input").remove();
 				//console.log(tmp);
             });       
             triangle.appendTo(tmp.children("div:nth-child(1)"));
@@ -109,13 +246,25 @@
 			  console.log($("#placeholder").last().length);
               ul.appendTo("#placeholder");
               bigbutton.appendTo(ul);
-              $("#line1, ul").sortable({
+              ul.sortable({
 			     connectWith: ".connectedlist", tolerance: 'pointer'			
 		      }).disableSelection();              
-             		  
-              $(".connectedlist" ).bind( "sortstop", function(event, ui) {           
-                 handlesortstop(event, ui);				 
-		      });		
+              var oldposx;
+			  var oldposy; 
+              ul.bind( "sortstart", function(event, ui) {   
+                 //console.log("ui",$(ui.item[0]));	
+                 oldposx = $(ui.item[0]).parent("ul").index();
+			     oldposy = $(ui.item[0]).index(); 				 
+                 //console.log("oldposx", oldposx, "oldposy", oldposy);   	
+				 //handlesortstop(event, $(ui.item[0]), posx, posy);				 
+		      });					 
+              ul.bind( "sortstop", function(event, ui) {   
+                 console.log("ui",$(ui.item[0]));	
+                 //var posx = $(ui.item[0]).parent("ul").index();
+			     //var posy = $(ui.item[0]).index(); 				 
+                 //console.log("posx", oldposx, "posy", oldposy); 	
+				 handlesortstop(event, $(ui.item[0]), oldposx, oldposy);				 
+		      });	
             }                		
 	    });	
 		// new!!
@@ -135,7 +284,8 @@
 			var input2 = $(this).parents("#placeholder").find("div:nth-child(1)").children("input");
 			input2.parents("li").removeClass("editing").children("div:nth-child(1)").prepend('<span>'+input2.attr('value')+'</span>');
 			input2.remove();	
-
+            var thisul = $(this).parents("ul");	
+            var thisli = $(this).parents("li");	
             var input3 = $(this).parents("#placeholder").find("div:nth-child(2)").children("li").children("input");			
 			input3.parent("li").removeClass("altering").prepend('<span>'+input3.attr('value')+'</span>');
 			input3.remove();						
@@ -152,15 +302,58 @@
                  }
                }).blur(function() {  //?			                  
 			     parentli.removeClass('editing');
-				 parentdiv.prepend('<span>' + parentdiv.children("input").attr('value') + '</span>');//val()拿字
+				 parentdiv.prepend('<span>' + parentdiv.children("input").attr('value') + '</span>');//val()拿字 
+                 var posx = thisul.index();
+                 var posy = thisli.index();
+                 var renametask = $(this).siblings("span").text();
+                 $.ajax({
+                   type: 'POST',
+                   url: '/task/renametask',
+                   data: {"taskname":renametask, "posx":posx, "posy":posy},
+                   error: function(response) {
+                       console.log(response);
+                       alert("err");
+                   },
+                   success: function(response) {
+                       console.log("success!");
+                   }
+                });                             
                  if(parentli.hasClass("presenting"))
                     parentli.children('span').addClass("showing"); 				 
 			     parentdiv.children("input").remove();				
                });                      							
 			event.stopPropagation();
 		});
-        $("#placeholder").on("click","ul>li>div:nth-child(1)>#delete", function(event){		    
-			$(this).parents("li").remove();		
+        $("#placeholder").on("click","ul>li>div:nth-child(1)>#delete", function(event){		 
+            var posx = $(this).parents("ul").index();
+            var posy = $(this).parents("li").index();
+            $.ajax({
+                   type: 'POST',
+                   url: '/task/deletetask',
+                   data: {"posx":posx, "posy":posy},
+                   error: function(response) {
+                       console.log(response);
+                       alert("err");
+                   },
+                   success: function(response) {
+                       console.log("success!");
+                   }
+                });            
+			$(this).parents("li").remove();	
+            //delete consecutive empty uls from the last ul
+            var ularray = $("#placeholder").children("ul");
+			var alength = ularray.length;
+            var index=-1;		
+			for(i = alength-1;i>=0;i--){
+			    if($(ularray[i]).children("li").length==0)
+				   index = i;
+				else break;   
+			}					
+			if(index!=alength){
+			    for(j=alength-1;j>index;j--){				   
+				   $(ularray[j]).remove();
+				}   
+			}				 	
 			event.stopPropagation();
 		});	
         $("#placeholder").on("click","ul>li>div:nth-child(1)>#finish", function(event){		    
@@ -195,7 +388,9 @@
 			    console.log($(this).parents("#placeholder").find("div:nth-child(2)").children("li"));
 			    subtask.removeClass('altering').prepend('<span>New Subtask</span>');//val()拿字	
 				subtask.children("input").remove();   
-			}	
+			}
+            var thisul = $(this).parents("ul");
+            var thisli = $(this).parents("li");	
 			subtask = $('<li><input type="text" maxlength=20 value="New Subtask"></li>')						
 			subtask.addClass('altering').appendTo($(this).parent("div"));//append to subtaskul .children("ul")
 			subtask.children("input").trigger('focus').keydown(function (event) {
@@ -204,19 +399,36 @@
                  subtask.children("input").trigger('blur');
                }
             }).blur(function() {  
-				subtask.removeClass('altering').prepend('<span>' + subtask.children("input").attr('value') + "</span>");	        
+				subtask.removeClass('altering').prepend('<span>' + subtask.children("input").attr('value') + "</span>");	
+                //var task = $(this).parents("li").children("div:nth-child(1)").val();                
+                var posx = $(thisul).index();                
+				var posy = $(thisli).index();		               
+                var savesubtask = $(subtask.children("input")).val();
+                $.ajax({
+                   type: 'POST',
+                   url: '/task/savesubtask',
+                   data: {"subtaskname": savesubtask, "posx":posx, "posy":posy},
+                   error: function(response) {
+                       console.log(response);
+                       alert("err");
+                   },
+                   success: function(response) {
+                       subtask.attr("num", response.id);
+                       console.log(response.id);	
+                       console.log("success!");
+                   }
+                });         
                 subtask.children("input").remove();				
-			});		
+			});	
+            
             triangle = $('<button id="triangle">Triangle</button>');			
 			rename = $('<button id="rename">Rename</button>');	
 			del = $('<button id="delete">Delete</button>');
-			finish = $('<button id="finish">Finish</button>');
-			open = $('<button id="open">Open</button>');
+			finish = $('<button id="finish">Finish</button>');			
 			triangle.appendTo(subtask).hide();
 			rename.appendTo(subtask).hide();
 			del.appendTo(subtask).hide();
-			finish.appendTo(subtask).hide();
-			open.appendTo(subtask).hide();	
+			finish.appendTo(subtask).hide();			
 			$(this).appendTo($(this).parent("div"));
 			console.log(event);
 			event.stopPropagation();
@@ -240,13 +452,16 @@
 			var input2 = $(this).parents("#placeholder").find("div:nth-child(1)").children("input");
 			input2.parents("li").removeClass("editing").children("div:nth-child(1)").prepend('<span>'+input2.attr('value')+'</span>');
 			input2.remove();	
-
+            
             var input3 = $(this).parents("#placeholder").find("div:nth-child(2)").children("li").children("input");			
 			input3.parent("li").removeClass("altering").prepend('<span>'+input3.attr('value')+'</span>');
 			input3.remove();	
-			
+			var thisul = $(this).parents("ul");
+            var thisli = $(this).parents("div").parent("li");            
 			parentli = $(this).parent("li");
 			input = $('<input type="text" maxlength=20 value="' + $(this).siblings("span").html()+'">'); 	
+            
+            var subtaskid = $(this).parent("li").attr("num");
 		    parentli.addClass('altering'); 
 		    input.prependTo(parentli);	
             parentli.children("span").remove();
@@ -258,11 +473,47 @@
              }).blur(function() {  //?
 			     //console.log(tmp);               
 			     parentli.removeClass('altering').prepend('<span>' + parentli.children("input").attr('value') + "</span>");//val()拿字	
-			     parentli.children("input").remove();				
+                 var posx = $(thisul).index();                
+				 var posy = $(thisli).index();
+                 var newname = $(this).siblings("span").html();
+				 //$(this).siblings("span").text(); //num: subtaskid
+                 console.log("num", subtaskid);
+                 $.ajax({
+                   type: 'POST',
+                   url: '/task/renamesubtask',
+                   data: {"subtaskname": newname, "subtaskid":subtaskid, "posx":posx, "posy":posy},
+                   error: function(response) {
+                       console.log(response);
+                       alert("err");
+                   },
+                   success: function(response) {
+                       console.log("success!");
+                   }
+                });         
+			    parentli.children("input").remove();				
              });			 							
 			event.stopPropagation();
 		});
-        $("#placeholder").on("click","ul>li>div:nth-child(2) #delete", function(event){		    
+        $("#placeholder").on("click","ul>li>div:nth-child(2) #delete", function(event){	   
+            var posx = $(this).parents("ul").index();
+            var posy = $(this).parents("div").parent("li").index();
+            var subtask = $(this).parent("li").attr("num");//$(this).siblings("span").text();  
+            console.log("hey!!!!"); 
+            console.log("num",$(this).parent("li").attr("num"));        
+            $.ajax({
+                   type: 'POST',
+                   url: '/task/deletesubtask',
+                   data: {"subtaskname": subtask, "posx":posx, "posy":posy},
+                   error: function(response) {
+                       console.log(response);
+                       alert("err");
+                   },
+                   success: function(response) {
+                       console.log("success!");
+                   }
+                });            
+			$(this).parents("li").remove();		
+			event.stopPropagation();	    
 			$(this).parent("li").remove();		
 			event.stopPropagation();
 		});	
@@ -270,10 +521,8 @@
 			$(this).parent("li").addClass("subdone");				
 			event.stopPropagation();
 		});	
-        $("#placeholder").on("click","ul>li>div:nth-child(2) #open", function(event){					
-			event.stopPropagation();
-		});		
-        $("#placeholder").on("hover","li li span", function(event){
+       
+        /*$("#placeholder").on("hover","li li span", function(event){
 		    //alert("show image");
             if($(this).parent("li").children("div").hasClass('hidden')){
 			   $(this).parent("li").children("div").show();
@@ -288,9 +537,9 @@
 			$(this).parent("li").children("div").hide();
 			$(this).parent("li").children("div").addClass('hidden');
 			event.stopPropagation();
-		});	 
+		});*/	 
         $("#placeholder").on("click","li li span", function(event){
-		    alert("show small card");
+		    //"show small card!!!";
 			event.stopPropagation();
 		});
 });
