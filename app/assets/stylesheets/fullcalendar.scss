@@ -290,7 +290,6 @@ html .fc {
   border-width: 0;
   font-size: .85em;
   cursor: default; 
-  background-color:red;
 }
 
 a.fc-event, .fc-event-draggable {
@@ -305,15 +304,13 @@ a.fc-event {
 .fc-event-skin {
   border-color: #36c;
   /* default BORDER color */
-  background-color: #36c;
-  
+  /* background-color: #36c;*/  
   /* default BACKGROUND color */
-  color: #fff;
+  color: #653416;
   /* default TEXT color */ 
 }
 
 .fc-event-inner {
-  background-color: red;
   position: relative;
   width: 100%;
   height: 100%;

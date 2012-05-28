@@ -13,7 +13,7 @@ $(function() {
       //autoOpen: false,
       resizable: false,
       height: 400,
-      width: 300,
+      width: 356,
       modal: true,
       dialogClass: "smallCard",
       open: function(event) {
@@ -192,7 +192,7 @@ $(function() {
 
   $(".deleteMem").click(function(event, ui) {
     // ajax
-/*
+
     $.ajax({
       type: 'PUT',
       url: '/subtask/edit',
@@ -204,7 +204,7 @@ $(function() {
       success: function(response) {
       }
     });
-*/
+
     deleteMem(event, $(this));
   });
 
