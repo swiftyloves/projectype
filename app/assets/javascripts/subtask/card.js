@@ -166,7 +166,7 @@ $(function() {
       return;
     }
     // ajax
-    $("#card").attr("dirty", 1);
+    //$("#card").attr("dirty", 1);
     $.ajax({
       type: 'POST',
       url: '/subtask/comment',
@@ -188,7 +188,7 @@ $(function() {
 
   $("#discription textarea").blur(function(event) {
     // ajax
-    $("#card").attr("dirty", 1);
+    //$("#card").attr("dirty", 1);
     $.ajax({
       type: 'PUT',
       url: '/subtask/edit',
@@ -205,17 +205,6 @@ $(function() {
 
 
   $(".deleteMem").click(function(event, ui) {
-    $.ajax({
-      type: 'PUT',
-      url: '/subtask/edit',
-      data: {"id": $("#card").attr("subid"), "duid": $(this).attr("uid")},
-      error: function(response) {
-        console.log(response);
-        alert("err");
-      },
-      success: function(response) {
-      }
-    });
     deleteMem(event, $(this));
   });
 
