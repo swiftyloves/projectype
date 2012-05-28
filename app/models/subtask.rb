@@ -10,17 +10,21 @@ class Subtask < ActiveRecord::Base
   has_many :inv_subtaskorders, :class_name => "Subtaskorder", :foreign_key => "after_id", :dependent => :destroy
   has_many :befores, :through => :inv_subtaskorders, :source => :subtask
 
-  before_create :init  
-  before_save :save_check
+  after_create :init 
+  after_save :save_check
+
+private
   def init
     self.done ||= false
     self.sday ||= Time.now.strftime("%Y-%m-%d")
     self.dday ||= Time.now.strftime("%Y-%m-%d")
+    self.save
   end
 
-  def save_check
+  def save_check 
     if self.sday > self.dday
       self.sday = self.dday
+      self.save
     end
     self.befores.each do |b|
       if (b.dday > self.sday)
