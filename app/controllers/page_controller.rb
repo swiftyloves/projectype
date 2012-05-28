@@ -148,6 +148,7 @@ class PageController < ApplicationController
         puts Project.find_by_id(session[:current_proj])
         puts 'current_proj.users: '
 		@members = Project.find_by_id(session[:current_proj]).users
+        puts @members
 		@pic = "#{User.find_by_account(session[:current_user])['img']}"
 		render :layout => 'home'
 	end

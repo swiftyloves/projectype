@@ -28,7 +28,6 @@ $(function(){
 
 	        // // change the border color just for fun
 	        $(this).css('border-color', 'red');
-
 		},
 		events: function(start,end,callback){
 	        $.ajax({
@@ -63,7 +62,7 @@ $(function(){
 	               	$.each(doc['s'],function(){
 	               		// console.log(this)
 	               		events.push({
-	               			title:this.name,start:this.sday,end:this.dday
+	               			title:this.name,start:this.sday,end:this.dday,id:this.id
 	               		})
 	               	});
 	               	if (load == 1) {
