@@ -225,17 +225,17 @@ $(function() {
         }
       });
     });
+    $('#mainCanvas').dialog({
+      //autoOpen: false,
+      resizable: false,
+      height: 470,
+      width: 630,
+      modal: true,
+      dialogClass: "bigCard",
+    });
+    jsPlumb.repaintEverything();
   }
-/*
-  $('#mainCanvas').dialog({
-    autoOpen: false,
-    resizable: false,
-    height: 470,
-    width: 630,
-    modal: true,
-    dialogClass: "bigCard",
-  });
-*/
+
   function test() {
     initTimebar("2012-04-01", "2012-05-01");
     putTask(10, "2012-04-02", "2012-04-10", "haha");

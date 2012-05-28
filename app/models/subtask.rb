@@ -13,6 +13,8 @@ class Subtask < ActiveRecord::Base
   before_create :init  
   def init
     self.done ||= false
+    self.sday ||= Time.now.strftime("%Y-%m-%d")
+    self.dday ||= Time.now.strftime("%Y-%m-%d")
   end
 
 end

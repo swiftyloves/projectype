@@ -14,8 +14,8 @@
       console.log(response);
       $("#card").attr("title", response.subtask.name);
       $("#card").attr("subid", response.subtask.id);
-      $("#sday").datepicker("setDate", response.subtask.sday);
-      $("#dday").datepicker("setDate", response.subtask.dday);
+      $("#sday").val(response.subtask.sday);
+      $("#dday").val(response.subtask.dday);
       $("#discription textarea").val(response.subtask.description);
       for (var i = 0; i < response.comment.length; ++i) {
         var tmp = response.comment[i];
@@ -29,6 +29,7 @@
         var tmp = response.mem[i];
         addMem(tmp.id, tmp.img);
       }
+      prepareEnd();
     }
   });
 
