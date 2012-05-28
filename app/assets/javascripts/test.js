@@ -31,6 +31,7 @@ $(function(){
                             alert("err");
                           },
                           success: function(response) {
+                          	$(".smallCard").remove();
                             $("#userCardPlace").empty().hide().append(response);
                           }
                         });

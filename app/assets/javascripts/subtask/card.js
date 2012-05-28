@@ -166,7 +166,8 @@ $(function() {
     });
 
     var img = $("#headImg").css("background-image");
-    img = tmp.substr(4, tmp.length - 5);
+    img = img.substr(4, img.length - 5);
+    console.log(img)
     addComment(tmp, $("#headImg").attr("uid"), img);
     $(this).val("");
   });

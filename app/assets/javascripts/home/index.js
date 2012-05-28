@@ -209,7 +209,21 @@ $(function() {
   $("#inviteButton").click(function(event) {
     console.log($(this));
     if ($("#projectName span").html() != "") {
-      $(".inviteCard").dialog("open");
+      doBlockingStart();
+    $.ajax({
+      url: "/invite",
+      error: function(err) {
+        console.log(err);
+        doBlockingEnd();
+      },
+      success: function(response) {
+        $(".inviteCard").remove();        
+        $("#inviteC").empty().append(response);
+        $(".inviteCard").dialog("open");
+        doBlockingEnd();
+      },
+      });
+      
     }
   });
 

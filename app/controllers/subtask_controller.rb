@@ -100,7 +100,7 @@ class SubtaskController < ApplicationController
 
   def comment
     if session[:current_user] && params[:id] && params[:text]
-      user = User.find(session[:current_user])
+      user = User.find_by_account(session[:current_user])
       user.comments.create(:subtask_id => params[:id], :msg => params[:text])
     end
     render json: ""
