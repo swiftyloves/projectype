@@ -1,4 +1,4 @@
-﻿$(function() {	//todo: subtask belongs to which user? put a cross line on finished tasks and subtasks? 
+﻿$(function() {	//todo: subtask belongs to which user?
 		$("#line1").sortable({
 			connectWith: ".connectedlist", tolerance: 'pointer'			
 		}).disableSelection();		
@@ -63,7 +63,7 @@
               console.log("ulnum",ulnum, "ulength", ularray.length);
               for(var i=0;i<response['t'].length;i++){                  
                   for(var j=0;j<=ulnum;j++){                     
-		             if(response['t'][i].pos_x==j){                                                                           
+		             if(response['t'][i].pos_x==j){ //tasks                                                                       
 		                 tmp = $('<li><div><span>' + response['t'][i].name + '</span></div></li>'); 	
 		                 triangle = $('<button id="triangle">Triangle</button>');
 		                 rename = $('<button id="rename">Rename</button>');	
@@ -80,6 +80,8 @@
 						 open.appendTo(tmp.children("div:nth-child(1)")).hide(); 
 		                 div.appendTo(tmp).hide();	
 		                 button.appendTo(div);
+                         if(response['t'][i].done==true) //check done or not
+                             tmp.addClass("done");	
                          //add subtask, subtask order by start date?                           			                  
 						 for(var k=0; k<response['s'].length; k++){			     
 							 if(response['s'][k].task_id==response['t'][i].id){
@@ -93,7 +95,9 @@
 								 rename.appendTo(subtask).hide();
 								 del.appendTo(subtask).hide();
 								 finish.appendTo(subtask).hide();  
-                                 subtask.attr("num", response['s'][k].id);                               								 
+                                 subtask.attr("num", response['s'][k].id);   
+                                 if(response['s'][k].done==true) //check done or not
+                                    subtask.addClass("subdone");	                            								 
 							 } 
 						  }						               
 					 } 
@@ -361,10 +365,26 @@
 		});	
         $("#placeholder").on("click","ul>li>div:nth-child(1)>#finish", function(event){		    
 			$(this).parents("li").addClass("done");	
-            			
+            var posx = $(this).parents("ul").index();
+            var posy = $(this).parents("li").index();
+            $.ajax({
+                   type: 'POST',
+                   url: '/task/donetask',
+                   data: {"posx":posx, "posy":posy},
+                   error: function(response) {
+                       console.log(response);
+                       alert("err");
+                   },
+                   success: function(response) {
+                       $(this).parents("li").attr("done", response.done); 
+                       console.log(response);
+                       console.log("success!");
+                   }
+                });            			
 			event.stopPropagation();
 		});	
-        $("#placeholder").on("click","ul>li>div:nth-child(1)>#open", function(event){					
+        $("#placeholder").on("click","ul>li>div:nth-child(1)>#open", function(event){	
+            // add Big card!!!!				
 			event.stopPropagation();
 		});	  		
 		//			
@@ -522,7 +542,26 @@
 			event.stopPropagation();
 		});	
         $("#placeholder").on("click","ul>li>div:nth-child(2) #finish", function(event){		    
-			$(this).parent("li").addClass("subdone");				
+			$(this).parent("li").addClass("subdone");		
+            var posx = $(this).parents("ul").index();
+            var posy = $(this).parents("div").parent("li").index();
+            var subtask = $(this).parent("li").attr("num");//$(this).siblings("span").text();  
+            console.log("hey!!!!"); 
+            console.log("num",$(this).parent("li").attr("num"));        
+            $.ajax({
+                   type: 'POST',
+                   url: '/task/donesubtask',
+                   data: {"subtaskname": subtask, "posx":posx, "posy":posy},
+                   error: function(response) {
+                       console.log(response);
+                       alert("err");
+                   },
+                   success: function(response) {
+                       $(this).parent("li").attr("done", response.done); 
+                       console.log(response);
+                       console.log("success!");
+                   }
+                });            		
 			event.stopPropagation();
 		});	
        

@@ -56,6 +56,13 @@ class TaskController < ApplicationController
       @task.save
       render json: @project  
   end
+  def donetask
+      @project = Project.find(session[:current_proj])
+      @task = @project.tasks.where(:pos_x => params[:posx] , :pos_y => params[:posy])[0]
+      @task.done = true
+      @task.save
+      render json: @task  
+  end
   def ordertask
       @project = Project.find(session[:current_proj])
       @task = @project.tasks.where(:pos_x => params[:oldposx] , :pos_y => params[:oldposy])[0]
@@ -103,6 +110,14 @@ class TaskController < ApplicationController
       @task.subtasks.delete(@subtask) 
       @task.save
       render json: @task  
+  end
+  def donesubtask
+      @project = Project.find(session[:current_proj])
+      @task = @project.tasks.where(:pos_x => params[:posx] , :pos_y => params[:posy])[0]
+      @subtask = @task.subtasks.where(:id => params[:subtaskname])[0]
+      @subtask.done = true 
+      @subtask.save
+      render json: @subtask  
   end
   def query
       @project = Project.find(params[:id]) 
