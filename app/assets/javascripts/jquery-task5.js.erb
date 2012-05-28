@@ -1,4 +1,4 @@
-﻿$(function() {	//todo: order subtasks by finish date? put a cross line on finished tasks and subtasks? 
+﻿$(function() {	//todo: subtask belongs to which user? put a cross line on finished tasks and subtasks? 
 		$("#line1").sortable({
 			connectWith: ".connectedlist", tolerance: 'pointer'			
 		}).disableSelection();		
@@ -360,7 +360,8 @@
 			event.stopPropagation();
 		});	
         $("#placeholder").on("click","ul>li>div:nth-child(1)>#finish", function(event){		    
-			$(this).parents("li").addClass("done");				
+			$(this).parents("li").addClass("done");	
+            			
 			event.stopPropagation();
 		});	
         $("#placeholder").on("click","ul>li>div:nth-child(1)>#open", function(event){					

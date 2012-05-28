@@ -14,13 +14,13 @@ class TaskController < ApplicationController
     sub = []
     @proj_tasks.each do |t|                                 
        #task.append(t)  
-       if(t.subtasks.length>0)   
-          t.subtasks.each do |s|  
+       if(t.subtasks.length>0)
+		  tt = t.subtasks.order("dday")
+          tt.each do |s|  
             sub.append(s)
           end  
        end           
-    end 
-    @subtasks = sub
+    end    
     tmp[:p] = @project
     tmp[:u] = @proj_users
     tmp[:t] = @proj_tasks.order("pos_y")   
