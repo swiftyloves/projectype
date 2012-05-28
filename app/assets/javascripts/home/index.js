@@ -163,19 +163,16 @@ $(function() {
 
   $("#helpButton").click(function(event) {
     console.log($(this));
-    $.blockUI( {message: $("#helpContent"),
-                css: { 
-                  background: "rgba(0, 0, 0, 0)",
-                  border: "none",
-                  top: "0px",
-                  //left: "auto",
-                  cursor: "help",
-                },
-               });
+    $("#helpContent").dialog("open");
   });
 
-  $("#helpContent").click(function(event) {
-    $.unblockUI();
+  $("#helpContent").dialog({
+    autoOpen: false,
+    height: 600,
+    width: 800,
+    modal: true,
+    resizable: false,
+    dialogClass: "helpDialog",
   });
 
   $("#fbButton").click(function(event) {
@@ -209,7 +206,21 @@ $(function() {
   $("#inviteButton").click(function(event) {
     console.log($(this));
     if ($("#projectName span").html() != "") {
-      $(".inviteCard").dialog("open");
+      doBlockingStart();
+    $.ajax({
+      url: "/invite",
+      error: function(err) {
+        console.log(err);
+        doBlockingEnd();
+      },
+      success: function(response) {
+        $(".inviteCard").remove();        
+        $("#inviteC").empty().append(response);
+        $(".inviteCard").dialog("open");
+        doBlockingEnd();
+      },
+      });
+      
     }
   });
 

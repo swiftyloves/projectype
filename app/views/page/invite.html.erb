@@ -7,10 +7,12 @@
 <span class="mempic"></span>
 <span class="text">current member</span></br>
 <div class="members">
-<!-- 	<%= @pic%>	
-	<%= @proj %>
-	console.log(<%=@members%>) -->
-	
+	<% @members.each do |m|%>	
+	<% if m.img[0] == 'g'
+		m.img += "?sz=50"
+		end	%>
+	<img src = "<%= m.img %>" />
+	<% end %>
 </div>
 <span class="mempic"></span>
 <span class="text">add new member</span></br>

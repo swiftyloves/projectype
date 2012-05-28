@@ -84,6 +84,18 @@ $(function() {
   };
  
   function deleteMem(event, ui) {
+    // ajax
+    $.ajax({
+      type: 'PUT',
+      url: '/subtask/edit',
+      data: {"id": $("#card").attr("subid"), "duid": ui.parent().attr("uid")},
+      error: function(response) {
+        console.log(response);
+        alert("err");
+      },
+      success: function(response) {
+      }
+    });
     ui.parent().remove();
   };
 
@@ -166,7 +178,8 @@ $(function() {
     });
 
     var img = $("#headImg").css("background-image");
-    img = tmp.substr(4, tmp.length - 5);
+    img = img.substr(4, img.length - 5);
+    console.log(img)
     addComment(tmp, $("#headImg").attr("uid"), img);
     $(this).val("");
   });
@@ -190,20 +203,6 @@ $(function() {
 
 
   $(".deleteMem").click(function(event, ui) {
-    // ajax
-/*
-    $.ajax({
-      type: 'PUT',
-      url: '/subtask/edit',
-      data: {"id": $("#card").attr("subid"), "duid": $(this).attr("uid")},
-      error: function(response) {
-        console.log(response);
-        alert("err");
-      },
-      success: function(response) {
-      }
-    });
-*/
     deleteMem(event, $(this));
   });
 

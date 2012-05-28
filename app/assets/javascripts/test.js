@@ -31,6 +31,7 @@ $(function(){
                             alert("err");
                           },
                           success: function(response) {
+                          	$(".smallCard").remove();
                             $("#userCardPlace").empty().hide().append(response);
                           }
                         });
@@ -42,7 +43,6 @@ $(function(){
 
 	        // // change the border color just for fun
 	        $(this).css('border-color', 'red');
-
 		},
 		events: function(start,end,callback){
 	        $.ajax({

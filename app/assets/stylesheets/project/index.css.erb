@@ -2,14 +2,25 @@
   width: 30px;
   height: 30px;
   visibility: hidden;
+  background-size: 100%;
+  background-position: center;
+  background-repeat: no-repeat;
 }
 
 .trash {
-  background: rgba(255, 0, 0, 0.5);
+  background-image: url(<%= asset_path "delicon_2.png" %>)
 }
 
 .edit {
-  background: rgba(0, 255, 0, 0.5);
+  background-image: url(<%= asset_path "renameicon_2.png" %>)
+}
+
+.trash:hover {
+  background-image: url(<%= asset_path "delicon.png" %>)
+}
+
+.edit:hover {
+  background-image: url(<%= asset_path "renameicon.png" %>)
 }
 
 #projectPage {
