@@ -46,6 +46,7 @@ $(function() {
     $("#content").empty();
     $("#projectName span").empty();
     doBlockingStart();
+    $("#userButton, #taskButton").hide();
     $.ajax({
       //type: 'POST',
       url: '/welcome',
@@ -67,8 +68,8 @@ $(function() {
     resetMainHeight();
   };
   
-  //$("#content").jScrollPane();
-  
+  $("#userButton, #taskButton").hide();
+ 
   // fix ajax clear session  
   $.ajaxSetup({
     beforeSend: function(xhr) {
@@ -120,7 +121,7 @@ $(function() {
       } else if ($("#projectName span").html().length != 0) {
         name = $("#projectName span").html();
         id = $("#projectName span").attr("pid");
-      } else {
+      } else if ($("#logButton").hasClass("unlogin")) {
         name = "Project1";
         id = -1;
       }
@@ -141,6 +142,9 @@ $(function() {
           },
           success: function(response) {
             handleResponse(response);
+            if ($("#logButton").hasClass("unlogin")) {
+              resetToggle();
+            }
             doBlockingEnd();
           }
         });
@@ -250,6 +254,9 @@ $(function() {
   });
 
   $("#projectName input").blur(function() {
+    if ($("#projectName span").attr("pid") == -1) {
+      return;
+    }
     // ajax
     doBlockingStart();
     $.ajax({
