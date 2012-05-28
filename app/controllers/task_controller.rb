@@ -20,10 +20,11 @@ class TaskController < ApplicationController
           end  
        end           
     end 
+    @subtasks = sub
     tmp[:p] = @project
     tmp[:u] = @proj_users
     tmp[:t] = @proj_tasks.order("pos_y")   
-    tmp[:s] = sub 
+    tmp[:s] = sub  #@subtasks.order("dday") 
     render json: tmp   
   end
   def test
@@ -32,8 +33,8 @@ class TaskController < ApplicationController
 
   def savetask # name and position
       @project = Project.find(session[:current_proj])
-      @project.tasks.create(:name=> params[:taskname] , :pos_x => params[:posx] , :pos_y => params[:posy] )       
-      render json: @project  
+      task = @project.tasks.create(:name=> params[:taskname] , :pos_x => params[:posx] , :pos_y => params[:posy])	         
+      render json: task 
   end
   def deletetask
       @project = Project.find(session[:current_proj])

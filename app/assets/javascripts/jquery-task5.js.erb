@@ -1,4 +1,4 @@
-﻿$(function() {	//todo: order subtasks by start date? put a cross line on finished tasks and subtasks? delete subtasks @@?	
+﻿$(function() {	//todo: order subtasks by finish date? put a cross line on finished tasks and subtasks? 
 		$("#line1").sortable({
 			connectWith: ".connectedlist", tolerance: 'pointer'			
 		}).disableSelection();		
@@ -92,7 +92,8 @@
 						         triangle.appendTo(subtask).hide();
 								 rename.appendTo(subtask).hide();
 								 del.appendTo(subtask).hide();
-								 finish.appendTo(subtask).hide();                                 								 
+								 finish.appendTo(subtask).hide();  
+                                 subtask.attr("num", response['s'][k].id);                               								 
 							 } 
 						  }						               
 					 } 
@@ -210,6 +211,7 @@
 				var posx = $(thisul).index();                
 				var posy = $(tmp).index();		
                 var savetask = $(tmp.children("div:nth-child(1)").children("input")).val();
+				console.log({"taskname": savetask, "posx":posx, "posy":posy});
                 $.ajax({
                    type: 'POST',
                    url: '/task/savetask',
@@ -219,6 +221,7 @@
                        alert("err");
                    },
                    success: function(response) {
+					   console.log(response);
                        console.log("success!");
                    }
                 }); 
@@ -512,8 +515,8 @@
                        console.log("success!");
                    }
                 });            
-			$(this).parents("li").remove();		
-			event.stopPropagation();	    
+			//$(this).parents("li").remove();		
+			//event.stopPropagation();	    
 			$(this).parent("li").remove();		
 			event.stopPropagation();
 		});	

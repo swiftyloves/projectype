@@ -89,6 +89,7 @@ class HomeController < ApplicationController
       end
       response[:current_user] = session[:current_user]
       response[:current_name] = session[:current_name]
+      response[:current_proj] = session[:current_proj]
     elsif params[:req] == 'user'
       response[:user] = User.where(:account => params[:acc])
     end

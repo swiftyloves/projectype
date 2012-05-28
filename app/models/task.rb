@@ -3,9 +3,11 @@ class Task < ActiveRecord::Base
   belongs_to :project
   has_many :subtasks, :dependent => :destroy
 
-  before_create :init  
+  #before_create :init  
   def init
-    self.done ||= false
+	unless self.done
+		self.done = false
+	end
   end
 
 end
