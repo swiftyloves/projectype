@@ -44,6 +44,10 @@ $(function(){
                           	$(".smallCard").remove();
                           	$("#card").remove();
                             $("#userCardPlace").empty().hide().append(response);
+                        	$("#card").bind("dialogclose",function(){
+                        		console.log('dialogclose')
+                        		$('#userButton').trigger("click")
+                        	});
                           }
                         });
 		},
@@ -114,9 +118,6 @@ $(function(){
 						tmp = worker;
 	                }
 	                callback(events); 
-					// eventClick: function(event, element) {
-					// 	console.log('eventClick')
-					// }
 	            }
 	        });
 		},
