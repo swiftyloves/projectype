@@ -108,6 +108,9 @@ $(function() {
   });
 
   $("#taskButton").click(function(event, ui) {
+    if ($("#projectName span").html().length == 0) {
+      return;
+    }
     if (currentState != $(this)) {
       currentState = $(this);
       resetToggle();
