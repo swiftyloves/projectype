@@ -29,6 +29,7 @@ $(function() {
               d = {"id": $("#card").attr("subid"),
                   "dday": dateText};
             }
+            $("#card").attr("dirty", 1);
             $.ajax({
               type: 'PUT',
               url: '/subtask/edit',
@@ -85,6 +86,7 @@ $(function() {
  
   function deleteMem(event, ui) {
     // ajax
+    $("#card").attr("dirty", 1);
     $.ajax({
       type: 'PUT',
       url: '/subtask/edit',
@@ -115,7 +117,7 @@ $(function() {
       return;
     }
     // ajax
-
+    $("#card").attr("dirty", 1);
     $.ajax({
       type: 'PUT',
       url: '/subtask/edit',
@@ -164,7 +166,7 @@ $(function() {
       return;
     }
     // ajax
-
+    $("#card").attr("dirty", 1);
     $.ajax({
       type: 'POST',
       url: '/subtask/comment',
@@ -186,7 +188,7 @@ $(function() {
 
   $("#discription textarea").blur(function(event) {
     // ajax
-
+    $("#card").attr("dirty", 1);
     $.ajax({
       type: 'PUT',
       url: '/subtask/edit',
