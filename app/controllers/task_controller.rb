@@ -115,8 +115,9 @@ class TaskController < ApplicationController
       @project = Project.find(session[:current_proj])
       @task = @project.tasks.where(:pos_x => params[:posx] , :pos_y => params[:posy])[0]
       @subtask = @task.subtasks.where(:id => params[:subtaskname])[0]
-      @task.subtasks.delete(@subtask) 
-      @task.save
+      #@task.subtasks.delete(@subtask) 
+      #@task.save
+      @subtask.destroy
       render json: @task  
   end
   def donesubtask
