@@ -37,12 +37,15 @@
 
 <div id="card" dirty=0>
   <div id="sddaysArea">
-    <input id="sday"></input>
+    <input id="sday" readonly='readonly'></input>
     <span>-</span>
-    <input id="dday"></input>
+    <input id="dday" readonly='readonly'></input>
   </div>
   <div id="discription">
-    <textarea></textarea>
+    <div id="linecontain">
+      <p id="comtext">description</p>
+    </div>
+    <textarea row=3 col=37 weap='hard'></textarea>
   </div>
   <div id="memArea">
     <div id="linecontain">
@@ -60,9 +63,9 @@
   </div>
   <div id="commentArea">
     <div id="linecontain">
-    <p id="comtext">comment:<p>
+    <p id="comtext">comment:</p>
     </div>
-    <textarea row=3></textarea>
+    <textarea row=3 col=37 wrap='hard'></textarea>
     <div id="commentcontain"></div>
     <div id="comments">
     </div>

@@ -129,14 +129,26 @@ $(function() {
   var endday;
   var count = 2;
 
+  var monMap = ["Jan", "Fab", "Mar", "Apr", "May", "Jun",
+                "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+
+
   initTimebar = function (sday, dday) {
     firstday = new Date(sday);
     endday = new Date(dday);
+    firstday = new Date(firstday.valueOf() - 864000000);
+    endday = new Date(endday.valueOf() + 864000000);
     var i = firstday;
     var end = endday;
+    var month;
     for (; i <= end; i = new Date(i.valueOf() + 86400000)) {
       $(".dummyEnd").before("<div>"+i.getDate()+"</div>");
       count++;
+      if (month != i.getMonth()) {
+        month = i.getMonth();
+        $(".dummyEnd").after("<span class='monLabel' style='left:"
+                             +((count-2)*30 - 4)+"px;'>"+monMap[month]+"</span>");
+      }
     }
     $("#timeBar, #timeBarDragHelper").css("width", count * 30 + 10);
     $("#taskCanvas").css("width", (count - 2) * 30 + 10);
@@ -152,7 +164,8 @@ $(function() {
     var w = dd - ss + 1;
     var tmp = $("<div class='window' id=id"+id+">"
                 +"<span>"+name+"</span>"
-                +"<div class='ep'></div>"
+                +"<div class='ep atHead'></div>"
+                +"<div class='ep atEnd'></div>"
                 +"</div>");
     tmp.offset({left: (ss + 1) * 30});
     var count = 0;
@@ -164,7 +177,6 @@ $(function() {
            tmp.css("left") <= $(list[i]).css("left") + $(list[i]).outerWidth())) {
         ++count;
       }
-      //console.log(tmp.css("left"), tmp.outerWidth(), $(list[i]).css("left"), $(list[i]).outerWidth());
     }
     tmp.offset({top: count * 60});
     tmp.width(w*30);
