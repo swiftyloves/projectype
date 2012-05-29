@@ -118,10 +118,10 @@
                                            console.log(response['u'].length);  
                                            div = $('<div></div>');
                                            subb.children(".triangle").before(div);  
-                                           subb.children("div").hide(); 
+                                           div.hide(); 
                                            for(var m=0; m<response['u'].length; m++){
                                                //subb.children(".triangle").before('<div style="background: url('+response['u'][m].img+') center no-repeat; background-size: 15%;"></div>');            
-                                               subb.children("div").append('<div style="background: url('+response['u'][m].img+') center no-repeat; background-size: 15%;"></div>');                                                                    
+                                               div.append('<div style="background: url('+response['u'][m].img+') center no-repeat; background-size: 15%;"></div>');                                                                    
                                            }                                
 									   }
 		                         });	                            								 
@@ -424,7 +424,7 @@
                 });            			
 			event.stopPropagation();
 		});	
-        $("#placeholder").on("click","ul>li>div:nth-child(1)>.open", function(event){	
+        $("#placeholder").on("click","ul>li>div:nth-child(1)>div> .open", function(event){	
             // add Big card!!!!
             var posx = $(this).parents("ul").index();
             var posy = $(this).parents("div").parent("li").index();
@@ -519,20 +519,21 @@
 		});	
 
         //new!!!
-        $("#placeholder").on("hover", "ul>li>div:nth-child(2)>li", function(event){		
-            console.log($(this));		
+        $("#placeholder").on("hover", "ul>li>div:nth-of-type(2)>li", function(event){		
+            console.log("wt",$(this));		
 			$(this).children(".triangle").show();
 			event.preventDefault();						
 		});		
-		$("#placeholder").on("mouseleave","ul>li>div:nth-child(2)>li", function(event){
+		$("#placeholder").on("mouseleave","ul>li>div:nth-of-type(2)>li", function(event){
+            console.log($(this));
 		    $(this).children(".triangle").hide();   	
             $(this).children("div").hide(); 		
 			event.stopPropagation();
 		});			
 		$("#placeholder").on("click","ul>li>div:nth-child(2) .triangle", function(event){		
-            console.log("button",$(this));    
-            console.log($(this).parent("li").children("div"));
-			$(this).parent("li").children("div").show();			
+            console.log("= =", $(this).parent("li").children(".subgroup"));    
+            //console.log($(this).parent("li").children("div"));
+			$(this).parent("li").children(".subgroup").show();			
 			event.stopPropagation();
 		});			
 		$("#placeholder").on("click","ul>li>div:nth-child(2) .rename", function(event){		    			
@@ -631,10 +632,12 @@
 		});	
         //          
         $("#placeholder").on("hover","li li span", function(event){
-		    $(this).parent("li").children("div").show();			 			
+            console.log($(this).parent("li").children("div"));
+            console.log("SHOW PIC",$(this).parent("li").children("div:nth-child(2)"));
+		    $(this).parent("li").children("div:nth-child(2)").show();			 			
 		});	
         $("#placeholder").on("mouseleave","li li span", function(event){
-			$(this).parent("li").children("div").hide();			
+			$(this).parent("li").children("div:nth-child(1)").hide();			
 			event.stopPropagation();
 		});
         //	 
