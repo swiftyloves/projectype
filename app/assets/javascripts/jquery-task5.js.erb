@@ -439,6 +439,7 @@
                       },
                       success: function(response) {
                         $(".bigCard").remove();
+                        $("#mainCanvas").remove();
                         $("#taskBigCardPlace").empty().hide().append(response);
                       }
                     });
