@@ -242,7 +242,8 @@ $(function() {
   };
 
   //test();
-  //style js
+  
+  //style input
   $('#commentArea textarea').focus(function() {
       console.log('focus!!')
       console.log($(this))
@@ -252,5 +253,15 @@ $(function() {
       console.log(this)
       $(this).removeClass('focus')
   });
+  $('#discription textarea').focus(function() {
+      console.log('focus!!')
+      console.log($(this))
+      $(this).addClass('focus')
+  });
+  $('#discription textarea').focusout(function() {
+      console.log(this)
+      $(this).removeClass('focus')
+  });
+
 });
 

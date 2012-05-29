@@ -26,7 +26,7 @@
 }
 
 .deleteMem {
-  background: rgba(255, 255, 255, 0.5);
+  background: rgba(0,0,0, 0.5);  
   visibility: hidden;
   position: absolute;
   cursor: pointer;
@@ -38,7 +38,8 @@
   height: 5px;
   position: relative;
   top: 22px;
-  left: 13px;
+  left: 10px;
+  box-shadow:0px 0px 7px 3px rgba(255,255,255,0.8);
 }
 .comment {
   margin: 6px 1px;
@@ -95,7 +96,7 @@
 }
 
 
-#card div p .focus{
+#card div .focus{
   box-shadow:inset 0px 0px 6px rgba(255,0,0,0.7);
   outline:none;
   /*border:1px solid #D5D5D4;*/
@@ -115,29 +116,53 @@
 }
 
 
-#memArea {
-  margin: 20px 0px 20px 0px;
+#mems {
+  margin: 6px 0px 10px 0px;
+  background:rgba(255,255,255,0.5);
+  padding:7px;
+  width:334px;
+  display: block;
 }
 
+#memArea {
+  margin-top:9px;
+}
 
-#memArea > div, #mems > div {
-  display: inline-block;
+#memArea > div,{
+  display: block;
   vertical-align: top;
+}
+#mems > div {
+  display: inline-block;
 }
 
 #memInfo {
-  width: 65px;
+  background:rgba(255,155,155,0.3);
+  border-radius:2px;
+  width:63px;
+  padding:4px;
+  font-size:10px;
+  height:9px;
+  vertical-align:middle;
 }
+
+/*#commentArea > p{
+  width:75px;
+  background:rgba(255,155,155,0.6);
+  padding:2px;
+}
+*/
 
 #userList {
   /*z-index:-1;*/
   position: absolute;
   /*visibility: hidden;*/
   margin-top: 5px;
-  padding: 7px 5px;
-  box-shadow:3px 3px 7px rgba(136,136,136,0.8);
+  padding: 7px 9px 7px 5px;
+  box-shadow:3px 3px 7px rgba(136,136,136,0.5),inset 0px 0px 3px rgba(255,155,155,0.8);;
   background-color: rgba(255,255,255,1);
   border-radius:5px;
+  border:1px solid rgba(255,155,155,0.8);
   /*@include transition-property(all);
   @include transition-duration(0.5s);*/
 }
@@ -149,36 +174,59 @@
 #userList > div:hover{
   box-shadow:2px 2px 3px rgba(136,136,136,0.8);
   cursor:pointer;
+  background:rgba(255,255,255,0.3);
 }
 
 #mems > div {
   margin-left: 5px;
 }
 
-#addMemButton {
-  margin-left: 41px;
-  width: 15px;
-  height: 15px;
-  background: rgba(233, 225, 158, 1);
-  box-shadow: 0px 1px 2px 0px rgba(32, 32, 32, 1);
-}
-
-#addMemButton:hover {
+#memInfo:hover {
   cursor: pointer;
-}
+  box-shadow: 0px 1px 2px 0px rgba(32, 32, 32, 1);
+}background:rgba(255,155,155,0.3);
+  border-radius:2px;
+  width:63px;
+  padding:4px;
+  font-size:10px;
+  height:9px;
+  vertical-align:middle;
 
-#addMemButton:active {
+#memInfo:active {
   box-shadow: 0px 0px 1px 0px rgba(32, 32, 32, 1);
 }
 
 
-#addMemButton span {
+#memInfo span {
   position: relative;
   top: -4px;
   left: 0px;
+  color:#643403;
+}
+
+#addMemButton #plus{
   color: red;
 }
 
+#commentArea #comtext{
+  background:rgba(255,155,155,0.3);
+  border-radius:2px;
+  width:63px;
+  padding:2px 4px 4px 4px;
+  font-size:10px;
+  height:13px;
+  vertical-align:middle;  
+}
+#linecontain{
+  border-bottom:1px solid rgba(255,155,155,0.3);
+  width:264px;
+}
+#commentcontain{
+  border-bottom:1px solid rgba(255,155,155,0.3);
+  box-shadow:0px 0px 3px rgba(255,155,155,0.3);
+  width:349px;
+  height:2px;
+}
 /*dialog style*/
 
 .smallCard .ui-dialog-titlebar {
