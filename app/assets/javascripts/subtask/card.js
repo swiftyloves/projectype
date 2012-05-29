@@ -12,8 +12,8 @@ $(function() {
     $('#card').dialog({
       //autoOpen: false,
       resizable: false,
-      height: 400,
-      width: 356,
+      height: 500,
+      width: 405,
       modal: true,
       dialogClass: "smallCard",
       open: function(event) {
@@ -233,5 +233,15 @@ $(function() {
   };
 
   //test();
-  
+  //style js
+  $('#commentArea textarea').focus(function() {
+      console.log('focus!!')
+      console.log($(this))
+      $(this).addClass('focus')
+  });
+  $('#commentArea textarea').focusout(function() {
+      console.log(this)
+      $(this).removeClass('focus')
+  });
 });
+
