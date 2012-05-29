@@ -136,6 +136,8 @@ $(function() {
   initTimebar = function (sday, dday) {
     firstday = new Date(sday);
     endday = new Date(dday);
+    firstday = new Date(firstday.valueOf() - 864000000);
+    endday = new Date(endday.valueOf() + 864000000);
     var i = firstday;
     var end = endday;
     var month;
