@@ -1,3 +1,5 @@
+
+
 #sddaysArea input, #card textarea {
   font-size: 14px;
   background: rgba(255, 255, 255, 0.4);
@@ -11,8 +13,6 @@
   width: 45px;
   height: 45px;
 }
-
-
 
 .mem {
   /*background: rgba(255, 0, 0, 0.5);*/
@@ -130,14 +130,25 @@
 }
 
 #userList {
+  /*z-index:-1;*/
   position: absolute;
   /*visibility: hidden;*/
   margin-top: 5px;
+  padding: 7px 5px;
+  box-shadow:3px 3px 7px rgba(136,136,136,0.8);
+  background-color: rgba(255,255,255,1);
+  border-radius:5px;
+  /*@include transition-property(all);
+  @include transition-duration(0.5s);*/
 }
 
 #userList > div {
   margin-left: 5px;
   display: inline-block;
+}
+#userList > div:hover{
+  box-shadow:2px 2px 3px rgba(136,136,136,0.8);
+  cursor:pointer;
 }
 
 #mems > div {
@@ -183,7 +194,7 @@
 #card::-webkit-scrollbar {
   margin-right:10px;
   width: 12px;
-  border-radius: 12px;
+  border-radius: 15px;
 }
 
 #card::-webkit-scrollbar-track {
@@ -200,3 +211,4 @@
   width:1px;
   background-color: rgba(255,206,206,0.4);
 }
+

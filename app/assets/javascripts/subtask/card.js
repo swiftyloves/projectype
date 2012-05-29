@@ -210,11 +210,20 @@ $(function() {
 
   $("#addMemButton").click(function(event) {
     if ($("#userList").is(":visible")) {
+      console.log('hide!')
       $("#userList").hide();
+      // $("#userList").css("z-index",-1);
     } else {
+      console.log('show!')
       $("#userList").show();
+      // $("#userList").css("z-index",1);
     }
   });
+
+  // $("#addMemButton").blur(function(event) {
+  //   console.log('addBlur')
+  //   $("#userList").hide();    
+  // });  
 
   $("#userList .mem").click(function(event, ui) {
     addUserToMem(event, $(this));
