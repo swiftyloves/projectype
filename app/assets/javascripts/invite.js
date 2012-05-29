@@ -23,9 +23,27 @@ $(function() {
             //doBlockingEnd();
           },
           success: function(response) {
-            //handleResponse(response);
-            //$("#projectName span").empty().append(name);
-            //doBlockingEnd();
+            $.blockUI({
+              message: "Success!!",
+              fadeIn: 700,
+              fadeOut: 700,
+              timeout: 2000,
+              showOverlay: false,
+              centerU: false,
+              css: {
+                width: '130px',
+                height: '45px',
+                top: '67px',
+                left: '', 
+                right: '100px',
+                border: 'none',
+                padding: '27px 0px 0px 0px',
+                backgroundColor: '#000',
+                'border-radius': '35px',
+                opacity: .5,
+                color: '#fff',
+              }   
+            }); 
           }
         });
 
