@@ -109,6 +109,9 @@ $(function() {
 
   $("#taskButton").click(function(event, ui) {
     if (currentState != $(this)) {
+      $("#userButton").show();
+      $("#taskButton").show();
+
       currentState = $(this);
       resetToggle();
       $(this).addClass("toggling");

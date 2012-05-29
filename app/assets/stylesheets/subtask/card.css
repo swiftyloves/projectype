@@ -1,11 +1,17 @@
+
+
 #sddaysArea input, #card textarea {
   font-size: 14px;
-  background: rgba(255, 255, 255, 0.3);
+  background: rgba(255, 255, 255, 0.4);
+}
+
+#sddaysArea input:hover{
+  cursor:pointer;
 }
 
 .mem, .deleteMem {
-  width: 50px;
-  height: 50px;
+  width: 45px;
+  height: 45px;
 }
 
 .mem {
@@ -20,7 +26,7 @@
 }
 
 .deleteMem {
-  background: rgba(255, 255, 255, 0.5);
+  background: rgba(0,0,0, 0.5);  
   visibility: hidden;
   position: absolute;
   cursor: pointer;
@@ -32,11 +38,30 @@
   height: 5px;
   position: relative;
   top: 22px;
-  left: 13px;
+  left: 10px;
+  box-shadow:0px 0px 7px 3px rgba(255,255,255,0.8);
+}
+.comment {
+  margin: 6px 1px;
+  height: 50px;
+  width: 343px;
+  box-shadow:inset 0px 0px 61px 0px rgba(255, 255, 255, 1);
+  padding: 3px;
+  line-height:13px;
 }
 
 .comment * {
-  display: inline-block;  
+  display: inline-block;
+  font-size:14px;
+  vertical-align:top;
+  line-height:15px;
+}
+.comment pre{
+  padding:0px 5px;
+  vertical-align: top;
+}
+.comment .mem{
+  margin: 2px 2px ;
 }
 
 #card {
@@ -46,12 +71,36 @@
 
 #card textarea {
   resize: none;
-  width: 300px;
+  width: 343px;
   outline: none;
+  border-width:0px;
+  height:55px;
+  margin-top: 8px;
+  margin-bottom: 12px;
+  padding:3px;
 }
 
 #discription textarea {
-  border: none;
+  overflow: auto;
+  border: none;  
+  height:60px;
+  margin:10px 0px 0px;
+  color:#663300;
+}
+
+#discription textarea:hover,#commentArea textarea:hover{
+  background:rgba(255,255,255,1);
+  color:black;
+  box-shadow:0px 1px 2px #D5D5D4;
+  border-width:0px;
+}
+
+
+#card div .focus{
+  box-shadow:inset 0px 0px 6px rgba(255,0,0,0.7);
+  outline:none;
+  /*border:1px solid #D5D5D4;*/
+  background:rgba(255,255,255,1);
 }
 
 #sddaysArea input {
@@ -59,56 +108,125 @@
   height: 16px;
   border: none;
   outline: none;
+  color:#4A4A49;
+}
+#sddaysArea input:hover{
+  background:rgba(255,255,255,1);
+  color:black;
 }
 
-#memArea > div, #mems > div {
-  display: inline-block;
+
+#mems {
+  margin: 6px 0px 10px 0px;
+  background:rgba(255,255,255,0.5);
+  padding:7px;
+  width:334px;
+  display: block;
+}
+
+#memArea {
+  margin-top:9px;
+}
+
+#memArea > div,{
+  display: block;
   vertical-align: top;
+}
+#mems > div {
+  display: inline-block;
 }
 
 #memInfo {
-  width: 65px;
+  background:rgba(255,155,155,0.3);
+  border-radius:2px;
+  width:63px;
+  padding:4px;
+  font-size:10px;
+  height:9px;
+  vertical-align:middle;
 }
 
+/*#commentArea > p{
+  width:75px;
+  background:rgba(255,155,155,0.6);
+  padding:2px;
+}
+*/
+
 #userList {
+  /*z-index:-1;*/
   position: absolute;
   /*visibility: hidden;*/
   margin-top: 5px;
+  padding: 7px 9px 7px 5px;
+  box-shadow:3px 3px 7px rgba(136,136,136,0.5),inset 0px 0px 3px rgba(255,155,155,0.8);;
+  background-color: rgba(255,255,255,1);
+  border-radius:5px;
+  border:1px solid rgba(255,155,155,0.8);
+  /*@include transition-property(all);
+  @include transition-duration(0.5s);*/
 }
 
 #userList > div {
   margin-left: 5px;
   display: inline-block;
 }
+#userList > div:hover{
+  box-shadow:2px 2px 3px rgba(136,136,136,0.8);
+  cursor:pointer;
+  background:rgba(255,255,255,0.3);
+}
 
 #mems > div {
   margin-left: 5px;
 }
 
-#addMemButton {
-  margin-left: 41px;
-  width: 15px;
-  height: 15px;
-  background: rgba(233, 225, 158, 1);
-  box-shadow: 0px 1px 2px 0px rgba(32, 32, 32, 1);
-}
-
-#addMemButton:hover {
+#memInfo:hover {
   cursor: pointer;
-}
+  box-shadow: 0px 1px 2px 0px rgba(32, 32, 32, 1);
+}background:rgba(255,155,155,0.3);
+  border-radius:2px;
+  width:63px;
+  padding:4px;
+  font-size:10px;
+  height:9px;
+  vertical-align:middle;
 
-#addMemButton:active {
+#memInfo:active {
   box-shadow: 0px 0px 1px 0px rgba(32, 32, 32, 1);
 }
 
 
-#addMemButton span {
+#memInfo span {
   position: relative;
   top: -4px;
   left: 0px;
+  color:#643403;
+}
+
+#addMemButton #plus{
   color: red;
 }
 
+#commentArea #comtext{
+  background:rgba(255,155,155,0.3);
+  border-radius:2px;
+  width:63px;
+  padding:2px 4px 4px 4px;
+  font-size:10px;
+  height:13px;
+  vertical-align:middle;  
+}
+#linecontain{
+  border-bottom:1px solid rgba(255,155,155,0.3);
+  width:264px;
+}
+#commentcontain{
+  border-bottom:1px solid rgba(255,155,155,0.3);
+  box-shadow:0px 0px 3px rgba(255,155,155,0.3);
+  width:349px;
+  height:2px;
+}
 /*dialog style*/
 
 .smallCard .ui-dialog-titlebar {
@@ -120,3 +238,56 @@
   color: rgb(100, 52, 3);
 }
 
+/*scollerbar*/
+#card::-webkit-scrollbar, #card textarea::-webkit-scrollbar {
+  margin-right:10px;
+  width: 12px;
+  border-radius: 15px;
+}
+
+#card::-webkit-scrollbar-track, #card textarea::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+    border-radius: 12px;
+}
+
+#card::-webkit-scrollbar-thumb, #card textarea::-webkit-scrollbar-thumb {
+    border-radius: 14px;
+    background-color: rgba(255,177,176,0.6);
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+}
+#card::-webkit-scrollbar-track-piece, #card textarea::-webkit-scrollbar-track-piece {
+  width:1px;
+  background-color: rgba(255,206,206,0.4);
+}
+
+
+/* datepicker */
+
+.ui-datepicker {
+}
+
+.ui-datepicker-header {
+  background: rgba(216, 199, 121,0.5);
+  box-shadow: 0px 0px 6px 1px rgba(210, 191, 101, 0.7) inset;
+}
+
+.ui-datepicker-title {/*
+  background: rgb(216, 199, 121);
+  box-shadow: 0px 0px 4px 1px rgba(210, 191, 101, 0.7) inset;*/
+}
+
+.ui-datepicker td .ui-state-default {
+  background: rgba(222, 207, 141, 0.7);
+  border: none;
+  border-radius: 4px;
+}
+
+.ui-datepicker td .ui-state-hover {
+  background: rgba(168, 148, 49, 0.7);
+}
+
+.ui-datepicker td .ui-state-active {
+  background: rgba(242, 237, 210, 0.5);
+  box-shadow: 0px 0px 4px 2px rgba(168, 148, 49, 0.5) inset;
+  border:1px solid rgba(168, 148, 49, 0.5);
+}

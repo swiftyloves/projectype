@@ -35,30 +35,35 @@
 
 </script>
 
-<div id="card" title="">
+<div id="card" dirty=0>
   <div id="sddaysArea">
     <input id="sday"></input>
     <span>-</span>
     <input id="dday"></input>
   </div>
   <div id="discription">
-    <textarea></textarea>
+    <textarea row=3 col=37 weap='hard'></textarea>
   </div>
   <div id="memArea">
-    <div id="memInfo">
-      <p>member:</p>
-      <div id="addMemButton">
-        <span>+</span>
-      </div>
-      <div id="userList">
+    <div id="linecontain">
+      <div id="memInfo">
+        <div id="addMemButton">
+          <span id="plus">+</span><span>member</span>
+        </div>
+        <!-- <p>member</p> -->
+        <div id="userList">
+        </div>
       </div>
     </div>
     <div id="mems">
     </div>
   </div>
   <div id="commentArea">
-    <p>comment:<p>
-    <textarea row=3></textarea>
+    <div id="linecontain">
+    <p id="comtext">comment:<p>
+    </div>
+    <textarea row=3 col=37 wrap='hard'></textarea>
+    <div id="commentcontain"></div>
     <div id="comments">
     </div>
   </div>

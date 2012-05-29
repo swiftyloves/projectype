@@ -12,8 +12,8 @@ $(function() {
     $('#card').dialog({
       //autoOpen: false,
       resizable: false,
-      height: 400,
-      width: 356,
+      height: 500,
+      width: 405,
       modal: true,
       dialogClass: "smallCard",
       open: function(event) {
@@ -29,6 +29,7 @@ $(function() {
               d = {"id": $("#card").attr("subid"),
                   "dday": dateText};
             }
+            $("#card").attr("dirty", 1);
             $.ajax({
               type: 'PUT',
               url: '/subtask/edit',
@@ -41,6 +42,9 @@ $(function() {
               }
             });
           },
+        });
+        $("#card, .ui-widget-overlay").click(function(event, ui) {
+          $("#userList").hide();
         });
       },
     });
@@ -85,6 +89,7 @@ $(function() {
  
   function deleteMem(event, ui) {
     // ajax
+    $("#card").attr("dirty", 1);
     $.ajax({
       type: 'PUT',
       url: '/subtask/edit',
@@ -115,7 +120,7 @@ $(function() {
       return;
     }
     // ajax
-
+    $("#card").attr("dirty", 1);
     $.ajax({
       type: 'PUT',
       url: '/subtask/edit',
@@ -164,7 +169,7 @@ $(function() {
       return;
     }
     // ajax
-
+    //$("#card").attr("dirty", 1);
     $.ajax({
       type: 'POST',
       url: '/subtask/comment',
@@ -179,14 +184,13 @@ $(function() {
 
     var img = $("#headImg").css("background-image");
     img = img.substr(4, img.length - 5);
-    console.log(img)
     addComment(tmp, $("#headImg").attr("uid"), img);
     $(this).val("");
   });
 
   $("#discription textarea").blur(function(event) {
     // ajax
-
+    //$("#card").attr("dirty", 1);
     $.ajax({
       type: 'PUT',
       url: '/subtask/edit',
@@ -203,17 +207,6 @@ $(function() {
 
 
   $(".deleteMem").click(function(event, ui) {
-    $.ajax({
-      type: 'PUT',
-      url: '/subtask/edit',
-      data: {"id": $("#card").attr("subid"), "duid": $(this).attr("uid")},
-      error: function(response) {
-        console.log(response);
-        alert("err");
-      },
-      success: function(response) {
-      }
-    });
     deleteMem(event, $(this));
   });
 
@@ -221,8 +214,9 @@ $(function() {
     if ($("#userList").is(":visible")) {
       $("#userList").hide();
     } else {
-      $("#userList").show();
+      $("#userList").fadeIn('1s');
     }
+    event.stopPropagation();
   });
 
   $("#userList .mem").click(function(event, ui) {
@@ -243,4 +237,19 @@ $(function() {
 
   //test();
   
+  //style input
+  $('#commentArea textarea').focus(function() {
+      $(this).addClass('focus')
+  });
+  $('#commentArea textarea').focusout(function() {
+      $(this).removeClass('focus')
+  });
+  $('#discription textarea').focus(function() {
+      $(this).addClass('focus')
+  });
+  $('#discription textarea').focusout(function() {
+      $(this).removeClass('focus')
+  });
+
 });
+
