@@ -129,14 +129,24 @@ $(function() {
   var endday;
   var count = 2;
 
+  var monMap = ["Jan", "Fab", "Mar", "Apr", "May", "Jun",
+                "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+
+
   initTimebar = function (sday, dday) {
     firstday = new Date(sday);
     endday = new Date(dday);
     var i = firstday;
     var end = endday;
+    var month;
     for (; i <= end; i = new Date(i.valueOf() + 86400000)) {
       $(".dummyEnd").before("<div>"+i.getDate()+"</div>");
       count++;
+      if (month != i.getMonth()) {
+        month = i.getMonth();
+        $(".dummyEnd").after("<span class='monLabel' style='left:"
+                             +((count-2)*30 - 4)+"px;'>"+monMap[month]+"</span>");
+      }
     }
     $("#timeBar, #timeBarDragHelper").css("width", count * 30 + 10);
     $("#taskCanvas").css("width", (count - 2) * 30 + 10);
