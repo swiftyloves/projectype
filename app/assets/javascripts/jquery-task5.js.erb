@@ -65,19 +65,21 @@
                   for(var j=0;j<=ulnum;j++){                     
 		             if(response['t'][i].pos_x==j){ //tasks                                                                       
 		                 tmp = $('<li><div><span>' + response['t'][i].name + '</span></div></li>'); 	
-		                 triangle = $('<button id="triangle">Triangle</button>');
-		                 rename = $('<button id="rename">Rename</button>');	
-						 del = $('<button id="delete">Delete</button>');
-						 finish = $('<button id="finish">Finish</button>');
-						 open = $('<button id="open">Open</button>');
+		                 triangle = $('<button class="triangle"></button>');
+		                 rename = $('<button class="rename"></button>');	
+						 del = $('<button class="delete"></button>');
+						 finish = $('<button class="finish"></button>');
+						 open = $('<button class="open"></button>');
 		                 div = $('<div></div>');	
-		                 button = $('<button>Add subtask</button>');
+		                 button = $('<button class="sub">Add subtask</button>');
 		                 tmp.appendTo($(ularray[j]));
+                         var div2 = $('<div class="group" style="height:auto; width:auto; top:-16px; left:203px;"></div>');	
+                         div2.appendTo(tmp.children("div:nth-child(1)")).hide();
 		                 triangle.appendTo(tmp.children("div:nth-child(1)")).hide();		
-		                 rename.appendTo(tmp.children("div:nth-child(1)")).hide();	
-						 del.appendTo(tmp.children("div:nth-child(1)")).hide();	
-						 finish.appendTo(tmp.children("div:nth-child(1)")).hide();	
-						 open.appendTo(tmp.children("div:nth-child(1)")).hide(); 
+		                 rename.appendTo(div2);	
+						 del.appendTo(div2);	
+						 finish.appendTo(div2);	
+						 open.appendTo(div2); 
 		                 div.appendTo(tmp).hide();	
 		                 button.appendTo(div);
                          if(response['t'][i].done==true) //check done or not
@@ -85,16 +87,18 @@
                          //add subtask, subtask order by start date?                           			                  
 						 for(var k=0; k<response['s'].length; k++){			     
 							 if(response['s'][k].task_id==response['t'][i].id){
-                                 subtask = $('<li><span>' + response['s'][k].name + '</span></li>')                                 
-						         triangle = $('<button id="triangle">Triangle</button>');
-						         rename = $('<button id="rename">Rename</button>');	
-								 del = $('<button id="delete">Delete</button>');
-								 finish = $('<button id="finish">Finish</button>');
+                                 subtask = $('<li><span>' + response['s'][k].name + '</span></li>')                                   
+						         triangle = $('<button class="triangle"></button>');
+						         rename = $('<button class="rename"></button>');	
+								 del = $('<button class="delete"></button>');
+								 finish = $('<button class="finish"></button>');
 						         subtask.appendTo(div);
 						         triangle.appendTo(subtask).hide();
-								 rename.appendTo(subtask).hide();
-								 del.appendTo(subtask).hide();
-								 finish.appendTo(subtask).hide();  
+                                 var div3=$('<div class="subgroup" style="height:auto; width:auto; top:-16px; left:202px;"></div>');	                               
+                                 div3.appendTo(subtask).hide()
+								 rename.appendTo(div3);
+								 del.appendTo(div3);
+								 finish.appendTo(div3);  
                                  subtask.attr("num", response['s'][k].id);   
                                  if(response['s'][k].done==true) //check done or not
                                     subtask.addClass("subdone");
@@ -111,10 +115,13 @@
 										   console.log("success!");    
                                            var subb = $("[num="+response['s'].id+"]");
                                            console.log(subb);
-                                           console.log(response['u'].length);   
+                                           console.log(response['u'].length);  
+                                           div = $('<div></div>');
+                                           subb.children(".triangle").before(div);  
+                                           subb.children("div").hide(); 
                                            for(var m=0; m<response['u'].length; m++){
-                                               subb.children("#triangle").before('<div style="background: url('+response['u'][m].img+') center no-repeat; background-size: 15%;"></div>');            
-                                               subb.children("div").hide();                    
+                                               //subb.children(".triangle").before('<div style="background: url('+response['u'][m].img+') center no-repeat; background-size: 15%;"></div>');            
+                                               subb.children("div").append('<div style="background: url('+response['u'][m].img+') center no-repeat; background-size: 15%;"></div>');                                                                    
                                            }                                
 									   }
 		                         });	                            								 
@@ -128,7 +135,7 @@
                bigbutton.appendTo("ul");   
                var secdivs = $("ul").children("li").children("div:nth-child(2)");
                $(secdivs).children("button").remove();
-               button = $('<button>Add subtask</button>');
+               button = $('<button class="sub">Add subtask</button>');
                button.appendTo(secdivs);
 			}	       
 	    });
@@ -213,11 +220,11 @@
 			}
             var thisul = $(this).parent("ul");	
 		    bigbutton = $('<button>Add Task</button>');
-		    button = $('<button>Add subtask</button>');
+		    button = $('<button class="sub">Add subtask</button>');
 			ul = $('<ul class="connectedlist main"></ul>'); // 
             tmp = $('<li><div><input type="text" maxlength=11 value="New Task"></div></li>'); 		// 
 			div = $('<div></div>');	
-            triangle = $('<button id="triangle">Triangle</button>');	   			
+            triangle = $('<button class="triangle"></button>');	   			
 		    tmp.addClass('editing').appendTo($(this).parent("ul")); //display inline
             //div.appendTo('#line1');			
 			//console.log(tmp);
@@ -257,14 +264,21 @@
             button.appendTo(div);
             div.appendTo(tmp);	
 			div.hide();		
-            rename = $('<button id="rename">Rename</button>');	
-			del = $('<button id="delete">Delete</button>');
-			finish = $('<button id="finish">Finish</button>');
-			open = $('<button id="open">Open</button>');
-			rename.appendTo(tmp.children("div:nth-child(1)")).hide();
+            rename = $('<button class="rename"></button>');	
+			del = $('<button class="delete"></button>');
+			finish = $('<button class="finish"></button>');
+			open = $('<button class="open"></button>');
+            var div2 = $('<div class="group" style="height:auto; width:auto; top:-16px; left:203px;"></div>');
+            div2.appendTo(tmp.children("div:nth-child(1)")).hide();		    	
+		    rename.appendTo(div2);	
+			del.appendTo(div2);	
+			finish.appendTo(div2);	
+			open.appendTo(div2);             
+
+			/*rename.appendTo(tmp.children("div:nth-child(1)")).hide();
 			del.appendTo(tmp.children("div:nth-child(1)")).hide();
 			finish.appendTo(tmp.children("div:nth-child(1)")).hide();
-			open.appendTo(tmp.children("div:nth-child(1)")).hide();			
+			open.appendTo(tmp.children("div:nth-child(1)")).hide();*/			
             $(this).appendTo($(this).parent("ul"));
 			console.log($(this).parent("ul").children("li").length);
 			//if($(this).parent("ul").children("li").length==1){	
@@ -296,18 +310,23 @@
 	    });	
 		// new!!
 		$("#placeholder").on("hover", "ul>li>div:nth-child(1)", function(event){		    
-			$(this).children("#triangle").show();
+			$(this).children(".triangle").show();
 			event.preventDefault();						
 		});		
 		$("#placeholder").on("mouseleave","ul>li>div:nth-child(1)", function(event){
-		    $(this).children("button").hide();   			
+		    //$(this).children("button").hide();   
+            $(this).children(".triangle").hide();			
+            $(this).children("div").hide();
 			event.stopPropagation();
 		});			
-		$("#placeholder").on("click","ul>li>div:nth-child(1)>#triangle", function(event){		    
-			$(this).parent("div").children("button").show();			
+		$("#placeholder").on("click","ul>li>div:nth-child(1) .triangle", function(event){		    
+			//$(this).parent("div").children("div").children("button").show();
+            $(this).parent("div").children("div").show();
+            //console.log($(this).parent("div").children("div").children("button"));			
 			event.stopPropagation();
 		});	
-		$("#placeholder").on("click","ul>li>div:nth-child(1)>#rename", function(event){		    
+		$("#placeholder").on("click","ul>li>div:nth-child(1)>div> .rename", function(event){		   
+            console.log($(this)); 
 			var input2 = $(this).parents("#placeholder").find("div:nth-child(1)").children("input");
 			input2.parents("li").removeClass("editing").children("div:nth-child(1)").prepend('<span>'+input2.attr('value')+'</span>');
 			input2.remove();	
@@ -317,8 +336,8 @@
 			input3.parent("li").removeClass("altering").prepend('<span>'+input3.attr('value')+'</span>');
 			input3.remove();						
 			   parentli = $(this).parents("li");
-			   parentdiv = $(this).parent("div");
-			   input = $('<input type="text" maxlength=11 value="' + $(this).siblings("span").html()+'">');                  
+			   parentdiv = $(this).parent("div").parent("div");
+			   input = $('<input type="text" maxlength=11 value="' + $(this).parent("div").siblings("span").html()+'">');                  
 			   input.prependTo(parentdiv).addClass('editing'); 	
                parentdiv.children("span").remove();
                console.log(parentdiv.children("input"))			   
@@ -351,7 +370,7 @@
                });                      							
 			event.stopPropagation();
 		});
-        $("#placeholder").on("click","ul>li>div:nth-child(1)>#delete", function(event){		 
+        $("#placeholder").on("click","ul>li>div:nth-child(1)>div> .delete", function(event){		 
             var posx = $(this).parents("ul").index();
             var posy = $(this).parents("li").index();
             $.ajax({
@@ -383,8 +402,10 @@
 			}				 	
 			event.stopPropagation();
 		});	
-        $("#placeholder").on("click","ul>li>div:nth-child(1)>#finish", function(event){		    
-			$(this).parents("li").addClass("done");	
+        $("#placeholder").on("click","ul>li>div:nth-child(1)>div> .finish", function(event){	
+            console.log("finish");	    
+			//$(this).parents("li").addClass("done");
+            $(this).parent("div").siblings("span").addClass("done"); 	
             var posx = $(this).parents("ul").index();
             var posy = $(this).parents("li").index();
             $.ajax({
@@ -403,7 +424,7 @@
                 });            			
 			event.stopPropagation();
 		});	
-        $("#placeholder").on("click","ul>li>div:nth-child(1)>#open", function(event){	
+        $("#placeholder").on("click","ul>li>div:nth-child(1)>.open", function(event){	
             // add Big card!!!!
             var posx = $(this).parents("ul").index();
             var posy = $(this).parents("div").parent("li").index();
@@ -443,7 +464,8 @@
 			   $(this).parent("li").removeClass('presenting');	               			   
 			}			
 		});		
-		$("#placeholder").on("click","ul div:nth-child(2) button", function(event){		    
+		$("#placeholder").on("click","ul div:nth-child(2) .sub", function(event){		    
+            console.log("whyhere...");
 		    if($(this).parents("#placeholder").find("div:nth-child(2)").children("li").hasClass('altering')){
 			    console.log($(this).parents("#placeholder").find("div:nth-child(2)").children("li"));
 			    subtask.removeClass('altering').prepend('<span>New Subtask</span>');//val()拿字	
@@ -481,14 +503,16 @@
                 subtask.children("input").remove();				
 			});	
             
-            triangle = $('<button id="triangle">Triangle</button>');			
-			rename = $('<button id="rename">Rename</button>');	
-			del = $('<button id="delete">Delete</button>');
-			finish = $('<button id="finish">Finish</button>');			
+            triangle = $('<button class="triangle"></button>');			
+			rename = $('<button class="rename"></button>');	
+			del = $('<button class="delete"></button>');
+			finish = $('<button class="finish"></button>');			
 			triangle.appendTo(subtask).hide();
-			rename.appendTo(subtask).hide();
-			del.appendTo(subtask).hide();
-			finish.appendTo(subtask).hide();			
+            var div3=$('<div class="subgroup" style="height:auto; width:auto; top:-16px; left:202px;"></div>');	                               
+            div3.appendTo(subtask).hide()
+			rename.appendTo(div3);
+			del.appendTo(div3);
+			finish.appendTo(div3);					
 			$(this).appendTo($(this).parent("div"));
 			console.log(event);
 			event.stopPropagation();
@@ -497,18 +521,21 @@
         //new!!!
         $("#placeholder").on("hover", "ul>li>div:nth-child(2)>li", function(event){		
             console.log($(this));		
-			$(this).children("#triangle").show();
+			$(this).children(".triangle").show();
 			event.preventDefault();						
 		});		
 		$("#placeholder").on("mouseleave","ul>li>div:nth-child(2)>li", function(event){
-		    $(this).children("button").hide();   			
+		    $(this).children(".triangle").hide();   	
+            $(this).children("div").hide(); 		
 			event.stopPropagation();
 		});			
-		$("#placeholder").on("click","ul>li>div:nth-child(2) #triangle", function(event){		    
-			$(this).parent("li").children("button").show();			
+		$("#placeholder").on("click","ul>li>div:nth-child(2) .triangle", function(event){		
+            console.log("button",$(this));    
+            console.log($(this).parent("li").children("div"));
+			$(this).parent("li").children("div").show();			
 			event.stopPropagation();
 		});			
-		$("#placeholder").on("click","ul>li>div:nth-child(2) #rename", function(event){		    			
+		$("#placeholder").on("click","ul>li>div:nth-child(2) .rename", function(event){		    			
 			var input2 = $(this).parents("#placeholder").find("div:nth-child(1)").children("input");
 			input2.parents("li").removeClass("editing").children("div:nth-child(1)").prepend('<span>'+input2.attr('value')+'</span>');
 			input2.remove();	
@@ -518,10 +545,10 @@
 			input3.remove();	
 			var thisul = $(this).parents("ul");
             var thisli = $(this).parents("div").parent("li");            
-			parentli = $(this).parent("li");
-			input = $('<input type="text" maxlength=20 value="' + $(this).siblings("span").html()+'">'); 	
+			parentli = $(this).parent("div").parent("li");
+			input = $('<input type="text" maxlength=20 value="' + $(this).parent("div").siblings("span").html()+'">'); 	
             
-            var subtaskid = $(this).parent("li").attr("num");
+            var subtaskid = $(this).parent("div").parent("li").attr("num");
 		    parentli.addClass('altering'); 
 		    input.prependTo(parentli);	
             parentli.children("span").remove();
@@ -547,6 +574,7 @@
                        alert("err");
                    },
                    success: function(response) {
+                       console.log(response);
                        console.log("success!");
                    }
                 });         
@@ -554,12 +582,12 @@
              });			 							
 			event.stopPropagation();
 		});
-        $("#placeholder").on("click","ul>li>div:nth-child(2) #delete", function(event){	   
+        $("#placeholder").on("click","ul>li>div:nth-child(2) .delete", function(event){	   
             var posx = $(this).parents("ul").index();
             var posy = $(this).parents("div").parent("li").index();
-            var subtask = $(this).parent("li").attr("num");//$(this).siblings("span").text();  
+            var subtask = $(this).parent("div").parent("li").attr("num");//$(this).siblings("span").text();  
             console.log("hey!!!!"); 
-            console.log("num",$(this).parent("li").attr("num"));        
+            console.log("num",$(this).parent("div").parent("li").attr("num"));        
             $.ajax({
                    type: 'POST',
                    url: '/task/deletesubtask',
@@ -574,16 +602,17 @@
                 });            
 			//$(this).parents("li").remove();		
 			//event.stopPropagation();	    
-			$(this).parent("li").remove();		
+			$(this).parent("div").parent("li").remove();		
 			event.stopPropagation();
 		});	
-        $("#placeholder").on("click","ul>li>div:nth-child(2) #finish", function(event){		    
-			$(this).parent("li").addClass("subdone");		
+        $("#placeholder").on("click","ul>li>div:nth-child(2) .finish", function(event){		
+            console.log("subfinish");    
+			$(this).parent("div").parent("li").addClass("subdone");		
             var posx = $(this).parents("ul").index();
-            var posy = $(this).parents("div").parent("li").index();
-            var subtask = $(this).parent("li").attr("num");//$(this).siblings("span").text();  
+            var posy = $(this).parent("div").parent("li").parents("li").index();
+            var subtask = $(this).parent("div").parent("li").attr("num");//$(this).siblings("span").text();  
             console.log("hey!!!!"); 
-            console.log("num",$(this).parent("li").attr("num"));        
+            console.log("num",$(this).parent("div").parent("li").attr("num"));        
             $.ajax({
                    type: 'POST',
                    url: '/task/donesubtask',
@@ -593,7 +622,7 @@
                        alert("err");
                    },
                    success: function(response) {
-                       $(this).parent("li").attr("done", response.done); 
+                       $(this).parent("div").parent("li").attr("done", response.done); 
                        console.log(response);
                        console.log("success!");
                    }
@@ -602,8 +631,7 @@
 		});	
         //          
         $("#placeholder").on("hover","li li span", function(event){
-		    $(this).parent("li").children("div").show();			 
-			event.stopPropagation();
+		    $(this).parent("li").children("div").show();			 			
 		});	
         $("#placeholder").on("mouseleave","li li span", function(event){
 			$(this).parent("li").children("div").hide();			
