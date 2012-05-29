@@ -94,7 +94,6 @@ class SubtaskController < ApplicationController
         subtask.description = params[:desc]
       end
       if params[:afterid]
-        subtask.afters << Subtask.find(params[:afterid])
         Subtaskorder.new(:subtask_id => params[:id], :after_id => params[:after]).save
       end
       if params[:dafterid]
