@@ -43,6 +43,9 @@ $(function() {
             });
           },
         });
+        $("#card, .ui-widget-overlay").click(function(event, ui) {
+          $("#userList").hide();
+        });
       },
     });
 
@@ -181,7 +184,6 @@ $(function() {
 
     var img = $("#headImg").css("background-image");
     img = img.substr(4, img.length - 5);
-    console.log(img)
     addComment(tmp, $("#headImg").attr("uid"), img);
     $(this).val("");
   });
@@ -210,20 +212,12 @@ $(function() {
 
   $("#addMemButton").click(function(event) {
     if ($("#userList").is(":visible")) {
-      console.log('hide!')
       $("#userList").hide();
-      // $("#userList").css("z-index",-1);
     } else {
-      console.log('show!')
-      $("#userList").show();
-      // $("#userList").css("z-index",1);
+      $("#userList").fadeIn('1s');
     }
+    event.stopPropagation();
   });
-
-  // $("#addMemButton").blur(function(event) {
-  //   console.log('addBlur')
-  //   $("#userList").hide();    
-  // });  
 
   $("#userList .mem").click(function(event, ui) {
     addUserToMem(event, $(this));
@@ -245,21 +239,15 @@ $(function() {
   
   //style input
   $('#commentArea textarea').focus(function() {
-      console.log('focus!!')
-      console.log($(this))
       $(this).addClass('focus')
   });
   $('#commentArea textarea').focusout(function() {
-      console.log(this)
       $(this).removeClass('focus')
   });
   $('#discription textarea').focus(function() {
-      console.log('focus!!')
-      console.log($(this))
       $(this).addClass('focus')
   });
   $('#discription textarea').focusout(function() {
-      console.log(this)
       $(this).removeClass('focus')
   });
 
