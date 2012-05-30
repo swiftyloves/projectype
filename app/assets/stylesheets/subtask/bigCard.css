@@ -15,11 +15,11 @@
 
 .ep {
   width: 12px;
-  height: 17px;
+  height: 9px;
   background: rgba(248, 131, 51, 0.8);
-  border-radius: 15px;
+  border-radius: 4px;
   position: absolute;
-  top: 38%;
+  top: 31%;
 }
 
 .atHead {
@@ -37,6 +37,11 @@
   border-radius: 3px;
   box-shadow: 0px 1px 2px 0px rgb(0, 0, 0); 
   position:absolute;
+}
+
+.window:hover {
+  cursor: pointer;
+  box-shadow: 1px 2px 5px 0px rgb(128, 128, 128);
 }
 
 .window span {
