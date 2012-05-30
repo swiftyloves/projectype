@@ -107,7 +107,7 @@ class TaskController < ApplicationController
       end
       @project = Project.find(session[:current_proj])
       @task = @project.tasks.where(:pos_x => params[:oldposx] , :pos_y => params[:oldposy])[0]
-      
+
       @project.tasks.where(:pos_x => params[:oldposx]).each do |task|          
           if (task.pos_y > params[:oldposy].to_i)
              puts task.name
@@ -116,7 +116,10 @@ class TaskController < ApplicationController
              puts task.pos_y 
           end
       end  
-      @project.tasks.where(:pos_x => params[:newposx]).each do |task|          
+      @project.tasks.where(:pos_x => params[:newposx]).each do |task|
+          if task == @task
+            next
+          end 
           if (task.pos_y >= params[:newposy].to_i)
              puts task.name
              task.pos_y = task.pos_y + 1
@@ -124,8 +127,8 @@ class TaskController < ApplicationController
              puts task.pos_y 
           end
       end 
-      @task.pos_x = params[:newposx]
-      @task.pos_y = params[:newposy]       
+      @task.pos_x = params[:newposx].to_i
+      @task.pos_y = params[:newposy].to_i 
       @task.save 
       render json: @project  
   end 
