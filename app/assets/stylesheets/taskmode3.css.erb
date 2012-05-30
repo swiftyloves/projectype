@@ -232,6 +232,15 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#e6ce8a', end
 .main div > div > .finish:hover{  
   background-image: url(<%= asset_path "finishicon0.png" %>);  
 }
+
+.main div > div > .finish.done{  
+  background-image: url(<%= asset_path "finishicon1_2.png" %>);  
+}
+
+.main div > div > .finish.done:hover{  
+  background-image: url(<%= asset_path "finishicon1.png" %>);  
+}
+
 .main div > div >.open{  
   background-image: url(<%= asset_path "picon_2.png" %>);
   /*position:absolute;
@@ -277,6 +286,14 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#e6ce8a', end
 .main div >li > div >.finish:hover{  
   background-image: url(<%= asset_path "finishicon0.png" %>)  
 }
+.main div >li> div > .finish.subdone{  
+  background-image: url(<%= asset_path "finishicon1_2.png" %>);  
+}
+
+.main div >li> div > .finish.subdone:hover{  
+  background-image: url(<%= asset_path "finishicon1.png" %>);  
+}
+
 
 .main li div li span{
   font-weight:normal;
