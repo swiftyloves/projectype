@@ -52,7 +52,7 @@ class ProjectController < ApplicationController
     end
     url = Inviteurl.find_by_hashcode(params[:hash])
     unless url
-      render json: "No found"
+      render :nofound, :layout => false
       return
     end
     # TODO: clear garbage

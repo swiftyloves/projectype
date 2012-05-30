@@ -1,0 +1,13 @@
+no found.
+You will be redirected to our home in <span>5</span> s.
+<script>
+  function f() {
+    var tmp = document.getElementsByTagName("span")[0];
+    tmp.innerHTML -= 1;
+    if (tmp.innerHTML == 0) {
+      window.location = "/home";
+    }
+    window.setTimeout(f, 1000);
+  }
+  window.setTimeout(f, 1000);
+</script>
