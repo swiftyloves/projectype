@@ -131,7 +131,7 @@ $(function() {
         console.log("recieve:" + name);
         $("#projectName span").empty().append(name);
         $("#projectName span").attr("pid", id);
-        //doBlockingStart();
+        doBlockingStart();
         $.ajax({
           type: 'POST',
           url: '/task',
@@ -140,7 +140,7 @@ $(function() {
             console.log(response);
             $("#projectName span").empty();
             $("#projectName span").attr("pid", "");
-            //doBlockingEnd();
+            doBlockingEnd();
           },
           success: function(response) {
             handleResponse(response);
@@ -149,7 +149,7 @@ $(function() {
             } else {
               $("#userButton, #taskButton").show();
             }
-            //doBlockingEnd();
+            doBlockingEnd();
           }
         });
       }
@@ -273,7 +273,7 @@ $(function() {
       return;
     }
     // ajax
-    doBlockingStart();
+    //doBlockingStart();
     $.ajax({
       type: 'PUT',
       url: '/project/edit',
@@ -284,7 +284,7 @@ $(function() {
         console.log(response);
         $("#projectName").removeClass("editingName");
         $("#projectName").addClass("noeditingName");
-        doBlockingEnd();
+        //doBlockingEnd();
         alert("err");
       },
       success: function(response) {
@@ -296,7 +296,7 @@ $(function() {
         $("#projectName span").empty().append($("#projectName input").val());
         $("#projectName").removeClass("editingName");
         $("#projectName").addClass("noeditingName");
-        doBlockingEnd();
+        //doBlockingEnd();
       }
     });
   });
