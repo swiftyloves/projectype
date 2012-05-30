@@ -31,7 +31,7 @@ class PageController < ApplicationController
 
     	mailcontent = render :file => "page/mail", :layout => false
     	mailcontent = mailcontent[0].to_s.sub("\\n", "")
-    	puts mailcontent
+    	#puts mailcontent
     	#puts mail
     	require 'gmail_sender'
     	g = GmailSender.new("ProjecType@gmail.com","project123?")

@@ -121,12 +121,11 @@
                                            var subb = $("[num="+response['s'].id+"]");
                                            console.log(subb);
                                            console.log(response['u'].length);  
-                                           div = $('<div></div>');
+                                           div = $('<div class="img"  style="height:auto; right:100px;padding:0px; width:auto; top:4px; background:white; position:absolute;"></div>');
                                            subb.children(".triangle").before(div);  
                                            div.hide(); 
                                            for(var m=0; m<response['u'].length; m++){
-                                               //subb.children(".triangle").before('<div style="background: url('+response['u'][m].img+') center no-repeat; background-size: 15%;"></div>');            
-                                               div.append('<div style="background: url('+response['u'][m].img+') center no-repeat; background-size: 15%;"></div>');                                                                    
+                                               div.append('<div style="width:30px; float:right;padding:0px; height:30px; display:inline-block; background: url('+response['u'][m].img+') center no-repeat; background-size: 80%;"></div>');                                                                    
                                            }                                
 									   }
 		                         });	                            								 
@@ -713,8 +712,33 @@
                         success: function(response) {
                           $(".smallCard").remove();
                           $("#card").remove();
-                          $(".ui-datepicker").remove();
+                          //$(".ui-datepicker").remove();
                           $("#taskSmallCardPlace").empty().hide().append(response);
+                          $("#card").bind("dialogclose", function(event) {
+                            if ($("#card").attr("dirty") == 0) {
+                              return;
+                            }
+                            $.ajax({
+                              type: 'POST',
+                              url: '/task/subuser',
+			      data: {"subid":$("#card").attr("subid")},
+			      error: function(response) {
+			        console.log(response);
+			        alert("err");
+			      },
+			      success: function(response) {
+                                console.log(response);  
+                                var subb = $("[num="+response['s'].id+"]");
+                                var div = $('<div class="img"  style="height:auto; right:100px;padding:0px; width:auto; top:4px; background:white; position:absolute;"></div>');
+                                subb.children(".triangle").siblings('.img').remove();
+                                subb.children(".triangle").before(div); 
+                                div.hide(); 
+                                for(var m=0; m<response['u'].length; m++){
+                                  div.append('<div style="width:30px; float:right;padding:0px; height:30px; display:inline-block; background: url('+response['u'][m].img+') center no-repeat; background-size: 80%;"></div>');
+                                }
+			      }
+                            });
+                          });
                           doBlockingEnd();
                         }
                       });
