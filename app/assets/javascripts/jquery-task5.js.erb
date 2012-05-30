@@ -73,7 +73,7 @@
 		                 div = $('<div></div>');	
 		                 button = $('<button class="sub">Add subtask</button>');
 		                 tmp.appendTo($(ularray[j]));
-                         var div2 = $('<div class="group" style="height:auto; width:auto; top:-16px; left:203px;"></div>');	
+                         var div2 = $('<div class="group" style="position:absolute; height:auto; width:auto; top:-30px; left:208px;"></div>');	
                          div2.appendTo(tmp.children("div:nth-child(1)")).hide();
 		                 triangle.appendTo(tmp.children("div:nth-child(1)")).hide();		
 		                 rename.appendTo(div2);	
@@ -97,7 +97,7 @@
 								 finish = $('<button class="finish"></button>');
 						         subtask.appendTo(div);
 						         triangle.appendTo(subtask).hide();
-                                 var div3=$('<div class="subgroup" style="height:auto; width:auto; top:-16px; left:202px;"></div>');	                               
+                                 var div3=$('<div class="subgroup" style="position:absolute; height:auto; width:auto; top:-28px; left:207px;"></div>');	                               
                                  div3.appendTo(subtask).hide()
 								 rename.appendTo(div3);
 								 del.appendTo(div3);
@@ -121,7 +121,7 @@
                                            var subb = $("[num="+response['s'].id+"]");
                                            console.log(subb);
                                            console.log(response['u'].length);  
-                                           div = $('<div class="img"  style="height:auto; right:100px;padding:0px; width:auto; top:4px; background:white; position:absolute;"></div>');
+                                           div = $('<div class="img"  style="white-space:nowrap; height:auto; right:120px;padding:0px; width:auto; top:4px; background:white; position:absolute;"></div>');
                                            subb.children(".triangle").before(div);  
                                            div.hide(); 
                                            for(var m=0; m<response['u'].length; m++){
@@ -272,7 +272,7 @@
 			del = $('<button class="delete"></button>');
 			finish = $('<button class="finish"></button>');
 			open = $('<button class="open"></button>');
-            var div2 = $('<div class="group" style="height:auto; width:auto; top:-16px; left:203px;"></div>');
+            var div2 = $('<div class="group" style="position:absolute; height:auto; width:auto; top:-30px; left:208px;"></div>');
             div2.appendTo(tmp.children("div:nth-child(1)")).hide();		    	
 		    rename.appendTo(div2);	
 			del.appendTo(div2);	
@@ -540,7 +540,7 @@
 			del = $('<button class="delete"></button>');
 			finish = $('<button class="finish"></button>');			
 			triangle.appendTo(subtask).hide();
-            var div3=$('<div class="subgroup" style="height:auto; width:auto; top:-16px; left:202px;"></div>');	                               
+            var div3=$('<div class="subgroup" style="position:absolute; height:auto; width:auto; top:-28px; left:207px;"></div>');	                               
             div3.appendTo(subtask).hide()
 			rename.appendTo(div3);
 			del.appendTo(div3);
