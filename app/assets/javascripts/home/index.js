@@ -306,5 +306,12 @@ $(function() {
       $(this).trigger("blur");
     }
   });
+  
+  // for help
+  
+  $("#login").click(function(event) {
+    $("#helpContent").dialog("close");
+    $("#logButton").trigger("click");
+  });
 
 });
