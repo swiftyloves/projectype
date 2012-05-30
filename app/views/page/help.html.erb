@@ -2,26 +2,37 @@
 <%= stylesheet_link_tag 'help' %>
 <%= javascript_include_tag 'help' %>
 <div style="height:600px;">
-<div id="helpage">
+<div id="helpage" style="border:2px solid red;">
 	<div><h1>What's ProjecType?</h1></div>
-	<div>
-		<p> project structure </p>
-			<h2>(project structure)</h2>
+	<div class="content">
+		<p> In short, ProjecType is a service to manage your projects. </p> 
+		<p>Here we divide a big project into the following parts:</p>
+		<div class="ps"><%= image_tag("help_projStructure.png", :height => '350px') %>
+			<p> Project structure </p>
+		</div>
+		<p>A project can be devided into many partitions, we call them tasks.And a task can be composed of many more detail items ,i.e subtasks.</p>
+
 		<div id="feature">
-			<h2> <span id="PT">ProjecType<span> has following feature:</h2>
-				<h3> .dependency: subtasks in the task </h3>
-				<p> </p>
-				<h3> .co-work:it support more persons</h3>
-					<p> can assign subtask to every member.			
-						方便與你的parner分工每個subtask<p>		
-				<h3> .two modes: </h3>
-					<p>Usermode: a calendar that user can see </p>
+			<div id="PT">ProjecType has following feature:</div>
+			<div class="f">
+				<h3><div class="dot"></div><div>Dependency</div><div class="subtitle">subtasks in same task </div></h3>
+				<p> &nbsp;&nbsp;Subtasks in the same task has dependency according to the start and due day. This makes it convenience to manage your priority of work.</p>
+			</div>
+			<div class="f"><h3><div class="dot"></div><div>Co-work</div><div class="subtitle">it supports more persons</div></h3>
+				<p> &nbsp;&nbsp;Users can assign every subtask to each member after invition. And everyone could check which subtask is responsible to who. 
+				This makes it convenience to co-work with your partners.
+				</p>
+			</div>
+			<div class="f"><h3><div class="dot"></div>Two modes: </h3>
+				<div class="subtitle">Taskmode:</div><p> The major part to add tasks and subtask. The information of a subtask, such as date, description, comment, is recored into a "card". Card could be opened with just click the subtask.</p>
+				<div class="subtitle">Usermode:</div><p> A calendar that users can see the start/due day of each subtask and </p>
+			</div>
 		</div>
 	</div>
 
 	<div><h1>How to Use?</h1></div>
-	<div>
-		<h2>unlogin:</h2>
+	<div class="content">
+		<h2 class="">unlogin:</h2>
 			<p>You would gat a temporary project, "Project1" . Then you can create tasks and subtasks into it.Nevertheless, unlogin doesn't support usermode and card information. You need to <span id="login">login</span> if you want to use the full service.</p>
 		<h2>login:</h2>
 			<p>Manage your project step by step</p>	
@@ -37,10 +48,10 @@
 
 
 	<div><h1>Button Flow Guide</h1></div>
-	<div><p>(pic)</p></div>
+	<div class="content"><p>(pic)</p></div>
 
 
 	<div><h1>About us</h1></div>
-	<div>lalala</div>
+	<div class="content">lalala</div>
 </div>
 </div>
