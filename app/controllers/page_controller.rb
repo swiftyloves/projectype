@@ -90,10 +90,13 @@ class PageController < ApplicationController
 
 	def unlogin
 		render :layout => 'selectable'
-	end
+	end    
 	def selectable
 		render :layout => 'selectable'
 	end
+    def help
+        render :layout => false
+    end
 
     def cal
         puts 'touch page#get !'

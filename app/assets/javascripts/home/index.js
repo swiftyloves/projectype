@@ -25,7 +25,7 @@ $(function() {
 
     $(".toggling").removeClass("toggling");
   };
-
+/*
   function handleFblogin() {
     FB.api("/me/picture", function(response) {
       if (!response || response.error) {
@@ -38,13 +38,14 @@ $(function() {
       commonLoginAction();
     });
   };
-
+*/
   function commonLogoutAction() {
     $(".login").removeClass("login").addClass("unlogin");
     $(".loginTag").removeClass("loginTag").addClass("unloginTag");
     $.get("/home/logout")
     $("#content").empty();
     $("#projectName span").empty();
+    resetToggle();
     doBlockingStart();
     $("#userButton, #taskButton").hide();
     $.ajax({
@@ -109,8 +110,6 @@ $(function() {
 
   $("#taskButton").click(function(event, ui) {
     if (currentState != $(this)) {
-      $("#userButton").show();
-      $("#taskButton").show();
 
       currentState = $(this);
       resetToggle();
@@ -147,6 +146,8 @@ $(function() {
             handleResponse(response);
             if ($("#logButton").hasClass("unlogin")) {
               resetToggle();
+            } else {
+              $("#userButton, #taskButton").show();
             }
             doBlockingEnd();
           }
@@ -158,9 +159,16 @@ $(function() {
   $("#logButton").click(function(event) {
     if (currentState != $(this)) {
       currentState = $(this);
+      if ($(this).hasClass("toggling")) {
+        resetToggle();
+      } else {
+        resetToggle();
+        $(this).addClass("toggling");
+        $("#functionTag").addClass("showTag").removeClass("hide");
+      }
+    } else {
+      currentState = null;
       resetToggle();
-      $(this).addClass("toggling");
-      $("#functionTag").addClass("showTag").removeClass("hide");
     }
   });
 
@@ -175,9 +183,10 @@ $(function() {
 
   $("#helpContent").dialog({
     autoOpen: false,
-    height: 600,
+    position: 'top',
+    height: 700,
     width: 800,
-    modal: true,
+    // modal: true,
     resizable: false,
     dialogClass: "helpDialog",
   });
@@ -233,6 +242,8 @@ $(function() {
 
   $("#logoutButton").click(function(event) {
     console.log($(this));
+    commonLogoutAction();
+/*
     FB.getLoginStatus(function(response) {
       if (response.status === 'connected') {
         FB.logout(function() {
@@ -244,6 +255,7 @@ $(function() {
         window.setTimeout(resetToggle, 10);
       }
     });
+*/
   });
 
   $("#projectName").click(function() {

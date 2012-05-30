@@ -1,0 +1,78 @@
+
+<%= stylesheet_link_tag 'help' %>
+<%= javascript_include_tag 'help' %>
+<div style="height:600px;">
+<div id="helpage">
+	<div><h1>What's ProjecType?</h1></div>
+	<div class="content">
+		<p> In short, ProjecType is a service to manage your projects. </p> 
+		<p>Here we divide a big project into the following parts:</p>
+		<div class="ps"><%= image_tag("help_projStructure.png", :height => '350px') %>
+			<p> Project structure </p>
+		</div>
+		<div>
+			<div class="ps2">		
+				<%= image_tag("help_task.png", :height => '25px' ,:class => 'taskpic') %>
+				<p>A project can be devided into many partitions, we call them tasks.</p></br>
+				<%= image_tag("help_sub.png", :height => '20px') %>
+				<p>And a task can be composed of many more detail items ,i.e subtasks.</p>
+			</div>
+		</div>
+		<div id="feature">
+			<div id="PT">ProjecType has following feature:</div>
+			<div class="f">
+				<h3><div class="dot"></div><div>Dependency</div><div class="subtitle">subtasks in same task </div></h3>
+				<p> &nbsp;&nbsp;Subtasks in the same task has dependency according to the start and due day. This makes it convenience to manage your priority of work.</p>
+			</div>
+			<div class="f"><h3><div class="dot"></div><div>Co-work</div><div class="subtitle">it supports more persons</div></h3>
+				<p> &nbsp;&nbsp;Users can assign every subtask to each member after invition. And everyone could check which subtask is responsible to who. 
+				This makes it convenience to co-work with your partners.
+				</p>
+			</div>
+			<div class="f" style="width:240px; margin-left:0px;"><h3><div class="dot"></div>Two modes: </h3>
+				<div class="subtitle">Taskmode:</div><p> &nbsp;&nbsp;The major part to add tasks and subtask. The information of a subtask, such as date, description, comment, is recored into a "card". Card could be opened with just click the subtask.</p>
+				<div class="subtitle">Usermode:</div><p> &nbsp;&nbsp;A calendar that users can see the start/due day of each subtask responsible to each members.</p>
+			</div>
+		</div>
+	</div>
+
+	<div><h1>How to Use?</h1></div>
+	<div class="content">
+		<div class="f"><h3><div class="dot"></div>unlogin:</h3></div>
+			<p class="subf">&nbsp;&nbsp;You would gat a temporary project, "Project1" . Then you can create tasks and subtasks into it.Nevertheless, unlogin doesn't support usermode and card information. You need to <span id="login">login</span> if you want to use the full service.</p>
+		<div class="f"><h3><div class="dot"></div>login:</h3></div>
+			<p class="subf">&nbsp;&nbsp;Manage your project step by step</p>
+                        <div class="step s1">
+                          <%= image_tag("help_proj.png", :width => '45px') %>
+                          <div>
+  			    <h3>create your project</h3>
+  			    <p><p>
+                          </div>
+                        </div>
+			<h4>click into the project<h4>
+                        <div class="step s2">
+                  	  <%= image_tag("help_task.png", :width => '45px') %>
+                          <div>
+			    <h3>create your tasks</h3>
+			    <p>there's no dependency between tasks.<p>
+                          </div>
+                        </div>
+			<h4>click to open the tasks<h4>
+                        <div class="step s3">
+                    	  <%= image_tag("help_sub.png", :width => '45px') %>
+                          <div>
+  			    <h3>create your subtasks</h3>
+  			    <p>there's dependency between subtasks in the same.<p>
+                          </div>
+                        </div>
+	</div>
+
+
+	<div><h1>Button Flow Guide</h1></div>
+	<div class="content"><p>(pic)</p></div>
+
+
+	<div><h1>About us</h1></div>
+	<div class="content">lalala</div>
+</div>
+</div>

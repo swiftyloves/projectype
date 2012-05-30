@@ -7,11 +7,11 @@ $(function() {
   jsPlumb.setRenderMode(jsPlumb.SVG);
   jsPlumb.importDefaults({
     Connector: [ "Flowchart" ],
-    PaintStyle: { strokeStyle:"rgb(203, 201, 150)", lineWidth:2},
+    PaintStyle: { strokeStyle:"rgb(240, 102, 8)", lineWidth:2},
     Anchors: [ "AutoDefault", "AutoDefault" ],
     ConnectionOverlays: [ ["Arrow", {location: 1, id:"arrow", length:14, foldback:0.8} ] ],
     Endpoint: [ "Blank" ],
-    HoverPaintStyle: {strokeStyle:"#42a62c"}
+    HoverPaintStyle: {strokeStyle:"rgba(251, 191, 149, 0.7)"}
   });
 
   function dateToYMD(date) {
@@ -24,8 +24,9 @@ $(function() {
   var scrollThreshold = 30;
   var snapOffset;
   var snapUnit;
+  var heightUnit = 22;
 
-  var draggableOpt = { grid: [30,30], 
+  var draggableOpt = { grid: [30, heightUnit], 
                        containment: "#taskCanvas",
                        drag: function(event, ui) {
                          var viewPort = $(this).parent().parent();
@@ -178,7 +179,7 @@ $(function() {
         ++count;
       }
     }
-    tmp.offset({top: count * 60});
+    tmp.offset({top: count * heightUnit});
     tmp.width(w*30);
     jsPlumb.draggable(tmp, draggableOpt);
     jsPlumb.makeTarget(tmp, {
