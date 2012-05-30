@@ -5,6 +5,10 @@ class TaskController < ApplicationController
     render :layout => false
   end
   def loading
+    if (session[:current_proj] == "-1")
+      render json: ""
+      return
+    end
     @project = Project.find(session[:current_proj])
     @proj_users = @project.users
     @proj_tasks = @project.tasks
@@ -31,6 +35,10 @@ class TaskController < ApplicationController
   #   render :layout => 'home'
   #end
   def subuser # name and position
+      if (session[:current_proj] == "-1")
+        render json: ""
+        return
+      end
       @project = Project.find(session[:current_proj])
       @subtask = Subtask.find(params[:subid])  
       @users = @subtask.users
@@ -40,11 +48,19 @@ class TaskController < ApplicationController
       render json: tmp 
   end
   def savetask # name and position
+      if (session[:current_proj] == "-1")
+        render json: ""
+        return
+      end
       @project = Project.find(session[:current_proj])
       task = @project.tasks.create(:name=> params[:taskname] , :pos_x => params[:posx] , :pos_y => params[:posy])	         
       render json: task 
   end
   def deletetask
+      if (session[:current_proj] == "-1")
+        render json: ""
+        return
+      end
       @project = Project.find(session[:current_proj])
       @task = @project.tasks.where(:pos_x => params[:posx] , :pos_y => params[:posy])[0]
       @task.destroy
@@ -58,6 +74,10 @@ class TaskController < ApplicationController
       render json: @project  
   end
   def renametask
+      if (session[:current_proj] == "-1")
+        render json: ""
+        return
+      end
       @project = Project.find(session[:current_proj])
       @task = @project.tasks.where(:pos_x => params[:posx] , :pos_y => params[:posy])[0]
       @task.name = params[:taskname]
@@ -65,6 +85,10 @@ class TaskController < ApplicationController
       render json: @project  
   end
   def donetask
+      if (session[:current_proj] == "-1")
+        render json: ""
+        return
+      end
       @project = Project.find(session[:current_proj])
       @task = @project.tasks.where(:pos_x => params[:posx] , :pos_y => params[:posy])[0]
       @task.done = true
@@ -72,6 +96,10 @@ class TaskController < ApplicationController
       render json: @task  
   end
   def ordertask
+      if (session[:current_proj] == "-1")
+        render json: ""
+        return
+      end
       @project = Project.find(session[:current_proj])
       @task = @project.tasks.where(:pos_x => params[:oldposx] , :pos_y => params[:oldposy])[0]
       
@@ -97,6 +125,10 @@ class TaskController < ApplicationController
       render json: @project  
   end 
   def savesubtask # name. task_id ?
+      if (session[:current_proj] == "-1")
+        render json: ""
+        return
+      end
       @project = Project.find(session[:current_proj])
       @task = @project.tasks.where(:pos_x => params[:posx] , :pos_y => params[:posy])[0]      
       @subtask = @task.subtasks.create(:name=> params[:subtaskname])    
@@ -104,6 +136,10 @@ class TaskController < ApplicationController
       render json: @subtask   
   end
   def renamesubtask
+      if (session[:current_proj] == "-1")
+        render json: ""
+        return
+      end
       @project = Project.find(session[:current_proj])
       @task = @project.tasks.where(:pos_x => params[:posx] , :pos_y => params[:posy])[0]
       @subtask = @task.subtasks.where(:id => params[:subtaskid])[0]
@@ -112,6 +148,10 @@ class TaskController < ApplicationController
       render json: @task  
   end
   def deletesubtask
+      if (session[:current_proj] == "-1")
+        render json: ""
+        return
+      end
       @project = Project.find(session[:current_proj])
       @task = @project.tasks.where(:pos_x => params[:posx] , :pos_y => params[:posy])[0]
       @subtask = @task.subtasks.where(:id => params[:subtaskname])[0]
@@ -121,6 +161,10 @@ class TaskController < ApplicationController
       render json: @task  
   end
   def donesubtask
+      if (session[:current_proj] == "-1")
+        render json: ""
+        return
+      end
       @project = Project.find(session[:current_proj])
       @task = @project.tasks.where(:pos_x => params[:posx] , :pos_y => params[:posy])[0]
       @subtask = @task.subtasks.where(:id => params[:subtaskname])[0]

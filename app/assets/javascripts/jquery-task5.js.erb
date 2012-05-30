@@ -425,9 +425,10 @@
 			event.stopPropagation();
 		});	
         $("#placeholder").on("click","ul>li>div:nth-child(1)>div> .open", function(event){	
-            // add Big card!!!!
-            var posx = $(this).parents("ul").index();
-            var posy = $(this).parents("div").parent("li").index();
+                    // add Big card!!!!
+                  if ($("#projectName span").attr("pid") != -1) {
+                    var posx = $(this).parents("ul").index();
+                    var posy = $(this).parents("div").parent("li").index();
                     doBlockingStart();
                     $.ajax({
                       type: 'POST',
@@ -445,6 +446,7 @@
                         doBlockingEnd();
                       }
                     });
+                  }
 		    event.stopPropagation();
 		});	  		
 		//			
@@ -646,24 +648,26 @@
         //	 
         $("#placeholder").on("click","li li span", function(event){
 		    //"show small card!!!";
-                    doBlockingStart();
-                    $.ajax({
-                      type: 'POST',
-                      url: '/subtask/card',
-                      data: {"id": $(this).parent().attr("num")},
-                      error: function(response) {
-                        console.log(response);
-                        doBlockingEnd();
-                        alert("err");
-                      },
-                      success: function(response) {
-                        $(".smallCard").remove();
-                        $("#card").remove();
-                        $(".ui-datepicker").remove();
-                        $("#taskSmallCardPlace").empty().hide().append(response);
-                        doBlockingEnd();
-                      }
-                    });
+                    if ($(this).parent().attr("num")) {
+                      doBlockingStart();
+                      $.ajax({
+                        type: 'POST',
+                        url: '/subtask/card',
+                        data: {"id": $(this).parent().attr("num")},
+                        error: function(response) {
+                          console.log(response);
+                          doBlockingEnd();
+                          alert("err");
+                        },
+                        success: function(response) {
+                          $(".smallCard").remove();
+                          $("#card").remove();
+                          $(".ui-datepicker").remove();
+                          $("#taskSmallCardPlace").empty().hide().append(response);
+                          doBlockingEnd();
+                        }
+                      });
+                    }
 		    event.stopPropagation();
 		});
 });
