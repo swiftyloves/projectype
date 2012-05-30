@@ -3,9 +3,11 @@
 }
 
 #helpage h1{
-	font-size:24px;
+	font-size:20px;
 	color:#FEDA55;
-	background:rgba(149,128,50,0.4);
+	background:rgba(255,255,255,0.8);
+	// background:rgba(149,128,50,0.8);
+	background:rgba(0,155,5,0.3);
 	padding:4px;
 	padding-left:33px;
 	border-radius:4px;
@@ -24,6 +26,6 @@
 
 #helpage p{
 	font-size:10px;
-	// background:black;
+	background:black;
 	color:white;
 }
