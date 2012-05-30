@@ -1,4 +1,4 @@
-﻿$(function() {	//todo: subtask belongs to which user?
+﻿$(function() {	//todo: done
 		$("#line1").sortable({
 			connectWith: ".connectedlist", tolerance: 'pointer'			
 		}).disableSelection();		
@@ -82,8 +82,11 @@
 						 open.appendTo(div2); 
 		                 div.appendTo(tmp).hide();	
 		                 button.appendTo(div);
-                         if(response['t'][i].done==true) //check done or not
-                             tmp.addClass("done");	
+                         if(response['t'][i].done==true){ //check done or not
+                             //tmp.addClass("done");
+                             tmp.children("div:nth-child(1)").children("span").addClass("done"); 
+		                     tmp.children("div:nth-child(1)").find(".finish").addClass("done"); 	
+                         }
                          //add subtask, subtask order by start date?                           			                  
 						 for(var k=0; k<response['s'].length; k++){			     
 							 if(response['s'][k].task_id==response['t'][i].id){
@@ -100,8 +103,10 @@
 								 del.appendTo(div3);
 								 finish.appendTo(div3);  
                                  subtask.attr("num", response['s'][k].id);   
-                                 if(response['s'][k].done==true) //check done or not
+                                 if(response['s'][k].done==true){ //check done or not
                                     subtask.addClass("subdone");
+                                    subtask.find(".finish").addClass("subdone");
+                                 } 
                                  $.ajax({
 									   type: 'POST',
 									   url: '/task/subuser',
@@ -404,25 +409,48 @@
 		});	
         $("#placeholder").on("click","ul>li>div:nth-child(1)>div> .finish", function(event){	
             console.log("finish");	    
-			//$(this).parents("li").addClass("done");
-            $(this).parent("div").siblings("span").addClass("done"); 	
             var posx = $(this).parents("ul").index();
             var posy = $(this).parents("li").index();
-            $.ajax({
-                   type: 'POST',
-                   url: '/task/donetask',
-                   data: {"posx":posx, "posy":posy},
-                   error: function(response) {
-                       console.log(response);
-                       alert("err");
-                   },
-                   success: function(response) {
-                       $(this).parents("li").attr("done", response.done); 
-                       console.log(response);
-                       console.log("success!");
-                   }
-                });            			
-			event.stopPropagation();
+			//$(this).parents("li").addClass("done");
+            if(!$(this).parent("div").siblings("span").hasClass("done")){
+		        $(this).parent("div").siblings("span").addClass("done"); 
+		        $(this).addClass("done");  
+                var yn = "y";          
+		        $.ajax({
+		               type: 'POST',
+		               url: '/task/donetask',
+		               data: {"posx":posx, "posy":posy, "yn":yn},
+		               error: function(response) {
+		                   console.log(response);
+		                   alert("err");
+		               },
+		               success: function(response) {
+		                   //$(this).parents("li").attr("done", response.done); 
+		                   console.log(response);
+		                   console.log("success!");
+		               }
+		            });   
+              }
+              else if($(this).parent("div").siblings("span").hasClass("done")){
+		        $(this).parent("div").siblings("span").removeClass("done"); 
+		        $(this).removeClass("done");    
+                var yn = "n";          
+		        $.ajax({
+		               type: 'POST',
+		               url: '/task/donetask',
+		               data: {"posx":posx, "posy":posy, "yn":yn},
+		               error: function(response) {
+		                   console.log(response);
+		                   alert("err");
+		               },
+		               success: function(response) {
+		                   //$(this).parents("li").attr("done", response.done); 
+		                   console.log(response);
+		                   console.log("success!");
+		               }
+		            });   
+              }         			
+			  event.stopPropagation();
 		});	
         $("#placeholder").on("click","ul>li>div:nth-child(1)>div> .open", function(event){	
                     // add Big card!!!!
@@ -612,27 +640,50 @@
 			event.stopPropagation();
 		});	
         $("#placeholder").on("click","ul>li>div:nth-child(2) .finish", function(event){		
-            console.log("subfinish");    
-			$(this).parent("div").parent("li").addClass("subdone");		
+            //console.log("subfinish");  
             var posx = $(this).parents("ul").index();
             var posy = $(this).parent("div").parent("li").parents("li").index();
-            var subtask = $(this).parent("div").parent("li").attr("num");//$(this).siblings("span").text();  
-            console.log("hey!!!!"); 
-            console.log("num",$(this).parent("div").parent("li").attr("num"));        
-            $.ajax({
-                   type: 'POST',
-                   url: '/task/donesubtask',
-                   data: {"subtaskname": subtask, "posx":posx, "posy":posy},
-                   error: function(response) {
-                       console.log(response);
-                       alert("err");
-                   },
-                   success: function(response) {
-                       $(this).parent("div").parent("li").attr("done", response.done); 
-                       console.log(response);
-                       console.log("success!");
-                   }
-                });            		
+            var subtask = $(this).parent("div").parent("li").attr("num");//$(this).siblings("span").text();    
+            if(!$(this).parent("div").parent("li").hasClass("subdone")){
+				$(this).parent("div").parent("li").addClass("subdone");		
+		        $(this).addClass("subdone");            
+		        //console.log("hey!!!!"); 
+		        //console.log("num",$(this).parent("div").parent("li").attr("num"));      
+                var yn = "y";  
+		        $.ajax({
+		               type: 'POST',
+		               url: '/task/donesubtask',
+		               data: {"subtaskname": subtask, "posx":posx, "posy":posy, "yn":yn},
+		               error: function(response) {
+		                   console.log(response);
+		                   alert("err");
+		               },
+		               success: function(response) {
+		                   //$(this).parent("div").parent("li").attr("done", response.done); 
+		                   console.log(response);
+		                   console.log("success!");
+		               }
+		            });   
+            }    
+            else if($(this).parent("div").parent("li").hasClass("subdone")){
+				$(this).parent("div").parent("li").removeClass("subdone");		
+		        $(this).removeClass("subdone");            		          
+                var yn = "n";  
+		        $.ajax({
+		               type: 'POST',
+		               url: '/task/donesubtask',
+		               data: {"subtaskname": subtask, "posx":posx, "posy":posy, "yn":yn},
+		               error: function(response) {
+		                   console.log(response);
+		                   alert("err");
+		               },
+		               success: function(response) {
+		                   //$(this).parent("div").parent("li").attr("done", response.done); 
+		                   console.log(response);
+		                   console.log("success!");
+		               }
+		            });   
+            }         		     		
 			event.stopPropagation();
 		});	
         //          
@@ -643,7 +694,7 @@
 		});	
         $("#placeholder").on("mouseleave","li li span", function(event){
 			$(this).parent("li").children("div:nth-child(1)").hide();			
-			event.stopPropagation();
+			//event.stopPropagation();
 		});
         //	 
         $("#placeholder").on("click","li li span", function(event){
