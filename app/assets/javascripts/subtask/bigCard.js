@@ -7,11 +7,11 @@ $(function() {
   jsPlumb.setRenderMode(jsPlumb.SVG);
   jsPlumb.importDefaults({
     Connector: [ "Flowchart" ],
-    PaintStyle: { strokeStyle:"rgb(240, 8, 102)", lineWidth:2},
+    PaintStyle: { strokeStyle:"rgb(240, 102, 8)", lineWidth:2},
     Anchors: [ "AutoDefault", "AutoDefault" ],
     ConnectionOverlays: [ ["Arrow", {location: 1, id:"arrow", length:14, foldback:0.8} ] ],
     Endpoint: [ "Blank" ],
-    HoverPaintStyle: {strokeStyle:"rgb(251, 191, 149, 0.7)"}
+    HoverPaintStyle: {strokeStyle:"rgba(251, 191, 149, 0.7)"}
   });
 
   function dateToYMD(date) {
