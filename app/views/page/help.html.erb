@@ -2,7 +2,7 @@
 <%= stylesheet_link_tag 'help' %>
 <%= javascript_include_tag 'help' %>
 <div style="height:600px;">
-<div id="helpage" style="border:2px solid red;">
+<div id="helpage">
 	<div><h1>What's ProjecType?</h1></div>
 	<div class="content">
 		<p> In short, ProjecType is a service to manage your projects. </p> 
@@ -10,8 +10,14 @@
 		<div class="ps"><%= image_tag("help_projStructure.png", :height => '350px') %>
 			<p> Project structure </p>
 		</div>
-		<p>A project can be devided into many partitions, we call them tasks.And a task can be composed of many more detail items ,i.e subtasks.</p>
-
+		<div>
+			<div class="ps2">		
+				<%= image_tag("help_task.png", :height => '25px' ,:class => 'taskpic') %>
+				<p>A project can be devided into many partitions, we call them tasks.</p></br>
+				<%= image_tag("help_sub.png", :height => '20px') %>
+				<p>And a task can be composed of many more detail items ,i.e subtasks.</p>
+			</div>
+		</div>
 		<div id="feature">
 			<div id="PT">ProjecType has following feature:</div>
 			<div class="f">
@@ -23,9 +29,9 @@
 				This makes it convenience to co-work with your partners.
 				</p>
 			</div>
-			<div class="f"><h3><div class="dot"></div>Two modes: </h3>
-				<div class="subtitle">Taskmode:</div><p> The major part to add tasks and subtask. The information of a subtask, such as date, description, comment, is recored into a "card". Card could be opened with just click the subtask.</p>
-				<div class="subtitle">Usermode:</div><p> A calendar that users can see the start/due day of each subtask and </p>
+			<div class="f" style="width:240px; margin-left:0px;"><h3><div class="dot"></div>Two modes: </h3>
+				<div class="subtitle">Taskmode:</div><p> &nbsp;&nbsp;The major part to add tasks and subtask. The information of a subtask, such as date, description, comment, is recored into a "card". Card could be opened with just click the subtask.</p>
+				<div class="subtitle">Usermode:</div><p> &nbsp;&nbsp;A calendar that users can see the start/due day of each subtask responsible to each members.</p>
 			</div>
 		</div>
 	</div>

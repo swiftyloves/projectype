@@ -183,6 +183,7 @@ $(function() {
 
   $("#helpContent").dialog({
     autoOpen: false,
+    position: 'top',
     height: 700,
     width: 800,
     // modal: true,
