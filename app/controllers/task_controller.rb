@@ -67,9 +67,10 @@ class TaskController < ApplicationController
   def donetask
       @project = Project.find(session[:current_proj])
       @task = @project.tasks.where(:pos_x => params[:posx] , :pos_y => params[:posy])[0]
-      if(params[:yn]=="y")
+      puts params[:yn]
+      if(params[:yn]=="y")        
          @task.done = true 
-      else #(params[:yn]=="n")
+      else #if(params[:yn]=="n")
          @task.done = false
       end  
       @task.save

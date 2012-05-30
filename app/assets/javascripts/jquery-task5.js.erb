@@ -84,8 +84,8 @@
 		                 button.appendTo(div);
                          if(response['t'][i].done==true){ //check done or not
                              //tmp.addClass("done");
-                             $(this).children("div:nth-of-type(1)").children("span").addClass("done"); 
-		                     $(this).children("div:nth-of-type(1)").find(".finish").addClass("done"); 	
+                             tmp.children("div:nth-child(1)").children("span").addClass("done"); 
+		                     tmp.children("div:nth-child(1)").find(".finish").addClass("done"); 	
                          }
                          //add subtask, subtask order by start date?                           			                  
 						 for(var k=0; k<response['s'].length; k++){			     
