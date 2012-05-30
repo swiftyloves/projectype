@@ -175,9 +175,9 @@ $(function() {
 
   $("#helpContent").dialog({
     autoOpen: false,
-    height: 600,
+    height: 700,
     width: 800,
-    modal: true,
+    // modal: true,
     resizable: false,
     dialogClass: "helpDialog",
   });

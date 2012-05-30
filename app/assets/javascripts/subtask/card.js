@@ -12,10 +12,9 @@ $(function() {
     $('#card').dialog({
       //autoOpen: false,
       resizable: false,
-      height: 1000,
+      height: 500,
       width: 405,
       modal: true,
-      position: 'top',
       dialogClass: "smallCard",
       open: function(event) {
         console.log(event);
