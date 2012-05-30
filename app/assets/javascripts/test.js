@@ -30,13 +30,14 @@ $(function(){
 		eventClick: function(event) {
 			console.log('eventClickhahaha')
 			var tmp = this
-			
+	    doBlockingStart();	
             $.ajax({
               type: 'POST',
               url: '/subtask/card',
               data: {"id": event.id},
               error: function(response) {
                 console.log(response);
+                doBlockingEnd();	
                 alert("err");
               },
               success: function(response) {
@@ -50,6 +51,8 @@ $(function(){
             			$('#userButton').trigger("click")
             		$(tmp).removeClass('eventClickdown')
             	});
+        	doBlockingEnd();	
+
               }
             });
 		},
