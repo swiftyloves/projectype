@@ -204,11 +204,17 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#e6ce8a', end
 
 
 .main div >  .triangle{
-  background-image: url(<%= asset_path "taskTriangleB.png" %>);  
+  background-image: url(<%= asset_path "taskTriangleW.png" %>);  
   position:absolute;
   top:17px;
   right:-5px;
 }
+
+.main div >  .triangle:hover{
+  background-image: url(<%= asset_path "taskTriangleB.png" %>);  
+}
+
+
 .main div > div > .rename{  
   background-image: url(<%= asset_path "renameicon_2.png" %>);
   /*position:absolute;

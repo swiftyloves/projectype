@@ -729,7 +729,7 @@
 			      success: function(response) {
                                 console.log(response);  
                                 var subb = $("[num="+response['s'].id+"]");
-                                var div = $('<div class="img"  style="height:auto; right:100px;padding:0px; width:auto; top:4px; background:white; position:absolute;"></div>');
+                                var div = $('<div class="img"  style="height:auto; right:120px;padding:0px; width:auto; top:4px; background:white; position:absolute;"></div>');
                                 subb.children(".triangle").siblings('.img').remove();
                                 subb.children(".triangle").before(div); 
                                 div.hide(); 
