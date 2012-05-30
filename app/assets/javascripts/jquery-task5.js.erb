@@ -121,12 +121,12 @@
                                            var subb = $("[num="+response['s'].id+"]");
                                            console.log(subb);
                                            console.log(response['u'].length);  
-                                           div = $('<div></div>');
+                                           div = $('<div class="img"  style="height:auto; padding:0px; width:auto; top:4px; background:white; position:absolute;"></div>');
                                            subb.children(".triangle").before(div);  
                                            div.hide(); 
                                            for(var m=0; m<response['u'].length; m++){
                                                //subb.children(".triangle").before('<div style="background: url('+response['u'][m].img+') center no-repeat; background-size: 15%;"></div>');            
-                                               div.append('<div style="background: url('+response['u'][m].img+') center no-repeat; background-size: 15%;"></div>');                                                                    
+                                               div.append('<div style="width:30px; padding:0px; height:30px; display:inline-block; background: url('+response['u'][m].img+') center no-repeat; background-size: 80%;"></div>');                                                                    
                                            }                                
 									   }
 		                         });	                            								 
