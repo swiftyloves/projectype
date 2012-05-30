@@ -44,8 +44,8 @@ $(function(){
             	$(tmp).addClass('eventClickdown')			
               	$(".smallCard").remove();
               	$("#card").remove();
-                    $(".ui-datepicker").remove();
-                    $("#userCardPlace").empty().hide().append(response);
+                //$(".ui-datepicker").remove();
+                $("#userCardPlace").empty().hide().append(response);
             	$("#card").bind("dialogclose",function(){            		
             		if($("#card").attr('dirty')==1)
             			$('#userButton').trigger("click")
