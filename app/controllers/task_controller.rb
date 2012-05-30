@@ -67,7 +67,11 @@ class TaskController < ApplicationController
   def donetask
       @project = Project.find(session[:current_proj])
       @task = @project.tasks.where(:pos_x => params[:posx] , :pos_y => params[:posy])[0]
-      @task.done = true
+      if(params[:yn]=="y")
+         @task.done = true 
+      else #(params[:yn]=="n")
+         @task.done = false
+      end  
       @task.save
       render json: @task  
   end
@@ -124,7 +128,11 @@ class TaskController < ApplicationController
       @project = Project.find(session[:current_proj])
       @task = @project.tasks.where(:pos_x => params[:posx] , :pos_y => params[:posy])[0]
       @subtask = @task.subtasks.where(:id => params[:subtaskname])[0]
-      @subtask.done = true 
+      if(params[:yn]=="y")
+         @subtask.done = true 
+      else
+         @subtask.done = false
+      end       
       @subtask.save
       render json: @subtask  
   end
