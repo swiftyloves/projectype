@@ -71,9 +71,9 @@
 						 finish = $('<button class="finish"></button>');
 						 open = $('<button class="open"></button>');
 		                 div = $('<div></div>');	
-		                 button = $('<button class="sub">Add subtask</button>');
+		                 button = $('<button class="sub"></button>');
 		                 tmp.appendTo($(ularray[j]));
-                         var div2 = $('<div class="group" style="position:absolute; height:auto; width:auto; top:-30px; left:208px;"></div>');	
+                         var div2 = $('<div class="group" style="position:absolute; padding:4px; height:auto; width:auto; top:-41px; left:205px;"></div>');	
                          div2.appendTo(tmp.children("div:nth-child(1)")).hide();
 		                 triangle.appendTo(tmp.children("div:nth-child(1)")).hide();		
 		                 rename.appendTo(div2);	
@@ -97,7 +97,7 @@
 								 finish = $('<button class="finish"></button>');
 						         subtask.appendTo(div);
 						         triangle.appendTo(subtask).hide();
-                                 var div3=$('<div class="subgroup" style="position:absolute; height:auto; width:auto; top:-28px; left:207px;"></div>');	                               
+                                 var div3=$('<div class="subgroup" style="position:absolute; height:auto; padding:3px; width:auto; top:-20px; left:216px;"></div>');	                               
                                  div3.appendTo(subtask).hide()
 								 rename.appendTo(div3);
 								 del.appendTo(div3);
@@ -139,7 +139,7 @@
                bigbutton.appendTo("ul");   
                var secdivs = $("ul").children("li").children("div:nth-child(2)");
                $(secdivs).children("button").remove();
-               button = $('<button class="sub">Add subtask</button>');
+               button = $('<button class="sub"></button>');
                button.appendTo(secdivs);
 			}	       
 	    });
@@ -224,7 +224,7 @@
 			}
             var thisul = $(this).parent("ul");	
 		    bigbutton = $('<button>Add Task</button>');
-		    button = $('<button class="sub">Add subtask</button>');
+		    button = $('<button class="sub"></button>');
 			ul = $('<ul class="connectedlist main"></ul>'); // 
             tmp = $('<li><div><input type="text" maxlength=11 value="New Task"></div></li>'); 		// 
 			div = $('<div></div>');	
@@ -272,7 +272,7 @@
 			del = $('<button class="delete"></button>');
 			finish = $('<button class="finish"></button>');
 			open = $('<button class="open"></button>');
-            var div2 = $('<div class="group" style="position:absolute; height:auto; width:auto; top:-30px; left:208px;"></div>');
+            var div2 = $('<div class="group" style="position:absolute; padding:4px; height:auto; width:auto; top:-41px; left:205px;"></div>');
             div2.appendTo(tmp.children("div:nth-child(1)")).hide();		    	
 		    rename.appendTo(div2);	
 			del.appendTo(div2);	
@@ -540,7 +540,7 @@
 			del = $('<button class="delete"></button>');
 			finish = $('<button class="finish"></button>');			
 			triangle.appendTo(subtask).hide();
-            var div3=$('<div class="subgroup" style="position:absolute; height:auto; width:auto; top:-28px; left:207px;"></div>');	                               
+            var div3=$('<div class="subgroup" style="position:absolute; height:auto;padding:3px; width:auto; top:-20px; left:216px;"></div>');	                               
             div3.appendTo(subtask).hide()
 			rename.appendTo(div3);
 			del.appendTo(div3);
