@@ -1,7 +1,15 @@
 class TaskController < ApplicationController
   before_filter :common_sel
   def taskmode
-    session[:current_proj] = params[:id]    
+    if params[:id] != "-1"
+      proj = Project.find(params[:id])
+      u = User.find_by_account(session[:current_user])
+      unless u.projects.exists?(proj)
+        render json: "forbidden"
+        return
+      end
+    end
+    session[:current_proj] = params[:id]
     render :layout => false
   end
   def loading
