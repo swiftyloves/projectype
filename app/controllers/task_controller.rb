@@ -3,7 +3,7 @@ class TaskController < ApplicationController
   def taskmode
     if params[:id] != "-1"
       proj = Project.find(params[:id])
-      u = User.find(session[:current_user])
+      u = User.find_by_account(session[:current_user])
       unless u.projects.exists?(proj)
         render json: "forbidden"
         return
