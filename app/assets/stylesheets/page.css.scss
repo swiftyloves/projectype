@@ -73,13 +73,13 @@
 	color: rgba(127, 84, 0, 1);
 	text-shadow: -1px 0px black, 0px -1px black;
 }
-.s{
+#welcome .s{
 	font-size:37px;
 	font-family: 'Comfortaa', sans-serif;
 	// font-weight: bold;
 }
 
-.s:hover{
+#welcome .s:hover{
 	cursor:pointer;
 	color:rgb(240,30,0);
 	text-shadow: 1px 0px white, 0px -1px black;

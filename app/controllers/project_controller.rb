@@ -47,12 +47,12 @@ class ProjectController < ApplicationController
   end
   def participate
     unless session[:current_user]
-      render json: "please login"
+      render :fail, :layout => false
       return
     end
     url = Inviteurl.find_by_hashcode(params[:hash])
     unless url
-      render json: "No found"
+      render :nofound, :layout => false
       return
     end
     # TODO: clear garbage
@@ -61,6 +61,6 @@ class ProjectController < ApplicationController
       user.projects << url.project
     end
     url.destroy
-    render json: "success"
+    redirect_to '/home'
   end
 end

@@ -273,7 +273,7 @@ $(function() {
       return;
     }
     // ajax
-    doBlockingStart();
+    //doBlockingStart();
     $.ajax({
       type: 'PUT',
       url: '/project/edit',
@@ -284,7 +284,7 @@ $(function() {
         console.log(response);
         $("#projectName").removeClass("editingName");
         $("#projectName").addClass("noeditingName");
-        doBlockingEnd();
+        //doBlockingEnd();
         alert("err");
       },
       success: function(response) {
@@ -296,7 +296,7 @@ $(function() {
         $("#projectName span").empty().append($("#projectName input").val());
         $("#projectName").removeClass("editingName");
         $("#projectName").addClass("noeditingName");
-        doBlockingEnd();
+        //doBlockingEnd();
       }
     });
   });
@@ -305,6 +305,13 @@ $(function() {
     if (event.which == 13) {
       $(this).trigger("blur");
     }
+  });
+  
+  // for help
+  
+  $("#login").click(function(event) {
+    $("#helpContent").dialog("close");
+    $("#logButton").trigger("click");
   });
 
 });
