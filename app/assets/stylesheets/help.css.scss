@@ -140,6 +140,19 @@
 
 // ======================= How to use =======================
 
+#login {
+  text-decoration: underline;
+  color: rgba(0, 0, 255, 0.4);
+}
+
+#login:hover {
+  cursor: pointer;
+}
+
+#login:active {
+  color: rgba(0, 0, 255, 0.7);
+}
+
 .subf {
   padding-left: 20px;
 }
@@ -164,7 +177,6 @@
 
 #helpage h4 {
   // border:1px solid red;
-  width:157px;  
   margin-left:246px;
   font-size:14px;
   color:rgba(10,10,10,0.8);

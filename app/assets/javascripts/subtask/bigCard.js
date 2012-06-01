@@ -165,7 +165,7 @@ $(function() {
     var w = dd - ss + 1;
     var tmp = $("<div class='window' id=id"+id+">"
                 +"<span>"+name+"</span>"
-                +"<div class='ep atHead'></div>"
+//                +"<div class='ep atHead'></div>"
                 +"<div class='ep atEnd'></div>"
                 +"</div>");
     tmp.offset({left: (ss + 1) * 30});
