@@ -5,72 +5,72 @@
 <div id="helpage">
 	<div><h1>What's ProjecType?</h1></div>
 	<div class="content">
-		<p> In short, ProjecType is a service to manage your projects. </p> 
-		<p>Here we divide a big project into the following parts:</p>
+		<p> In short, ProjecType is a web service that manages your projects! </p> 
+		<p> We divide a big project into the following parts:</p>
 		<div class="ps"><%= image_tag("help_projStructure.png", :height => '350px') %>
 			<p> Project structure </p>
 		</div>
 		<div>
 			<div class="ps2">		
 				<%= image_tag("help_task.png", :height => '25px' ,:class => 'taskpic') %>
-				<p>A project can be devided into many partitions, we call them tasks.</p></br>
+				<p>A project can be divided into many partitions, which we call tasks.</p></br>
 				<%= image_tag("help_sub.png", :height => '20px') %>
-				<p>And a task can be composed of many more detail items ,i.e subtasks.</p>
+				<p>A task consists of many more detailed items, which we call subtasks.</p>
 			</div>
 		</div>
 		<div id="feature">
-			<div id="PT">ProjecType has following feature:</div>
+			<div id="PT">ProjecType has following features:</div>
 			<div id="line"></div>
 			<div class="f">
-				<h3><div class="dot"></div><div>Dependency</div><div class="subtitle">subtasks in same task </div></h3>
-				<p> &nbsp;&nbsp;Subtasks in the same task has dependency according to the start and due day. This makes it convenience to manage your priority of work.</p>
+				<h3><div class="dot"></div><div>Dependency</div><div class="subtitle">Subtasks in the same task </div></h3>
+				<p> &nbsp;&nbsp;&nbsp;&nbsp;Subtasks in the same task can be related by dragging arrows among them. This makes it clear and convenient for you to manage the priorities of different subtasks.</p>
 			</div>
-			<div class="f"><h3><div class="dot"></div><div>Co-work</div><div class="subtitle">it supports more persons</div></h3>
-				<p> &nbsp;&nbsp;Users can assign every subtask to each member after invition. And everyone could check which subtask is responsible to who. 
-				This makes it convenience to co-work with your partners.
+			<div class="f"><h3><div class="dot"></div><div>Co-work</div><div class="subtitle">Support multiple workers</div></h3>
+				<p> &nbsp;&nbsp;&nbsp;&nbsp;Invite your partners into the project and then assign subtasks to each member. This makes it easy for project participants to know their responsibilities and co-work with others.
 				</p>
 			</div>
 			<div class="f" style="width:240px; margin-left:0px;"><h3><div class="dot"></div>Two modes: </h3>
-				<div class="subtitle">Taskmode:</div><p> &nbsp;&nbsp;The major part to add tasks and subtask. The information of a subtask, such as date, description, comment, is recored into a "card". Card could be opened with just click the subtask.</p>
-				<div class="subtitle" style="margin-top:5px;">Usermode:</div><p> &nbsp;&nbsp;A calendar that users can see the start/due day of each subtask responsible to each members.</p>
+				<div class="subtitle">Taskmode:</div><p> &nbsp;&nbsp;&nbsp;&nbsp;You can add tasks and subtasks here. The details of a subtask such as start/due date, description, comment and memebers in charge are recorded in a "card" which shows up by clicking the subtask.</p>
+				<div class="subtitle" style="margin-top:5px;">Usermode:</div><p> &nbsp;&nbsp;&nbsp;&nbsp;A calendar where a user can see the start/due dates of subtasks she/he is and her/his project partners are in charge of.</p>
 			</div>
 		</div>
 	</div>
 
 	<div><h1>How to Use?</h1></div>
 	<div class="content">
-		<div class="f"><h3><div class="dot"></div>unlogin:</h3></div>
-			<p class="subf">&nbsp;&nbsp;You would gat a temporary project, "Project1" . Then you can create tasks and subtasks into it.Nevertheless, unlogin doesn't support usermode and card information. </p>
-			<p class="subf">You need to <span id="login">login</span> if you want to use the full service.</p>
-		<div class="f"><h3><div class="dot"></div>login:</h3></div>
-			<p class="subf">&nbsp;&nbsp;Manage your project step by step</p>
+		<div class="f"><h3><div class="dot"></div>Start First w/o logging in:</h3></div>
+			<p class="subf">&nbsp;&nbsp;&nbsp;&nbsp;You will enter a project named "Project1", where you can play around by creating tasks and subtasks. However, you <span style="color:red; font:bold;">CANNOT</span> set details of subtasks using cards, you also <span style="color:red; font:bold;">CANNOT</span> enter the usermode or invite other members. </p>
+			<p class="subf">&nbsp;&nbsp;&nbsp;&nbsp;You need to <span id="login">LOG IN</span> if you want to use the full service.</p>
+		<div class="f"><h3><div class="dot"></div>Log in first:</h3></div>
+			<p class="subf">&nbsp;&nbsp;&nbsp;&nbsp;Now you can manage your project step by step!</p>
             <div class="step s1">
               <%= image_tag("help_proj.png", :width => '45px') %>
               <div>
-  			    <h3>create your project</h3>
+  			    <h3>Create your project</h3>
   			    <p><p>
               </div>
             </div>
-			<h4>click into the project</h4>
+			<h4>Click on the project to enter</h4>
             <div class="step s2">
       	  		<%= image_tag("help_task.png", :width => '45px') %>
               <div>
-			    <h3>create your tasks</h3>
-			    <p>there's no dependency between tasks.<p>
+			    <h3>Create your tasks</h3>
+			    <p>There is <span style="color:red; font:bold;">NO</span> dependency among tasks, i.e. you can put your tasks wherever you like by dragging them!<p>
               </div>
             </div>
-			<h4>click to open the tasks</h4>
+			<h4>Click to open the tasks</h4>
             <div class="step s3">
         	  <%= image_tag("help_sub.png", :width => '75px') %>
               <div class="text">
-  			    <h3>create your subtasks</h3>
-  			    <p>there's dependency between subtasks in the same.<p>
+  			    <h3>Create your subtasks</h3>
+  			    <p>There <span style="color:red; font:bold;">IS</span> dependency among subtasks in the same task. Set their relations by drawing arrows which you can delete by simple clicks.<p>
               </div>
             </div>
-        <div class="f"><h3><div class="dot"></div>how to deal with <%= image_tag("picon.png", :width => '20px') %> ?</h3></div>
-        
+        <div class="f"><h3><div class="dot"></div>What is this icon: <%= image_tag("picon.png", :width => '20px') %> ?</h3></div>
+              <p class="subf">&nbsp;&nbsp;&nbsp;&nbsp;Click on it and you will see something like this:</p>
+              <div>(pic)</div>
+              <p class="subf">&nbsp;&nbsp;&nbsp;&nbsp;Subtasks belonged to this task are shown with their start/due dates correspoding to the date scroll below. You can drag your subtasks around to change their start/due dates. You can also draw arrows between two subtasks to set their dependency. Just click on the cute red dots and start dragging your arrows around! When you want to delete an arrow, just click on it and say bye~ </p> 
 	</div>
-
 
 	<div><h1>Button Flow Guide</h1></div>
 	<div class="content"><p>(pic)</p></div>
