@@ -617,10 +617,11 @@
 		});
         $("#placeholder").on("click","ul>li>div:nth-child(2) .delete", function(event){	   
             var posx = $(this).parents("ul").index();
-            var posy = $(this).parents("div").parent("li").index();
+            var posy = $(this).parents("div").parent("li").parent("li").index();
             var subtask = $(this).parent("div").parent("li").attr("num");//$(this).siblings("span").text();  
             console.log("hey!!!!"); 
-            console.log("num",$(this).parent("div").parent("li").attr("num"));        
+            console.log("num",$(this).parent("div").parent("li").attr("num"));
+            console.log(posx, posy);
             $.ajax({
                    type: 'POST',
                    url: '/task/deletesubtask',
