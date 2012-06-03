@@ -148,6 +148,7 @@ $(function() {
               resetToggle();
             } else {
               $("#userButton, #taskButton").show();
+              $("#inviteButton").removeClass("invalid");
             }
             doBlockingEnd();
           }
@@ -186,9 +187,14 @@ $(function() {
     position: 'top',
     height: 700,
     width: 800,
-    // modal: true,
+    modal: true,
     resizable: false,
     dialogClass: "helpDialog",
+    open: function(event) {
+      $(".ui-widget-overlay").click(function(event) {
+        $("#helpContent").dialog("close");
+      });
+    },
   });
 
   $("#fbButton").click(function(event) {
@@ -312,6 +318,11 @@ $(function() {
   $("#login").click(function(event) {
     $("#helpContent").dialog("close");
     $("#logButton").trigger("click");
+  });
+
+  $(".ui-widget-overlay").click(function(event) {
+    console.log($(this));
+    $("#helpContent").dialog("close");
   });
 
 });

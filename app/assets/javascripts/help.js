@@ -1,6 +1,6 @@
 $(function(){
 	$('#helpage').accordion({ 
-    	autoHeight: false
+    	autoHeight: false,
     	// clearStyle:true
 	});
 });

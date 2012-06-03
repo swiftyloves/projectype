@@ -242,6 +242,11 @@ input {
   height: 48px;
   top: -12px;
   position: relative;
+  opacity: 0.6;
+}
+
+.login #headImg:hover {
+  opacity: 1;
 }
 
 .loginTag {
@@ -306,6 +311,10 @@ input {
   margin-left: 9px;
 }
 
+#fbButton:hover, #gButton:hover {
+  cursor: pointer;
+}
+
 #fbButton {
   background: url(<%= asset_path "fbicon.png" %>) no-repeat center;
   background-size: 100%;
@@ -363,5 +372,14 @@ input {
 
 .helpDialog .ui-dialog-title {
   color: rgb(100, 52, 3);
+}
+
+/* state change */
+#functionTag .invalid {
+  color: white;
+}
+
+#functionTag .invalid:hover {
+  cursor: auto;
 }
 

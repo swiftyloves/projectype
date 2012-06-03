@@ -57,6 +57,8 @@
         <% end %>
         $(".unlogin").removeClass("unlogin").addClass("login");
         $(".unloginTag").removeClass("unloginTag").addClass("loginTag");
+        $("#userButton, #taskButton").hide();
+        $("#inviteButton").addClass("invalid");
         doBlockingEnd();      
       },
     });
