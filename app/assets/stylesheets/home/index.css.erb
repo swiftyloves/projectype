@@ -131,6 +131,13 @@ input {
   visibility: hidden;
 }
 
+.buttonHelper {
+  display: none;
+  font-size: 10px;
+  position: absolute;
+  white-space: nowrap;  
+}
+
 #triangle {
   background: url(<%= asset_path "home/triangle.png" %>) no-repeat;
   background-size: 60%;
@@ -188,6 +195,10 @@ input {
 
 #helpButton a, #contactButton a {
   padding: 15px 15px 15px 15px;
+}
+
+#helpButton:hover .buttonHelper, #contactButton:hover .buttonHelper {
+  display: block;
 }
 
 #logButton, #taskButton, #userButton {
