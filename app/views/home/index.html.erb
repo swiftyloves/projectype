@@ -57,6 +57,8 @@
         <% end %>
         $(".unlogin").removeClass("unlogin").addClass("login");
         $(".unloginTag").removeClass("unloginTag").addClass("loginTag");
+        $("#userButton, #taskButton").hide();
+        $("#inviteButton").addClass("invalid");
         doBlockingEnd();      
       },
     });
@@ -124,9 +126,11 @@
   <div id="helpBar" class="indexPanel bar">
     <div id="contactButton" class="toggleButton">
       <a href="mailto:projectype@gmail.com"></a>
+      <label class="buttonHelper">Contact Us</label>
     </div>
     <div id="helpButton" class="toggleButton">
       <a></a>
+      <label class="buttonHelper">Help</label>
     </div>
     <div id="copyRight">Copyright© 2012 ProjecType</div>
   </div>
