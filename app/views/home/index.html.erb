@@ -43,6 +43,7 @@
   };
 
   function commonLoginAction() {
+   $("#content").empty();
     doBlockingStart();
     $.ajax({
       url: "/project",
@@ -55,10 +56,10 @@
         <% if @img %>
           $("#headImg").css("background", "url(<%= @img %>)");
         <% end %>
+        $(".inProjectTag").removeClass("inProjectTag").addClass("loginTag");
         $(".unlogin").removeClass("unlogin").addClass("login");
         $(".unloginTag").removeClass("unloginTag").addClass("loginTag");
         $("#userButton, #taskButton").hide();
-        $("#inviteButton").addClass("invalid");
         doBlockingEnd();      
       },
     });
@@ -125,12 +126,12 @@
   <div id="middleBar" class="indexPanel"></div>
   <div id="helpBar" class="indexPanel bar">
     <div id="contactButton" class="toggleButton">
-      <a href="mailto:projectype@gmail.com"></a>
       <label class="buttonHelper">Contact Us</label>
+      <a href="mailto:projectype@gmail.com"></a>
     </div>
     <div id="helpButton" class="toggleButton">
-      <a></a>
       <label class="buttonHelper">Help</label>
+      <a></a>
     </div>
     <div id="copyRight">Copyright© 2012 ProjecType</div>
   </div>

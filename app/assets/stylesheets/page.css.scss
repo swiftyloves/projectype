@@ -11,7 +11,7 @@
 		float:right;
 	}
 }
-.right{
+#welcome .right{
 	display:inline-block;
 	width:400px;
 	vertical-align:middle;	
@@ -25,6 +25,8 @@
 			padding-right:10px;
 		}
 		&:hover{
+			cursor:pointer;
+			color:red;
 			span{
 				color:rgb(200,0,0);
 				text-shadow: -1px 0px white, 0px -1px white;
@@ -37,10 +39,7 @@
 			z-index:1;
 		}
 	}
-	.first:hover{
-		cursor:pointer;
-		color:red;
-	}
+
 	.second{
 		margin-bottom:40px;
 		height:40px;
@@ -57,11 +56,24 @@
 			background:gray;
 			box-shadow:-1px -1px 5px #663300;	
 		}
+		&:hover{
+			#logintext{			
+				opacity:1.0;			
+				z-index:1;			
+			}
+		}
 	}
 	.third{
-		text-align:middle;
+		text-align:center;
 		margin-top:51px;
 		padding-left:50px;
+		.s{font-size:37px;}
+		font-family: 'Comfortaa', sans-serif;
+		padding-right:122px;		
+		&:hover + #startext{
+			opacity:1.0;
+			z-index:1;
+		}
 	}
     img:hover {
       cursor: pointer;
@@ -73,11 +85,6 @@
 	color: rgba(127, 84, 0, 1);
 	text-shadow: -1px 0px black, 0px -1px black;
 }
-#welcome .s{
-	font-size:37px;
-	font-family: 'Comfortaa', sans-serif;
-	// font-weight: bold;
-}
 
 #welcome .s:hover{
 	cursor:pointer;
@@ -86,7 +93,7 @@
 	font-weight: bold;	
 }
 
-#whatext{
+#whatext, #startext, #logintext{
 	// display:none;
 	opacity: 0;
 	-moz-opacity: 0;
@@ -103,11 +110,17 @@
 	z-index:-1;
     @include transition-property(all);
     @include transition-duration(1s);
+    span{
+    	font-size:14px;
+    	color:red;
+    	text-shadow:0px 0px 1px white;
+    }
 }
+
 
 .warningDialog {
   p {
-    	text-align:left;
+    text-align:left;
 	font-family: 'Cousine', sans-serif;
 	font-size:14px;
 	color:#4A4842;

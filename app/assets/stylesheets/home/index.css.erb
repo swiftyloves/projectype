@@ -1,3 +1,5 @@
+@import "compass/css3";
+
 html {
   background: url(<%= asset_path "home/texture.jpg" %>) repeat;
   overflow: auto;
@@ -132,10 +134,27 @@ input {
 }
 
 .buttonHelper {
-  display: none;
+  /*display: none;*/
+  opacity: 0;
+  -moz-opacity: 0;
+  filter:alpha(opacity=0);
   font-size: 10px;
   position: absolute;
-  white-space: nowrap;  
+  top:-25px;
+  white-space: nowrap;
+  border-radius:6px;
+  font-size:13px; 
+  color:white;
+  background:rgba(0,0,0,0.8);
+  padding-left:2px;
+  padding-right:2px;
+  line-height:15px;
+
+  @include transition-property(all);
+  @include transition-duration(1s); 
+}
+#contactButton .buttonHelper{
+  left:-21px;
 }
 
 #triangle {
@@ -199,6 +218,9 @@ input {
 
 #helpButton:hover .buttonHelper, #contactButton:hover .buttonHelper {
   display: block;
+  opacity: 1;
+  -moz-opacity: 1;
+  filter:alpha(opacity=1);
 }
 
 #logButton, #taskButton, #userButton {
@@ -241,6 +263,10 @@ input {
   display: none;
 }
 
+.inProjectTag #unlogFunctionTag {
+  display: none;
+}
+
 .login a {
   display: none;
 }
@@ -258,11 +284,12 @@ input {
 
 .login #headImg:hover {
   opacity: 1;
+  box-shadow: 0px 0px 8px 2px rgba(161, 83, 0, 0.9);
 }
 
 .loginTag {
   width: 138px;
-  height: 122px;
+  height: 95px;
   top: 74px;
   left: 887px;
 }
@@ -272,6 +299,17 @@ input {
   height: 72px;
   top: 74px;
   left: 942px;
+}
+
+.inProjectTag {
+  width: 138px;
+  height: 128px;
+  top: 74px;
+  left: 887px;
+}
+
+.loginTag #inviteButton {
+  display: none;
 }
 
 #logButton {
@@ -300,19 +338,38 @@ input {
 }
 
 #functionTag span {
-  margin-left: 19px;
+  margin-left: 11px;
+  padding-left: 7px;
   font-size: 30px;
-  color: rgba(127, 84, 0, 1);
+  color: rgba(168, 116, 70, 1);i
   text-shadow: -1px 0px black, 0px -1px black;
   cursor: pointer;
+  line-height: 34px;
+}
+
+#functionTag span:hover {
+  background-color: rgba(225, 143, 50, 0.4);
+  border-radius:7px;
 }
 
 #functionTag div div {
   display: inline-block;
 }
 
+#homeButton {
+  padding-right: 27px;
+}
+
+#inviteButton {
+  padding-right: 29px;
+}
+
+#logoutButton {
+  padding-right: 5px;
+}
+
 #logFunctionTag {
-  margin-top: 15px;
+  margin-top: 12px;
 }
 
 #fbButton, #gButton {
@@ -324,6 +381,7 @@ input {
 
 #fbButton:hover, #gButton:hover {
   cursor: pointer;
+  box-shadow: 1px 1px 5px #663300;
 }
 
 #fbButton {

@@ -155,6 +155,11 @@ $(function() {
     $("#taskCanvas").css("width", (count - 2) * 30 + 10);
     snapOffset = $($("#timeBar").children()[0]).offset().left;
     snapUnit = $($("#timeBar").children()[1]).offset().left - $($("#timeBar").children()[0]).offset().left;
+    for (var j = 1; j < count; ++j) {
+      var tmp = $("<div class='alignLine'></div>");
+      tmp.css("left", j * 30);
+      $("#taskCanvas").append(tmp);
+    }
   };
 
   putTask = function (id, sday, dday, name) {
@@ -179,7 +184,7 @@ $(function() {
         ++count;
       }
     }
-    tmp.offset({top: count * heightUnit});
+    tmp.offset({top: (count + 2)* heightUnit * 2});
     tmp.width(w*30);
     jsPlumb.draggable(tmp, draggableOpt);
     jsPlumb.makeTarget(tmp, {
@@ -247,6 +252,11 @@ $(function() {
       width: 630,
       modal: true,
       dialogClass: "bigCard",
+      open: function(event) {        
+        $(".ui-widget-overlay").click(function(event) {
+          $("#mainCanvas").dialog("close");
+        });
+      },
     });
     jsPlumb.repaintEverything();
   }
