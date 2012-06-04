@@ -17,6 +17,8 @@ $(function(){
       }
     });
 
+    $("#startFirstWarning").hide();
+
     $("#startFirstWarning").dialog({
       autoOpen: false,
       resizable: false,

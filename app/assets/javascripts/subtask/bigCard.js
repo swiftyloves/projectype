@@ -247,6 +247,11 @@ $(function() {
       width: 630,
       modal: true,
       dialogClass: "bigCard",
+      open: function(event) {        
+        $(".ui-widget-overlay").click(function(event) {
+          $("#mainCanvas").dialog("close");
+        });
+      },
     });
     jsPlumb.repaintEverything();
   }
