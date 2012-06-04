@@ -40,6 +40,7 @@ $(function() {
   };
 */
   function commonLogoutAction() {
+    $(".inProjectTag").removeClass("inProjectTag").addClass("unloginTag");
     $(".login").removeClass("login").addClass("unlogin");
     $(".loginTag").removeClass("loginTag").addClass("unloginTag");
     $.get("/home/logout")
