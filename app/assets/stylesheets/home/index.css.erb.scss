@@ -1,0 +1,445 @@
+@import "compass/css3";
+
+html {
+  background: url(<%= asset_path "home/texture.jpg" %>) repeat;
+  overflow: auto;
+  font-family: "Comfortaa", sans-serif;
+}
+
+input {
+  font-family: "Comfortaa", sans-serif;
+}
+
+.outer {
+  background: rgba(235, 216, 142, 0.5);
+}
+
+.indexPanel {
+  width: 1080px;
+}
+
+.decorate {
+  position: absolute;
+  z-index: 1;
+}
+
+.bar div {
+  display: inline-block;
+  float: right;
+}
+
+.toggleButton {
+  z-index: 2;
+}
+
+.toggleButton a {
+  text-decoration: none;
+  background: rgba(109, 91, 5, 0.1);
+  font-size: 23.5px;
+  font-weight: bold;
+  color: rgba(137, 96, 8, 1);
+  background-size: 100%;
+}
+
+.toggleButton:hover {
+  cursor: pointer;
+}
+
+.toggling a {
+  background: rgba(255, 255, 255, 0.4);
+  color: rgba(221, 206, 113, 1);
+  box-shadow: 0px 1px 4px 0px rgba(128, 128, 128, 1) inset;
+  text-shadow: 0px 2px 2px rgba(32, 32, 32, 1);
+}
+
+#main {
+  background: url(<%= asset_path "background.jpg" %>) no-repeat;
+  background-position: -50px 0px;
+  height: 780px;
+  margin: auto auto auto auto;
+  position: relative;
+}
+
+#modeBar {
+  height: 95px;
+}
+
+#middleBar {
+  height: 600px;
+}
+
+#helpBar {
+}
+
+#mask {
+  height: 645px;
+  width: 890px;
+  top: 75px;
+  left: 100px;
+  border-radius: 70px;
+  background: rgba(255, 255, 255, 0.3);
+}
+
+#topMask {
+  height: 80px;
+  box-shadow: 0px 1px 2px 1px rgba(150, 150, 150, 1);
+}
+
+#bottomMask {
+  top: 700px;
+}
+
+#content {
+  z-index: 10;
+  position: absolute;
+  top: 95px;
+  width: 1019px;
+  height: 605px;
+  left: 33px;
+  overflow: auto;
+  /*background: red;*/
+}
+
+/*scollerbar*/
+#content::-webkit-scrollbar {
+    width: 12px;
+}
+
+#content::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+    border-radius: 10px;
+}
+
+#content::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    background-color: rgba(221,204,129,0.8);    
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.5);
+}
+#content::-webkit-scrollbar-track-piece  {
+  width:1px;
+}
+
+.pointUser {
+  left: 755px;
+  visibility: visible;
+}
+
+.pointTask {
+  left: 892px;
+  visibility: visible;
+}
+
+.hide {
+  visibility: hidden;
+}
+
+.buttonHelper {
+  /*display: none;*/
+  opacity: 0;
+  -moz-opacity: 0;
+  filter:alpha(opacity=0);
+  font-size: 10px;
+  position: absolute;
+  white-space: nowrap;
+  border-radius:10px;
+  font-size:13px; 
+  color:white;
+  background:rgba(0,0,0,0.8);
+  @include transition-property(all);
+  @include transition-duration(1s); 
+}
+
+#triangle {
+  background: url(<%= asset_path "home/triangle.png" %>) no-repeat;
+  background-size: 60%;
+  width: 34px;
+  height: 38px;
+  top: 66px;
+}
+
+
+.editingName span {
+  display: none;
+}
+
+.editingName input {
+  display: inline;
+}
+
+.noeditingName span {
+  display: inline;
+}
+
+.noeditingName input {
+  display: none;
+}
+
+#projectName {
+  z-index: 2;
+}
+
+#projectName span {
+  margin-right: 40px;
+  font-size: 35px;
+  color: rgba(127, 84, 0, 1);
+  text-shadow: -1px 0px black, 0px -1px black;
+}
+
+#projectName input {
+  outline: none;
+  border: none;
+  font-size: 35px;
+  color: rgba(127, 84, 0, 1);
+  text-shadow: -1px 0px black, 0px -1px white;
+  background: rgba(0, 0, 0, 0);
+  text-align: right;
+  position: relative;
+  top: -8px;
+  margin-right: 40px;
+}
+
+#helpButton, #contactButton {
+  position: relative;
+  top: 20px;
+  width: 50px;
+}
+
+#helpButton a, #contactButton a {
+  padding: 15px 15px 15px 15px;
+}
+
+#helpButton:hover .buttonHelper, #contactButton:hover .buttonHelper {
+  display: block;
+  opacity: 1;
+  -moz-opacity: 1;
+  filter:alpha(opacity=1);
+}
+
+#logButton, #taskButton, #userButton {
+  position: relative;
+  top: 30px;
+}
+
+#projectName {
+  position: relative;
+  top: 23px;
+}
+
+#logButton, #taskButton, #userButton {
+  margin-left: 20px;
+}
+
+#taskButton a, #userButton a {
+  padding-top: 10px;
+  padding-bottom: 10px;
+  padding-left: 30px;
+  padding-right: 30px;
+}
+
+.unlogin a {
+  padding-top: 10px;
+  padding-bottom: 10px;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+.unlogin #headImg {
+  display: none;
+}
+
+.unloginTag #logFunctionTag {
+  display: none;
+}
+
+.loginTag #unlogFunctionTag {
+  display: none;
+}
+
+.inProjectTag #unlogFunctionTag {
+  display: none;
+}
+
+.login a {
+  display: none;
+}
+
+.login #headImg {
+  /*background: red;*/
+  background-size: 100%;
+  margin-right: 52px;
+  width: 48px;
+  height: 48px;
+  top: -12px;
+  position: relative;
+  opacity: 0.6;
+}
+
+.login #headImg:hover {
+  opacity: 1;
+  box-shadow: 0px 0px 8px 2px rgba(161, 83, 0, 0.9);
+}
+
+.loginTag {
+  width: 138px;
+  height: 95px;
+  top: 74px;
+  left: 887px;
+}
+
+.unloginTag {
+  width: 130px;
+  height: 72px;
+  top: 74px;
+  left: 942px;
+}
+
+.inProjectTag {
+  width: 138px;
+  height: 128px;
+  top: 74px;
+  left: 887px;
+}
+
+.loginTag #inviteButton {
+  display: none;
+}
+
+#logButton {
+}
+
+#taskButton {
+}
+
+#userButton {
+}
+
+#helpButton a {
+  background: url(<%= asset_path "questionMark.png" %>) center no-repeat;
+}
+
+#contactButton a {
+  background: url(<%= asset_path "mail.png" %>) center no-repeat;
+}
+
+#functionTag {
+  background: rgba(254, 254, 225, 1);
+  position: absolute;
+  box-shadow: 0px 2px 2px 0.5px rgba(124, 113, 96, 0.7);
+  border-radius: 7px;
+  z-index: 20;
+}
+
+#functionTag span {
+  margin-left: 11px;
+  padding-left: 7px;
+  font-size: 30px;
+  color: rgba(168, 116, 70, 1);i
+  text-shadow: -1px 0px black, 0px -1px black;
+  cursor: pointer;
+  line-height: 34px;
+}
+
+#functionTag span:hover {
+  background-color: rgba(225, 143, 50, 0.4);
+  border-radius:7px;
+}
+
+#functionTag div div {
+  display: inline-block;
+}
+
+#homeButton {
+  padding-right: 27px;
+}
+
+#inviteButton {
+  padding-right: 29px;
+}
+
+#logoutButton {
+  padding-right: 5px;
+}
+
+#logFunctionTag {
+  margin-top: 12px;
+}
+
+#fbButton, #gButton {
+  height: 45px;
+  width: 45px;
+  margin-top: 13px;
+  margin-left: 9px;
+}
+
+#fbButton:hover, #gButton:hover {
+  cursor: pointer;
+}
+
+#fbButton {
+  background: url(<%= asset_path "fbicon.png" %>) no-repeat center;
+  background-size: 100%;
+  margin-left: 14px;
+}
+
+#gButton {
+  background: url(<%= asset_path "g+icon.png" %>) no-repeat center;
+  margin-left: 8px;
+}
+
+#copyRight {
+  padding-top: 25px;
+  padding-right: 18px;
+}
+
+#helpContent {
+  /*background: url(<%= asset_path "uiflow.png" %>) center no-repeat;*/
+  background:white;
+  background-size: 100%;
+  width: 600px;
+  height: 600px;
+}
+
+.helpDialog .ui-widget-header {
+  background: rgba(255, 255, 255, 0);
+  border: none;
+}
+
+@-webkit-keyframes showEffect { /* Safari and Chrome */
+  from { opacity:0 }
+  to { opacity:1 }
+}
+
+/* action part css */
+
+.showTag {
+  visibility: visible;
+  -webkit-animation:showEffect 1s; /* Safari and Chrome */
+}
+
+/*dialog style*/
+
+.helpDialog {
+  background: none;
+  border: none;
+}
+
+.helpDialog .ui-dialog-titlebar {
+  /*background: rgb(248, 242, 218);*/
+  background: none;
+  border: 0px;
+  height: 0px;
+}
+
+.helpDialog .ui-dialog-title {
+  color: rgb(100, 52, 3);
+}
+
+/* state change */
+#functionTag .invalid {
+  color: white;
+}
+
+#functionTag .invalid:hover {
+  cursor: auto;
+}
+
