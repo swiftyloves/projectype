@@ -43,7 +43,7 @@ $(function() {
             });
           },
         });
-        $("#.ui-widget-overlay").click(function(event, ui) {
+        $(".ui-widget-overlay").click(function(event, ui) {
           $("#card").dialog("close");
         });
         $("#card").click(function(event, ui) {
