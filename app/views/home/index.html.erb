@@ -55,10 +55,10 @@
         <% if @img %>
           $("#headImg").css("background", "url(<%= @img %>)");
         <% end %>
+        $(".inProjectTag").removeClass("inProjectTag").addClass("loginTag");
         $(".unlogin").removeClass("unlogin").addClass("login");
         $(".unloginTag").removeClass("unloginTag").addClass("loginTag");
         $("#userButton, #taskButton").hide();
-        $("#inviteButton").addClass("invalid");
         doBlockingEnd();      
       },
     });
