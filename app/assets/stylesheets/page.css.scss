@@ -11,7 +11,7 @@
 		float:right;
 	}
 }
-.right{
+#welcome .right{
 	display:inline-block;
 	width:400px;
 	vertical-align:middle;	
@@ -25,6 +25,8 @@
 			padding-right:10px;
 		}
 		&:hover{
+			cursor:pointer;
+			color:red;
 			span{
 				color:rgb(200,0,0);
 				text-shadow: -1px 0px white, 0px -1px white;
@@ -37,10 +39,7 @@
 			z-index:1;
 		}
 	}
-	.first:hover{
-		cursor:pointer;
-		color:red;
-	}
+
 	.second{
 		margin-bottom:40px;
 		height:40px;
@@ -107,7 +106,7 @@
 
 .warningDialog {
   p {
-    	text-align:left;
+    text-align:left;
 	font-family: 'Cousine', sans-serif;
 	font-size:14px;
 	color:#4A4842;
