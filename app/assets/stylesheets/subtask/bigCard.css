@@ -61,6 +61,12 @@
   box-shadow: -1px 2px 5px 0px rgb(255, 0, 0); 
 }
 
+.alignLine {
+  position: absolute;
+  height: 350px;
+  border: dashed 1px rgba(128, 128, 128, 0.3);
+}
+
 #timeBar, #timeBarDragHelper, #timeViewPort {
   height: 50px;
 }
