@@ -177,13 +177,14 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#e6ce8a', end
 }
 
 .main div > .sub{  
-  background-position: center;
+  /*background-position: center;
   background-size: 12%;
   background-repeat: no-repeat;
+  background-image: url(<%= asset_path "addsub.png" %>);  */
   background-color:rgba(236, 205, 136, 0.7);
-  background-image: url(<%= asset_path "addsub.png" %>);    
+  position:relative; 
   margin:0;
-  padding:8px;
+  padding:20px;
   color: #FDF8FC;
   border: transparent;
   height:35px;
@@ -197,9 +198,27 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#e6ce8a', end
   border-bottom-right-radius: 10px;  
 }
 
-.main div > .sub:hover{  
-  cursor:pointer;  
+.add{
+  opacity:0.6;
+  position: absolute; 
+  top: 5px;
+  left: 86px;
+  height: 30px;
+  width: 30px;
+  background-position: center;
+  background-size: 100%;
+  background-repeat: no-repeat;
+  background-image: url(<%= asset_path "addsub.png" %>);
 }
+
+.add:hover{
+  opacity:1;
+  cursor:pointer;
+}
+
+/*.main div > .sub:hover{  
+  cursor:pointer;  
+}*/
 /*task*/
 
 .triangle, .rename, .delete, .finish, .open {
@@ -394,8 +413,10 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#e6ce8a', end
   padding:1px;
   text-align:right;
 }
-
-.main div li span:hover{
+.main div li:hover{
+  cursor:pointer;
+}
+.main div li:hover span{
   cursor:pointer;
   background: #F9F3E2;  
   font-size:15px;
