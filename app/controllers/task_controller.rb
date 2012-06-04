@@ -2,12 +2,8 @@ class TaskController < ApplicationController
   before_filter :common_sel
   def taskmode
     if params[:id] != "-1"
-      proj = Project.find(params[:id])
       u = User.find_by_account(session[:current_user])
-      unless u.projects.exists?(proj)
-        render json: "forbidden"
-        return
-      end
+      proj = u.projects.find(params[:id])
     end
     session[:current_proj] = params[:id]
     render :layout => false
@@ -17,7 +13,8 @@ class TaskController < ApplicationController
       render json: ""
       return
     end
-    @project = Project.find(session[:current_proj])
+    user = User.find_by_account(session[:current_user])
+    @project = user.projects.find(session[:current_proj])
     @proj_users = @project.users
     @proj_tasks = @project.tasks
     #puts @proj_users[0].id

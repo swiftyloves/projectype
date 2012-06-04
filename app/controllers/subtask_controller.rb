@@ -56,6 +56,7 @@ class SubtaskController < ApplicationController
   end
 
   def card
+    #TODO
     @id = params[:id]
     render :layout => false
   end
@@ -76,7 +77,17 @@ class SubtaskController < ApplicationController
   end
 
   def edit
+    if !session[:current_proj] || session[:current_proj] == '-1'
+      render json: ''
+      return
+    end
     subtask = Subtask.find(params[:id])
+    task = subtask.task
+    proj = Project.find(session[:current_proj])
+    unless proj.tasks.exists?(task)
+      render json: ''
+      return
+    end
     if subtask
       if params[:uid]
         subtask.users << User.find(params[:uid])
