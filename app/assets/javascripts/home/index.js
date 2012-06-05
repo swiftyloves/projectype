@@ -63,6 +63,11 @@ $(function() {
     });
   };
 
+  function closeTag(event) {
+    resetToggle();
+    $("#main, .outer").off("click", closeTag);
+  };
+
   // init
 
   resetMainHeight();
@@ -78,8 +83,12 @@ $(function() {
       xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content'));
     }
   });
+/*
+  $("#main").click(function(event) {
+    $(".showTag").removeClass("showTag").addClass("hide");
+  }); 
+*/
 
- 
   // buttons
 
   $("#userButton").click(function(event) {
@@ -163,14 +172,18 @@ $(function() {
       currentState = $(this);
       if ($(this).hasClass("toggling")) {
         resetToggle();
+        $("#main, .outer").off("click", closeTag);
       } else {
         resetToggle();
         $(this).addClass("toggling");
         $("#functionTag").addClass("showTag").removeClass("hide");
+        $("#main, .outer").bind("click", closeTag);
+        event.stopPropagation();
       }
     } else {
       currentState = null;
       resetToggle();
+      $("#main, .outer").off("click", closeTag);
     }
   });
 
