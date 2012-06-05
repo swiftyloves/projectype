@@ -18,6 +18,7 @@
 		var del;
 		var finish;
 		var open;
+        var record;
         //load data from database
         //console.log(tmp);
         $.ajax({
@@ -29,6 +30,8 @@
 			  alert("err");
 			},
 			success: function(response) {
+              record = response;
+              console.log("record", record);
               console.log(response)
               var ulnum = 0;  
               for(var i=0;i<response['t'].length;i++){
@@ -72,7 +75,7 @@
 						 open = $('<button class="open"></button>');
 		                 div = $('<div></div>');
 						 //console.log(<%= asset_path 'addsub.png' %>);
-		                 button = $('<button class="sub"><label class = "add"></label></button>');
+		                 button = $('<button class="sub"><label calss="out"><label class = "add"></label></label></button>');
 		                 tmp.appendTo($(ularray[j]));
                          var div2 = $('<div class="group" style="position:absolute; padding:4px; height:auto; width:auto; top:-41px; left:205px;"></div>');	
                          div2.appendTo(tmp.children("div:nth-child(1)")).hide();
@@ -140,11 +143,11 @@
                bigbutton.appendTo("ul");   
                var secdivs = $("ul").children("li").children("div:nth-child(2)");
                $(secdivs).children("button").remove();
-               button = $('<button class="sub"><label class = "add"></label></button>');
+               button = $('<button class="sub"><label class="out"><label class = "add"></label></label></button>');
                button.appendTo(secdivs);
 			}	       
 	    });
-        // 
+        //      
 	    function handlesortstop(event, tmp, posx, posy) {
 			$("ul").children("button").remove();			
 			bigbutton = $('<button>Add</button>'); 
@@ -225,7 +228,7 @@
 			}
             var thisul = $(this).parent("ul");	
 		    bigbutton = $('<button>Add</button>');
-		    button = $('<button class="sub"><label class = "add"></label></button>');
+		    button = $('<button class="sub"><label class = "out"><label class = "add"></label></label></button>');
 			ul = $('<ul class="connectedlist main"></ul>'); // 
             tmp = $('<li><div><input type="text" maxlength=11 value="New Task"></div></li>'); 		// 
 			div = $('<div></div>');	
@@ -454,7 +457,10 @@
 		});	
         $("#placeholder").on("click","ul>li>div:nth-child(1)>div> .open", function(event){	
                     // add Big card!!!!
-                  if ($("#projectName span").attr("pid") != -1) {
+                  if($("#projectName span").attr("pid") == -1){
+                    alert("You have to log in for this button to be functional!!"); 
+                  }
+                  else if ($("#projectName span").attr("pid") != -1) {
                     var posx = $(this).parents("ul").index();
                     var posy = $(this).parents("div").parent("li").index();
                     doBlockingStart();
@@ -699,6 +705,9 @@
         //	 
         $("#placeholder").on("click","li li", function(event){
 		    //"show small card!!!";
+                    if (!$(this).attr("num")){
+                      alert("You have to log in for the small card and participants of this subtask to show up!!");
+                    }
                     if ($(this).attr("num")) {
                       doBlockingStart();
                       $.ajax({
