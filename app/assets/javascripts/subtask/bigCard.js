@@ -174,18 +174,18 @@ $(function() {
                 +"<div class='ep atEnd'></div>"
                 +"</div>");
     tmp.offset({left: (ss + 1) * 30});
+    tmp.width(w*30);
     var count = 0;
     var list = $(".window");
     for (var i = 0; i < list.length; ++i) {
-      if ((tmp.css("left") <= $(list[i]).css("left") &&
-           tmp.css("left") + tmp.outerWidth() >= $(list[i]).css("left")) ||
-          (tmp.css("left") >= $(list[i]).css("left") &&
-           tmp.css("left") <= $(list[i]).css("left") + $(list[i]).outerWidth())) {
+      if ((parseInt(tmp.css("left")) <= parseInt($(list[i]).css("left")) &&
+           parseInt(tmp.css("left")) + tmp.outerWidth() >= parseInt($(list[i]).css("left"))) ||
+          (parseInt(tmp.css("left")) >= parseInt($(list[i]).css("left")) &&
+           parseInt(tmp.css("left")) <= parseInt($(list[i]).css("left")) + $(list[i]).outerWidth())) {
         ++count;
       }
     }
     tmp.offset({top: (count + 2)* heightUnit * 2});
-    tmp.width(w*30);
     jsPlumb.draggable(tmp, draggableOpt);
     jsPlumb.makeTarget(tmp, {
       dropOptions:{ hoverClass:"dragHover" },
