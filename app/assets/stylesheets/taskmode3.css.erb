@@ -203,10 +203,10 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#e6ce8a', end
   position: absolute; 
   top: 5px;
   left: 86px;
-  height: 30px;
-  width: 30px;
+  height: 28px;
+  width: 26px;
   background-position: center;
-  background-size: 100%;
+  background-size: 70%;
   background-repeat: no-repeat;
   background-image: url(<%= asset_path "addsub.png" %>);
 }
@@ -214,6 +214,9 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#e6ce8a', end
 .add:hover{
   opacity:1;
   cursor:pointer;
+  background-color:rgba(255, 255, 255, 0.7);
+  border-radius:15px;
+  box-shadow: 1px 1px 1px rgba(163, 55, 55, 0.7);
 }
 
 /*.main div > .sub:hover{  
