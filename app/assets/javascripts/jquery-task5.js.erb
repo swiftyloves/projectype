@@ -70,9 +70,8 @@
 						 del = $('<button class="delete"></button>');
 						 finish = $('<button class="finish"></button>');
 						 open = $('<button class="open"></button>');
-		                 div = $('<div></div>');
-						 //console.log(<%= asset_path 'addsub.png' %>);
-		                 button = $('<button class="sub"><label class = "add"></label></button>');
+		                 div = $('<div></div>');	
+		                 button = $('<button class="sub"></button>');
 		                 tmp.appendTo($(ularray[j]));
                          var div2 = $('<div class="group" style="position:absolute; padding:4px; height:auto; width:auto; top:-41px; left:205px;"></div>');	
                          div2.appendTo(tmp.children("div:nth-child(1)")).hide();
@@ -136,25 +135,25 @@
                   }                       
                }				  
                $("ul").children("button").remove();			
-			   bigbutton = $('<button>Add</button>');  
+			   bigbutton = $('<button>Add Task</button>');  
                bigbutton.appendTo("ul");   
                var secdivs = $("ul").children("li").children("div:nth-child(2)");
                $(secdivs).children("button").remove();
-               button = $('<button class="sub"><label class = "add"></label></button>');
+               button = $('<button class="sub"></button>');
                button.appendTo(secdivs);
 			}	       
 	    });
         // 
 	    function handlesortstop(event, tmp, posx, posy) {
 			$("ul").children("button").remove();			
-			bigbutton = $('<button>Add</button>'); 
+			bigbutton = $('<button>Add Task</button>'); 
             bigbutton.appendTo("ul");           		
 			//console.log($("#placeholder").children("ul").last());
 			//console.log(tmp); 
             if(($("#placeholder").children("ul").last().children("li").length==1)){				
 				var ul2 =  $('<ul class="connectedlist main"></ul>');
 				ul2.appendTo("#placeholder");
-				var bigbutton2 = $('<button>Add</button>');
+				var bigbutton2 = $('<button>Add Task</button>');
 				bigbutton2.appendTo(ul2);
                 var oldposx;
 				var oldposy;
@@ -224,8 +223,8 @@
 				tmp.children("input").remove();   
 			}
             var thisul = $(this).parent("ul");	
-		    bigbutton = $('<button>Add</button>');
-		    button = $('<button class="sub"><label class = "add"></label></button>');
+		    bigbutton = $('<button>Add Task</button>');
+		    button = $('<button class="sub">sub</button>');
 			ul = $('<ul class="connectedlist main"></ul>'); // 
             tmp = $('<li><div><input type="text" maxlength=11 value="New Task"></div></li>'); 		// 
 			div = $('<div></div>');	
@@ -687,24 +686,24 @@
 			event.stopPropagation();
 		});	
         //          
-        $("#placeholder").on("hover","li li", function(event){
+        $("#placeholder").on("hover","li li span", function(event){
             console.log($(this).parent("li").children("div"));
             console.log("SHOW PIC",$(this).parent("li").children("div:nth-child(2)"));
-		    $(this).children("div:nth-child(2)").show();			 			
+		    $(this).parent("li").children("div:nth-child(2)").show();			 			
 		});	
-        $("#placeholder").on("mouseleave","li li", function(event){
-			$(this).children("div:nth-child(2)").hide();			
+        $("#placeholder").on("mouseleave","li li span", function(event){
+			$(this).parent("li").children("div:nth-child(1)").hide();			
 			//event.stopPropagation();
 		});
         //	 
-        $("#placeholder").on("click","li li", function(event){
+        $("#placeholder").on("click","li li span", function(event){
 		    //"show small card!!!";
-                    if ($(this).attr("num")) {
+                    if ($(this).parent().attr("num")) {
                       doBlockingStart();
                       $.ajax({
                         type: 'POST',
                         url: '/subtask/card',
-                        data: {"id": $(this).attr("num")},
+                        data: {"id": $(this).parent().attr("num")},
                         error: function(response) {
                           console.log(response);
                           doBlockingEnd();
