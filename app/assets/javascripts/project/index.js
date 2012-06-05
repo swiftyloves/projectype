@@ -1,6 +1,7 @@
 $(function() {
   function spanClick(event, ui) {
     //console.log($(this));
+    $("inviteButton").show();
     requestTask(ui);
   };
   
