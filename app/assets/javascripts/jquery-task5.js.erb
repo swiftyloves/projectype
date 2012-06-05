@@ -125,7 +125,7 @@
                                            var subb = $("[num="+response['s'].id+"]");
                                            console.log(subb);
                                            console.log(response['u'].length);  
-                                           div = $('<div class="img"  style="white-space:nowrap; height:auto; right:120px;padding:0px; width:auto; top:4px; background:white; position:absolute;"></div>');
+                                           div = $('<div class="img"  style="z-index:1; white-space:nowrap; height:auto; right:120px;padding:0px; width:auto; top:4px; background:white; position:absolute;"></div>');
                                            subb.children(".triangle").before(div);  
                                            div.hide(); 
                                            for(var m=0; m<response['u'].length; m++){
@@ -739,12 +739,12 @@
 			      success: function(response) {
                                 console.log(response);  
                                 var subb = $("[num="+response['s'].id+"]");
-                                var div = $('<div class="img"  style="height:auto; right:120px;padding:0px; width:auto; top:4px; background:white; position:absolute;"></div>');
+                                var div = $('<div class="img"  style="z-index:1; white-space:nowrap; height:auto; right:120px;padding:0px; width:auto; top:4px; background:white; position:absolute;"></div>');                 
                                 subb.children(".triangle").siblings('.img').remove();
                                 subb.children(".triangle").before(div); 
                                 div.hide(); 
                                 for(var m=0; m<response['u'].length; m++){
-                                  div.append('<div style="width:30px; float:right;padding:0px; height:30px; display:inline-block; background: url('+response['u'][m].img+') center no-repeat; background-size: 80%;"></div>');
+                                  div.append('<div style="width:30px; float:right;padding:0px; height:30px; display:inline-block; background: url('+response['u'][m].img+') center no-repeat; background-size: 80%;"></div>');                                             
                                 }
 			      }
                             });
