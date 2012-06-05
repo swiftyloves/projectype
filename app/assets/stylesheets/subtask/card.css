@@ -56,10 +56,18 @@
   vertical-align:top;
   line-height:15px;
 }
-.comment pre{
+.comment pre {
   padding:0px 5px;
   vertical-align: top;
+  white-space: pre-wrap;
+  width: 294px;
+  word-break: break-all;
 }
+
+.comment .container {
+  width: 294px;
+}
+
 .comment .mem{
   margin: 2px 2px ;
 }
