@@ -584,7 +584,7 @@
 			input3.parent("li").removeClass("altering").prepend('<span>'+input3.attr('value')+'</span>');
 			input3.remove();	
 			var thisul = $(this).parents("ul");
-            var thisli = $(this).parents("div").parent("li");            
+            var thisli = $(this).parent().parent().parent().parent();
 			parentli = $(this).parent("div").parent("li");
 			input = $('<input type="text" maxlength=20 value="' + $(this).parent("div").siblings("span").html()+'">'); 	
             

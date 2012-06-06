@@ -60,9 +60,11 @@ $(function() {
     img = "url(" + img + ")";
     var com = $('<div class="comment">' +
                       '<div class="mem" uid=' + id + '></div>' +
+                      '<div class="container">' +
                       '<pre>' + comment + '</pre>' +
+                      '</div>' +
                     '</div>');
-    com.children("div").css("background-image", img); 
+    com.children(".mem").css("background-image", img); 
     $("#comments").prepend(com);
   };
  

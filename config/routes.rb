@@ -3,6 +3,7 @@ Projectype::Application.routes.draw do
   get "task/taskmode"
 
   # home
+  get '/' => 'home#index'
   get '/home/' => 'home#index'
   match '/home/ask/:req', :to => 'home#ask'
   match '/home/ask/:req/:acc', :to => 'home#ask'
@@ -25,7 +26,7 @@ Projectype::Application.routes.draw do
   get '/project/invite/:hash' => 'project#participate'
   
   # page
-  get '/' => 'page#index'
+  #get '/' => 'page#index'
   get '/sel' => 'page#selectable'
   get '/unlogin' => 'page#unlogin'
   get '/invite' => 'page#invite'

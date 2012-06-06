@@ -36,6 +36,11 @@ class HomeController < ApplicationController
       img = profile['image']['url'].match("(.*)(\\?)")[1];
       a = User.new(:account => acc, :img => img)
       a.save
+    else
+      img = profile['image']['url'].match("(.*)(\\?)")[1];
+      a = User.where(:account => acc).first
+      a.img = img
+      a.save
     end
     # profile['image']['url']
     redirect_to '/home/'
@@ -57,14 +62,11 @@ class HomeController < ApplicationController
     session[:current_user] = acc
     session[:current_name] = me['name']
     if User.where(:account => acc).size == 0
-      puts "lalala"
       a = User.new(:account => acc, :img => "https://graph.facebook.com/#{id}/picture")
-      puts "lalala2"
-      if a.save
-        puts "save successful"
-      else
-        puts "save failed"
-      end
+      a.save
+    else
+      a = User.where(:account => acc).first
+      a.touch
     end
     # https://graph.facebook.com/id/picture
     # render json: {:token => rest_graph.access_token}
