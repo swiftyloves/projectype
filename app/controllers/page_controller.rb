@@ -36,7 +36,7 @@ class PageController < ApplicationController
     	require 'gmail_sender'
     	g = GmailSender.new("ProjecType@gmail.com","project123?")
 		g.send(:to => mail,
-		       :subject => "#{@name} Invite you to use ProjecType!!",
+		       :subject => "#{@name} has invited you to use ProjecType!!",
 		       :content => mailcontent,
 		       :content_type => 'text/html')
 		# render json: "succ"
