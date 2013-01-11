@@ -161,6 +161,9 @@ $(function() {
               $(".loginTag").removeClass("loginTag").addClass("inProjectTag");
             }
             doBlockingEnd();
+            if (($("#projectName span").html() == "大中天")) {
+              alert("大中天 你是不是你媽媽把你取名叫大中天心有不滿 所以才把project也取名叫大中天!?");
+            }
           }
         });
       }
